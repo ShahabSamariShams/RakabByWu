@@ -1,5 +1,5 @@
 #include <string>
-#include <vector>
+#include <unordered_map>
 
 class City{
     public:
@@ -7,10 +7,10 @@ class City{
         std::string getName()const;
         void setFightability(bool);
         bool getFightability()const;
-        bool isAdjacent(City);
-        void addToVicinity(City*);
+        bool isAdjacent(std::string);
+        void addCity(std::string, bool);
     private:
         std::string name;
-        std::vector <City*> vicinities;
+        std::unordered_map <std::string, bool> otherCities;
         bool fightable;
 };

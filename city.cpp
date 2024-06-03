@@ -16,15 +16,10 @@ bool City::getFightability()const{
     return fightable;
 }
 
-bool City::isAdjacent(City toBeChecked){
-    for(auto i: vicinities){
-        if(toBeChecked.getName() == i->getName()){
-            return true;
-        }
-    }
-    return false;
+bool City::isAdjacent(std::string toBeChecked){
+    return otherCities[toBeChecked];
 }
 
-void City::addToVicinity(City* adjacentCity){
-    vicinities.push_back(adjacentCity);
+void City::addCity(std::string toBeAdded, bool position){
+    otherCities[toBeAdded] = position;
 }
