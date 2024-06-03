@@ -18,7 +18,7 @@ bool City::getFightability()const{
 
 bool City::isAdjacent(std::string toBeChecked){
     try{
-        return otherCities[toBeChecked];
+        return otherCities.at(toBeChecked);
     }
     catch(const std::out_of_range exception){
         return false;
