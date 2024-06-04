@@ -20,7 +20,7 @@ class Card{
         CardType getType()const;
         void setPower(unsigned short);
         unsigned short getPower()const;
-        void ability();
+        void ability(/*Game*/);
     private:
         CardType type;
         unsigned short power;
