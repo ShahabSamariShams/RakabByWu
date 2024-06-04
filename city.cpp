@@ -1,5 +1,9 @@
 #include "city.h"
 
+City::City(){
+    setFightability(true);
+}
+
 void City::setName(std::string inputName){
     name = inputName;
 }

@@ -3,6 +3,7 @@
 
 class City{
     public:
+        City();
         void setName(std::string);
         std::string getName()const;
         void setFightability(bool);
