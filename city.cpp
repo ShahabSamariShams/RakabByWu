@@ -30,5 +30,10 @@ bool City::isAdjacent(std::string toBeChecked){
 }
 
 void City::addCity(std::string toBeAdded, bool position){
-    otherCities[toBeAdded] = position;
+    try{
+        otherCities.at(toBeAdded);
+    }
+    catch(std::out_of_range doesntExist){
+        otherCities[toBeAdded] = position;
+    }
 }
