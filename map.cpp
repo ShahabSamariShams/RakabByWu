@@ -164,25 +164,96 @@ Map::Map(){
         cityToAdd.addCity("LIA", true);
     }
     addCity(cityToAdd);
-    //OLIVADI--------------------------------
-    cityToAdd.setName("OLIVADI");
+    //LIA--------------------------------
+    cityToAdd.setName("LIA");
     {
         cityToAdd.addCity("BELLA", false);
         cityToAdd.addCity("CALINE", false);
         cityToAdd.addCity("ENNA", false);
-        cityToAdd.addCity("BORGE", true);
-        cityToAdd.addCity("DIMASE", true);
+        cityToAdd.addCity("BORGE", false);
+        cityToAdd.addCity("DIMASE", false);
         cityToAdd.addCity("ATELA", false);
         cityToAdd.addCity("PLADACI", false);
-        cityToAdd.addCity("MORINA", true);
+        cityToAdd.addCity("MORINA", false);
         cityToAdd.addCity("ROLLO", false);
         cityToAdd.addCity("TALMONE", false);
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", true);
-        cityToAdd.addCity("LIA", true);
+        cityToAdd.addCity("OLIVADI", true);
     }
     addCity(cityToAdd);
-    //remained from lia to right.
+    //ARMENTO--------------------------------
+    cityToAdd.setName("ARMENTO");
+    {
+        cityToAdd.addCity("BELLA", false);
+        cityToAdd.addCity("CALINE", false);
+        cityToAdd.addCity("ENNA", false);
+        cityToAdd.addCity("BORGE", false);
+        cityToAdd.addCity("DIMASE", false);
+        cityToAdd.addCity("ATELA", false);
+        cityToAdd.addCity("PLADACI", false);
+        cityToAdd.addCity("MORINA", true);
+        cityToAdd.addCity("ROLLO", false);
+        cityToAdd.addCity("TALMONE", true);
+        cityToAdd.addCity("ELINIA", false);
+        cityToAdd.addCity("LIA", true);
+        cityToAdd.addCity("OLIVADI", true);
+    }
+    addCity(cityToAdd);
+    //TALMONE--------------------------------
+    cityToAdd.setName("TALMONE");
+    {
+        cityToAdd.addCity("BELLA", false);
+        cityToAdd.addCity("CALINE", false);
+        cityToAdd.addCity("ENNA", false);
+        cityToAdd.addCity("BORGE", false);
+        cityToAdd.addCity("DIMASE", false);
+        cityToAdd.addCity("ATELA", false);
+        cityToAdd.addCity("PLADACI", false);
+        cityToAdd.addCity("MORINA", true);
+        cityToAdd.addCity("ROLLO", true);
+        cityToAdd.addCity("ARMENTO", true);
+        cityToAdd.addCity("ELINIA", true);
+        cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("OLIVADI", false);
+    }
+    addCity(cityToAdd);
+    //ROLLO--------------------------------
+    cityToAdd.setName("ROLLO");
+    {
+        cityToAdd.addCity("BELLA", false);
+        cityToAdd.addCity("CALINE", false);
+        cityToAdd.addCity("ENNA", false);
+        cityToAdd.addCity("BORGE", false);
+        cityToAdd.addCity("DIMASE", false);
+        cityToAdd.addCity("ATELA", false);
+        cityToAdd.addCity("PLADACI", true);
+        cityToAdd.addCity("MORINA", true);
+        cityToAdd.addCity("TALMONE", true);
+        cityToAdd.addCity("ARMENTO", false);
+        cityToAdd.addCity("ELINIA", true);
+        cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("OLIVADI", false);
+    }
+    addCity(cityToAdd);
+    //ELINIA--------------------------------
+    cityToAdd.setName("ELINIA");
+    {
+        cityToAdd.addCity("BELLA", false);
+        cityToAdd.addCity("CALINE", false);
+        cityToAdd.addCity("ENNA", false);
+        cityToAdd.addCity("BORGE", false);
+        cityToAdd.addCity("DIMASE", false);
+        cityToAdd.addCity("ATELA", false);
+        cityToAdd.addCity("PLADACI", false);
+        cityToAdd.addCity("MORINA", false);
+        cityToAdd.addCity("TALMONE", true);
+        cityToAdd.addCity("ARMENTO", false);
+        cityToAdd.addCity("ROLLO", true);
+        cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("OLIVADI", false);
+    }
+    addCity(cityToAdd);
 }
 
 void Map::addCity(City toBeAdded){
