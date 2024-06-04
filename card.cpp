@@ -7,35 +7,7 @@ void Card::setType(CardType inputType){
 }
 
 std::string Card::getTypeName()const{
-    switch(type){
-        case soldier:
-            return "soldier";
-            break;
-        case scarecrow:
-            return "scarecrow";
-            break;
-        case turncoat:
-            return "turncoat";
-            break;
-        case bishop:
-            return "bishop";
-            break;
-        case winter:
-            return "winter";
-            break;
-        case drummer:
-            return "drummer";
-            break;
-        case spring:
-            return "spring";
-            break;
-        case spy:
-            return "spy";
-            break;
-        case heroine:
-            return "heroine";
-            break;
-    }
+    return "";
 }
 
 CardType Card::getType()const{
@@ -51,4 +23,8 @@ void Card::setPower(unsigned short inputPower){
 
 unsigned short Card::getPower()const{
     return power;
+}
+
+void Card::ability(){
+    return;
 }
