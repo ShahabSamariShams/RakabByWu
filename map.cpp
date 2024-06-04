@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "map.h"
 
 Map::Map(){
@@ -246,7 +248,7 @@ Map::Map(){
         cityToAdd.addCity("DIMASE", false);
         cityToAdd.addCity("ATELA", false);
         cityToAdd.addCity("PLADACI", false);
-        cityToAdd.addCity("MORINA", false);
+        cityToAdd.addCity("MORINA", true);
         cityToAdd.addCity("TALMONE", true);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("ROLLO", true);
