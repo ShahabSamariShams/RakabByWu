@@ -6,7 +6,7 @@ void Card::setType(CardType inputType){
     type = inputType;
 }
 
-std::string Card::getTypeName()const{
+std::string Card::getTypeName()const{ //This function is merely made for user-interface.
     return "";
 }
 
