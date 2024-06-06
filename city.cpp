@@ -1,4 +1,7 @@
+#ifndef CITY_H
+#define CITY_H
 #include "city.h"
+#endif
 
 City::City(){
     setFightability(true);

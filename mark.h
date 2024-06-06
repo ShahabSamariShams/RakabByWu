@@ -1,6 +1,9 @@
 #include <string>
 
+#ifndef CITY_H
+#define CITY_H
 #include "city.h"
+#endif
 
 enum Color{
     white,
