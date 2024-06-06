@@ -6,7 +6,10 @@
 #include "card.h"
 #endif
 #include "player.h"
+#ifndef MARK_H
+#define MARK_H
 #include "mark.h"
+#endif
 #ifndef MAP_H
 #define MAP_H
 #include "map.h"

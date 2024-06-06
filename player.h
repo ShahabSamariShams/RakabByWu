@@ -5,7 +5,10 @@
 #define CARD_H
 #include "card.h"
 #endif
+#ifndef MARK_H
+#define MARK_H
 #include "mark.h"
+#endif
 #include "yellowArmy.h"
 
 class Player{
