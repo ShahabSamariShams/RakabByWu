@@ -1,4 +1,5 @@
 #include <vector>
+#include <utility>
 
 #include "card.h"
 #include "player.h"
@@ -9,9 +10,11 @@ class Game{
     public:
         
     private:
-        std::vector <Card*> cards;
+        std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
+        std::vector <std::pair<Card*, std::string> > playedPurpleCards;
         std::vector <Player> playerList;
         Mark blackMark;
         Map theMap;
+        Card* season;
 };
