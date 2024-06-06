@@ -5,7 +5,10 @@
 #define CARD_H
 #include "card.h"
 #endif
+#ifndef PLAYER_H
+#define PLAYER_H
 #include "player.h"
+#endif
 #ifndef MARK_H
 #define MARK_H
 #include "mark.h"

@@ -1,4 +1,7 @@
+#ifndef PLAYER_H
+#define PLAYER_H
 #include "player.h"
+#endif
 
 Player::Player(){
     marks.reserve(5);
