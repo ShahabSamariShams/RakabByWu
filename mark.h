@@ -1,6 +1,6 @@
 #ifndef MARK_H
-#define MARK_H
 
+#define MARK_H
 #include <string>
 
 #include "city.h"

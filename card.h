@@ -1,6 +1,6 @@
 #ifndef CARD_H
-#define CARD_H
 
+#define CARD_H
 #include <string>
 
 #include "game.h"
