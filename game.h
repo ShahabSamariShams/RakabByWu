@@ -9,6 +9,7 @@
 #include "mark.h"
 #include "map.h"
 
+class Card;
 
 class Game{
     public:

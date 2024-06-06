@@ -6,7 +6,8 @@
 
 #include "card.h"
 #include "mark.h"
-#include "yellowArmy.h"
+
+class Card;
 
 class Player{
     public:
@@ -18,7 +19,8 @@ class Player{
     private:
         std::string name;
         float age;
-        //YellowArmy army;
+        std::vector <Card*> yellowArmy;
+        int power;
         std::vector <Card*> cardsInHand;
         std::vector <Mark> marks;
 };
