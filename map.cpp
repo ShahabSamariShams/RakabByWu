@@ -1,6 +1,9 @@
 #include <iostream>
 
+#ifndef MAP_H
+#define MAP_H
 #include "map.h"
+#endif
 
 Map::Map(){
     City cityToAdd;

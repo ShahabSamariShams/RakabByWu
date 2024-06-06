@@ -7,7 +7,10 @@
 #endif
 #include "player.h"
 #include "mark.h"
+#ifndef MAP_H
+#define MAP_H
 #include "map.h"
+#endif
 
 class Game{
     public:
