@@ -1,10 +1,12 @@
-#ifndef CARD_H
-#define CARD_H
+#ifndef YELLOWCARD_H
+#define YELLOWCARD_H
+
 #include "card.h"
-#endif
 
 class YellowCard: public Card{
     public:
         YellowCard(unsigned short);
     private:
 };
+
+#endif

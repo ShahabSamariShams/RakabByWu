@@ -1,7 +1,7 @@
-#ifndef CITY_H
-#define CITY_H
+#ifdef MAP_H
+#define MAP_H
+
 #include "city.h"
-#endif
 
 class Map{
     public:
@@ -11,3 +11,4 @@ class Map{
         std::unordered_map <std::string, City> theMap;
 };
 
+#endif

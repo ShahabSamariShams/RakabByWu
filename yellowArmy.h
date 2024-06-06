@@ -1,9 +1,9 @@
+#ifndef YELLOWARMY_H
+#define YELLOWARMY_H
+
 #include <vector>
 
-#ifndef CARD_H
-#define CARD_H
 #include "card.h"
-#endif
 
 class YellowArmy{
     public:
@@ -11,3 +11,5 @@ class YellowArmy{
         std::vector <Card*> army;
         int armyPower;
 };
+
+#endif

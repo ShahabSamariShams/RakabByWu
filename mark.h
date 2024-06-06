@@ -1,9 +1,9 @@
+#ifndef MARK_H
+#define MARK_H
+
 #include <string>
 
-#ifndef CITY_H
-#define CITY_H
 #include "city.h"
-#endif
 
 enum Color{
     white,
@@ -26,3 +26,5 @@ class Mark{
         City* cityAddress;
         Color color;
 };
+
+#endif

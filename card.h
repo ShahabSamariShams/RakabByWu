@@ -1,9 +1,11 @@
+#ifndef CARD_H
+#define CARD_H
+
 #include <string>
 
-#ifndef GAME_H
-#define GAME_H
 #include "game.h"
-#endif
+
+class Game;
 
 enum CardType{
     soldier,
@@ -30,3 +32,5 @@ class Card{
         CardType type;
         unsigned short power;
 };
+
+#endif

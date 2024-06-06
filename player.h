@@ -1,14 +1,11 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <vector>
 #include <string>
 
-#ifndef CARD_H
-#define CARD_H
 #include "card.h"
-#endif
-#ifndef MARK_H
-#define MARK_H
 #include "mark.h"
-#endif
 #include "yellowArmy.h"
 
 class Player{
@@ -21,7 +18,9 @@ class Player{
     private:
         std::string name;
         float age;
-        YellowArmy army;
+        //YellowArmy army;
         std::vector <Card*> cardsInHand;
         std::vector <Mark> marks;
 };
+
+#endif

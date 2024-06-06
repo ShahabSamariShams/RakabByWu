@@ -1,3 +1,6 @@
+#ifdef CITY_H
+#define CITY_H
+
 #include <string>
 #include <unordered_map>
 
@@ -15,3 +18,5 @@ class City{
         std::unordered_map <std::string, bool> otherCities;
         bool fightable;
 };
+
+#endif

@@ -1,7 +1,7 @@
-#ifndef CARD_H
-#define CARD_H
+#ifndef PURPLECARD_H
+#define PURPLECARD_H
+
 #include "card.h"
-#endif
 
 class PurpleCard: public Card{
     public:
@@ -10,3 +10,5 @@ class PurpleCard: public Card{
     private:
         short priority;    
 };
+
+#endif
