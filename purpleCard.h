@@ -2,7 +2,8 @@
 
 class PurpleCard: public Card{
     public:
-
+        void setPriority(short);
+        short getPriority()const;
     private:
-        unsigned short priority;    
+        short priority;    
 };
