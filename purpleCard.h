@@ -2,6 +2,7 @@
 
 class PurpleCard: public Card{
     public:
-        virtual void ability(/*Game&*/);
+
     private:
+        unsigned short priority;    
 };
