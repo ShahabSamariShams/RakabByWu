@@ -1,6 +1,9 @@
 #include <string>
 
+#ifndef GAME_H
+#define GAME_H
 #include "game.h"
+#endif
 
 enum CardType{
     soldier,
