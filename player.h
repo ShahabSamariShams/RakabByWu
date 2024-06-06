@@ -1,7 +1,10 @@
 #include <vector>
 #include <string>
 
+#ifndef CARD_H
+#define CARD_H
 #include "card.h"
+#endif
 #include "mark.h"
 #include "yellowArmy.h"
 

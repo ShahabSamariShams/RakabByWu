@@ -1,7 +1,10 @@
 #include <vector>
 #include <utility>
 
+#ifndef CARD_H
+#define CARD_H
 #include "card.h"
+#endif
 #include "player.h"
 #include "mark.h"
 #include "map.h"

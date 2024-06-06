@@ -1,6 +1,9 @@
 #include <vector>
 
+#ifndef CARD_H
+#define CARD_H
 #include "card.h"
+#endif
 
 class YellowArmy{
     public:
