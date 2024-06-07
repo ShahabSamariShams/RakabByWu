@@ -11,3 +11,11 @@ int Game::highestYellowCardPlayed(){
     }
     return highestPower;
 }
+
+std::vector <Player> Game::getPlayerList()const{
+    return playerList;
+}
+
+void Game::setPlayerList(std::vector <Player> inputList){
+    playerList = inputList;
+}
