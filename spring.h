@@ -6,7 +6,7 @@
 class Spring: public PurpleCard{
     public:
         Spring();
-        void ability(Game);
+        void ability(Game&);
     private:
 };
 

@@ -25,6 +25,6 @@ unsigned short Card::getPower()const{
     return power;
 }
 
-void Card::ability(Game currentGame){
+void Card::ability(Game& currentGame){
     return;
 }

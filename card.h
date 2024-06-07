@@ -27,7 +27,7 @@ class Card{
         CardType getType()const;
         void setPower(unsigned short);
         unsigned short getPower()const;
-        virtual void ability(Game);
+        virtual void ability(Game&);
     private:
         CardType type;
         unsigned short power;
