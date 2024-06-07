@@ -13,7 +13,7 @@ class Card;
 
 class Game{
     public:
-        
+        int highestYellowCardPlayed();
     private:
         std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
