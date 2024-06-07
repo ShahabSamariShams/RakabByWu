@@ -19,11 +19,14 @@ class Player{
         int highestYellowCard();
         std::vector <Card*> getYellowArmy()const;
         void setYellowArmy(std::vector <Card*>);
+        int getArmyPower()const;
+        void setArmyPower(int);
+        void addToArmyPower(int);
     private:
         std::string name;
         float age;
         std::vector <Card*> yellowArmy;
-        int power;
+        int armyPower;
         std::vector <Card*> cardsInHand;
         std::vector <Mark> marks;
 };

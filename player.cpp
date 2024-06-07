@@ -46,3 +46,15 @@ std::vector <Card*> Player::getYellowArmy()const{
 void Player::setYellowArmy(std::vector <Card*> inputArmy){
     yellowArmy = inputArmy;
 }
+
+int Player::getArmyPower()const{
+    return armyPower;
+}
+
+void Player::setArmyPower(int inputPower){
+    armyPower = inputPower;
+}
+
+void Player::addToArmyPower(int increment){
+    armyPower += increment;
+}
