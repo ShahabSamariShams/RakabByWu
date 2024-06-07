@@ -16,6 +16,7 @@ class Player{
         std::string getName()const;
         void setAge(float);
         float getAge()const;
+        int highestYellowCard();
     private:
         std::string name;
         float age;

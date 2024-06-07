@@ -22,3 +22,19 @@ void Player::setAge(float inputAge){
 float Player::getAge()const{
     return age;
 }
+
+int Player::highestYellowCard(){
+    try{
+        yellowArmy.at(0);
+    }
+    catch(std::out_of_range exception){
+        return 0;
+    }
+    int highestPower = yellowArmy[0]->getPower();
+    for(auto i: yellowArmy){
+        if(i->getPower() > highestPower){
+            highestPower = i->getPower();
+        }
+    }
+    return highestPower;
+}
