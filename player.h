@@ -17,6 +17,8 @@ class Player{
         void setAge(float);
         float getAge()const;
         int highestYellowCard();
+        std::vector <Card*> getYellowArmy()const;
+        void setYellowArmy(std::vector <Card*>);
     private:
         std::string name;
         float age;

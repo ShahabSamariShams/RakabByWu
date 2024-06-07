@@ -38,3 +38,11 @@ int Player::highestYellowCard(){
     }
     return highestPower;
 }
+
+std::vector <Card*> Player::getYellowArmy()const{
+    return yellowArmy;
+}
+
+void Player::setYellowArmy(std::vector <Card*> inputArmy){
+    yellowArmy = inputArmy;
+}
