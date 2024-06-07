@@ -10,6 +10,7 @@
 #include "map.h"
 
 class Card;
+class Player;
 
 class Game{
     public:

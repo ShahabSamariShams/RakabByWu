@@ -9,4 +9,5 @@ int Game::highestYellowCardPlayed(){
             highestPower = currentPlayerHighest;
         }
     }
+    return highestPower;
 }
