@@ -21,7 +21,7 @@ class Game{
     private:
         std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
-        std::vector <std::pair<Card*, std::string> > playedPurpleCards;
+        std::vector <std::pair<Card*, Player*> > playedPurpleCards;
         std::vector <Player> playerList;
         Mark blackMark;
         Map theMap;
