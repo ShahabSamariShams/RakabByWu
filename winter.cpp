@@ -10,4 +10,5 @@ void Winter::ability(Game& currentGame){
     for(int i = 0; i < tempPlayerList.size(); i++){
         tempPlayerList[i].setArmyPower(tempPlayerList[i].yellowArmySize());
     }
+    currentGame.setPlayerList(tempPlayerList);
 }
