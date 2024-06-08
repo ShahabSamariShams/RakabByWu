@@ -12,3 +12,7 @@ void Winter::ability(Game& currentGame){
     }
     currentGame.setPlayerList(tempPlayerList);
 }
+
+std::string Winter::getTypeName()const{
+    return "winter";
+}
