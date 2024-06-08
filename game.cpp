@@ -21,3 +21,7 @@ std::vector <Player> Game::getPlayerList()const{
 void Game::setPlayerList(std::vector <Player> inputList){
     playerList = inputList;
 }
+
+std::string Game::getSeason()const{
+    return season->getTypeName();
+}

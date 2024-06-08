@@ -17,6 +17,7 @@ class Game{
         int highestYellowCardPlayed();
         std::vector <Player> getPlayerList()const;
         void setPlayerList(std::vector <Player>);
+        std::string getSeason()const;
     private:
         std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
