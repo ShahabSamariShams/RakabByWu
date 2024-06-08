@@ -58,3 +58,7 @@ void Player::setArmyPower(int inputPower){
 void Player::addToArmyPower(int increment){
     armyPower += increment;
 }
+
+int Player::yellowArmySize(){
+    return yellowArmy.size();
+}
