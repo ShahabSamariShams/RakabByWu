@@ -1,5 +1,6 @@
 #include "game.h"
 #include "spring.h"
+#include "winter.h"
 
 int Game::highestYellowCardPlayed(){
     int highestPower = playerList[0].highestYellowCard();
