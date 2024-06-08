@@ -23,7 +23,7 @@ class Card{
     public:
         Card();
         void setType(CardType);
-        std::string getTypeName()const;
+        virtual std::string getTypeName()const = 0;
         CardType getType()const;
         void setPower(unsigned short);
         unsigned short getPower()const;
