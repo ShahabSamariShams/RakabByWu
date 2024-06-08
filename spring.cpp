@@ -25,3 +25,7 @@ void ability(Game& currentGame){
     }
     currentGame.setPlayerList(tempPlayerList);
 }
+
+std::string Spring::getTypeName()const{
+    return "spring";
+}
