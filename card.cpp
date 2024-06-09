@@ -20,7 +20,3 @@ void Card::setPower(unsigned short inputPower){
 unsigned short Card::getPower()const{
     return power;
 }
-
-void Card::ability(Game& currentGame){
-    return;
-}
