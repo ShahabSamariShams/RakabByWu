@@ -2,6 +2,7 @@
 #include "spring.h"
 #include "winter.h"
 #include "drummer.h"
+#include "scarecrow.h"
 
 int Game::highestYellowCardPlayed(){
     int highestPower = playerList[0].highestYellowCard();
