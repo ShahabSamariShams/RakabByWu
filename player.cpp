@@ -63,7 +63,7 @@ int Player::yellowArmySize(){
     return yellowArmy.size();
 }
 
-int Player::getYellowPower(){
+int Player::getRawYellowPower(){
     int sumOfPowers = 0;
     for(int i = 0; i < yellowArmySize(); i++){
         sumOfPowers += yellowArmy[i]->getPower();

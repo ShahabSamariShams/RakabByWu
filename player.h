@@ -23,7 +23,7 @@ class Player{
         void setArmyPower(int);
         void addToArmyPower(int);
         int yellowArmySize();
-        int getYellowPower();
+        int getRawYellowPower();
     private:
         std::string name;
         float age;
