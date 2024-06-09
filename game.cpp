@@ -25,3 +25,7 @@ void Game::setPlayerList(std::vector <Player> inputList){
 std::string Game::getSeason()const{
     return season->getTypeName();
 }
+
+Player* Game::playerInTurn()const{
+    return playedPurpleCards.back().second;
+}
