@@ -4,17 +4,7 @@
 #include <string>
 
 #include "city.h"
-
-enum Color{
-    white,
-    black,
-    red,
-    blue,
-    green,
-    yellow,
-    purple,
-    lightBlue
-};
+#include "color.h"
 
 class Mark{
     public:
