@@ -14,16 +14,20 @@ class Player{
         Player();
         void setName(std::string);
         std::string getName()const;
+
         void setAge(float);
         float getAge()const;
+
         int highestYellowCard();
         std::vector <Card*> getYellowArmy()const;
         void setYellowArmy(std::vector <Card*>);
+        int yellowArmySize();
+        int getRawYellowPower();
+
         int getArmyPower()const;
         void setArmyPower(int);
         void addToArmyPower(int);
-        int yellowArmySize();
-        int getRawYellowPower();
+        
     private:
         std::string name;
         float age;
