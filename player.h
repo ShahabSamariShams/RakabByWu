@@ -27,6 +27,8 @@ class Player{
         int getArmyPower()const;
         void setArmyPower(int);
         void addToArmyPower(int);
+
+        void setMarksColor(Color);
         
     private:
         std::string name;

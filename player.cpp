@@ -70,3 +70,9 @@ int Player::getRawYellowPower(){
     }
     return sumOfPowers;
 }
+
+void Player::setMarksColor(Color inputColor){
+    for(int i = 0; i < marks.size(); i++){
+        marks[i].setColor(inputColor);
+    }
+}
