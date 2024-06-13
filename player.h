@@ -33,9 +33,12 @@ class Player{
     private:
         std::string name;
         float age;
+
         std::vector <Card*> yellowArmy;
         int armyPower;
+
         std::vector <Card*> cardsInHand;
+        
         std::vector <Mark> marks;
 };
 
