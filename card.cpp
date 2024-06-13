@@ -11,8 +11,8 @@ CardType Card::getType()const{
 }
 
 void Card::setPower(unsigned short inputPower){
-    if(inputPower <= 0){
-        inputPower = 1;
+    if(inputPower < 0){
+        inputPower = 0;
     }
     power = inputPower;
 }
