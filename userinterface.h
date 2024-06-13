@@ -11,15 +11,15 @@
 
 class UserInterface{
     public:
-        short receiveNumberOfPlayers();
-        void numberOfPlayersError(short);
-        std::string receivePlayerName(int);
-        void nameError();
-        float receivePlayerAge(int);
-        void ageError();
-        std::string receivePlayerColor(int, std::unordered_map<std::string, std::pair<Color, bool> >);
-        void colorError();
-        std::vector <Player> receivePlayerList(int);
+        static short receiveNumberOfPlayers();
+        static void numberOfPlayersError(short);
+        static std::string receivePlayerName(int);
+        static void nameError();
+        static float receivePlayerAge(int);
+        static void ageError();
+        static std::string receivePlayerColor(int, std::unordered_map<std::string, std::pair<Color, bool> >);
+        static void colorError();
+        static std::vector <Player> receivePlayerList(int);
     private:
 };
 
