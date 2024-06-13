@@ -29,6 +29,8 @@ class Player{
         void addToArmyPower(int);
 
         void setMarksColor(Color);
+
+        void setCardsInHand(std::vector <Card*>);
         
     private:
         std::string name;
@@ -38,7 +40,7 @@ class Player{
         int armyPower;
 
         std::vector <Card*> cardsInHand;
-        
+
         std::vector <Mark> marks;
 };
 

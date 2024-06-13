@@ -76,3 +76,7 @@ void Player::setMarksColor(Color inputColor){
         marks[i].setColor(inputColor);
     }
 }
+
+void Player::setCardsInHand(std::vector <Card*> givenHand){
+    cardsInHand = givenHand;
+}
