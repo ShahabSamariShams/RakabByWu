@@ -14,6 +14,7 @@ class Player;
 
 class Game{
     public:
+        Game();
         int highestYellowCardPlayed();
         std::vector <Player> getPlayerList()const;
         void setPlayerList(std::vector <Player>);
@@ -27,6 +28,7 @@ class Game{
         Mark blackMark;
         Map theMap;
         Card* season;
+
 };
 
 #endif
