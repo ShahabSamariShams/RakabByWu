@@ -1,3 +1,5 @@
+#include <bits/stdc++.h> 
+
 #include "game.h"
 
 #include "spring.h"
@@ -95,6 +97,7 @@ Player* Game::playerInTurn()const{
 }
 
 void Game::distributeCards(){
+    std::shuffle(deckOfCards.begin(), deckOfCards.end(), std::default_random_engine(0));
     std::vector <Card*> handtoBeGiven;
     for(int i = 0; i < playerList.size(); i++){
         handtoBeGiven.clear();
