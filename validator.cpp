@@ -1,7 +1,7 @@
 #include "validator.h"
 
 bool Validator::validateNumberOfPlayers(short inputNumber){
-    if((inputNumber >= 3 && inputNumber <= 6) || inputNumber == 0){
+    if(inputNumber >= 3 && inputNumber <= 6){
         return true;
     }
     else{

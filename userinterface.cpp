@@ -6,7 +6,7 @@
 short UserInterface::receiveNumberOfPlayers(){
     short numberOfPlayers;
     while(true){
-        std::cout << "How many players are going to play this wonderful game?(enter 0 to exit, and note that the number of players must be between 3 and 6.) ";
+        std::cout << "How many players are going to play this wonderful game?(Note that the number of players must be between 3 and 6.) ";
         std::cin >> numberOfPlayers;
         if(Validator::validateNumberOfPlayers(numberOfPlayers)){
             system("cls");
