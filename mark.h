@@ -9,7 +9,7 @@
 class Mark{
     public:
         Mark();
-        City whereIsIt()const;
+        City* whereIsIt()const;
         void setMarkOn(City*);
         void setColor(Color);
     private:

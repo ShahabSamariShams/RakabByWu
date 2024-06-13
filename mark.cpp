@@ -4,8 +4,8 @@ Mark::Mark(){
     setMarkOn(NULL);
 }
 
-City Mark::whereIsIt()const{
-    return *cityAddress;
+City* Mark::whereIsIt()const{
+    return cityAddress;
 }
 
 void Mark::setMarkOn(City* destinedCity){
