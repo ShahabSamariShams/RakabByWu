@@ -94,6 +94,18 @@ Player* Game::playerInTurn()const{
     return playedPurpleCards.back().second;
 }
 
+void Game::distributeCards(){
+    std::vector <Card*> handtoBeGiven;
+    for(int i = 0; i < playerList.size(); i++){
+        handtoBeGiven.clear();
+        for(int j = 0; j < 10 + playerList[i].numberOfTakenCities(); j++){
+            handtoBeGiven.push_back(deckOfCards.back());
+            deckOfCards.pop_back();
+        }
+        playerList[i].setCardsInHand(handtoBeGiven);
+    }
+}
+
 int main(){
     Game theGame;
     return 0;

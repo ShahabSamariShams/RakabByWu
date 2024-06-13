@@ -20,6 +20,7 @@ class Game{
         void setPlayerList(std::vector <Player>);
         std::string getSeason()const;
         Player* playerInTurn()const; //Player in turn for their played purpleCard.
+        void distributeCards();
     private:
         std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
