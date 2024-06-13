@@ -80,3 +80,12 @@ void Player::setMarksColor(Color inputColor){
 void Player::setCardsInHand(std::vector <Card*> givenHand){
     cardsInHand = givenHand;
 }
+
+short Player::numberOfTakenCities(){
+    short cityCount = 0;
+    for(int i = 0; i < marks.size(); i++){
+        if(marks[i].whereIsIt() != NULL)
+            cityCount++;
+    }
+    return cityCount;
+}

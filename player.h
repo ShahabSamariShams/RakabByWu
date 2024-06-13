@@ -29,6 +29,7 @@ class Player{
         void addToArmyPower(int);
 
         void setMarksColor(Color);
+        short numberOfTakenCities();
 
         void setCardsInHand(std::vector <Card*>);
         
