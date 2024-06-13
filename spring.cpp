@@ -5,7 +5,7 @@ Spring::Spring(){
     setPower(0);
 }
 
-void ability(Game& currentGame){
+void Spring::ability(Game& currentGame){
     int highestCard = currentGame.highestYellowCardPlayed();
     std::vector <Player> tempPlayerList = currentGame.getPlayerList();
     std::vector <Card*> tempYellowArmy;
