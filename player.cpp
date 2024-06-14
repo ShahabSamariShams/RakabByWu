@@ -102,9 +102,10 @@ Card* Player::playACard(std::string toBePlayed){
             if(cardsInHand[i]->getType() == soldier && cardsInHand[i]->getPower() == soldierPower){
                 yellowArmy.push_back(cardsInHand[i]);
                 cardsInHand.erase(pointer);
-                return NULL;
+                break;
             }
         }
+        return NULL;
     }
     catch(std::invalid_argument invalid){
         std::vector <Card*>::iterator pointer = cardsInHand.begin();
