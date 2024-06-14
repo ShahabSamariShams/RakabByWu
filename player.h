@@ -30,6 +30,7 @@ class Player{
         void addToArmyPower(int);
 
         void setMarksColor(Color);
+        std::vector <Mark> getMarks()const;
         short numberOfTakenCities();
 
         void setCardsInHand(std::vector <Card*>);

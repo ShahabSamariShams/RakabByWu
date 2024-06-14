@@ -141,3 +141,7 @@ Card* Player::playACard(std::string toBePlayed){
         return tempPointer;
     }
 }
+
+std::vector <Mark> Player::getMarks()const{
+    return marks;
+}
