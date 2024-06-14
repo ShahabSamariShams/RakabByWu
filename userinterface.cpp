@@ -132,3 +132,32 @@ std::vector <Player> UserInterface::receivePlayerList(int numberOfPlayers){
 
     return playerList;
 }
+
+void UserInterface::displayPlayerAvailableCards(Player& playerInTurn){
+    std::vector <Card*> playerTempCardList = playerInTurn.getCardsInHand();
+    for(int i = 0; i < playerTempCardList.size(); i++){
+        if(playerTempCardList[i]->getType() == soldier){
+            std::cout << playerTempCardList[i]->getPower() << "\t";
+        }
+        else{
+            std::cout << playerTempCardList[i]->getTypeName() << "\t";
+        }
+    }
+    std::cout << "\n";
+}
+
+void UserInterface::displayPlayerPlayedCards(Player& playerInTurn, std::vector <std::pair <Card*, Player*> >& playedPurpleCards){
+    std::cout << playerInTurn.getName() << ": ";
+    for(int i = 0; i < playedPurpleCards.size(); i++){
+        if(playedPurpleCards[i].second->getName() == playerInTurn.getName()){
+            std::cout << playedPurpleCards[i].first->getTypeName() << "\t";
+        }
+    }
+
+    std::vector <Card*> tempYellowArmy = playerInTurn.getYellowArmy();
+    for(int i = 0; i < tempYellowArmy.size(); i++){
+        std::cout << tempYellowArmy[i]->getPower() << "\t";
+    }
+
+    std::cout << "\n"; 
+}

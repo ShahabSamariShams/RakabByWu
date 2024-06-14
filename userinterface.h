@@ -20,6 +20,8 @@ class UserInterface{
         static std::string receivePlayerColor(int, std::unordered_map<std::string, std::pair<Color, bool> >);
         static void colorError();
         static std::vector <Player> receivePlayerList(int);
+        static void displayPlayerAvailableCards(Player&);
+        static void displayPlayerPlayedCards (Player&, std::vector <std::pair <Card*, Player*> >&);
     private:
 };
 
