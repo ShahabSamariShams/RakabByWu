@@ -37,3 +37,25 @@ bool Validator::validatePlayerColor(std::unordered_map <std::string, std::pair <
     }
     return true;
 }
+
+bool Validator::validateKnownWord(std::string input){
+    try{
+        int soldierPower = std::stoi(input);
+        if(soldierPower == 1 || soldierPower == 2 || soldierPower == 3 || soldierPower == 4 || soldierPower == 5 || soldierPower == 6 || soldierPower == 10){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    catch(std::invalid_argument invalid){
+        std::string validWords[] = {"spring", "winter", "drummer", "heroine", "scarecrow", "help", "pass"};
+        for(int i = 0; i < 7; i++){
+            if(input == validWords[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+}
