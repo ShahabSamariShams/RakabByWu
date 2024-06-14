@@ -32,6 +32,7 @@ class Player{
         short numberOfTakenCities();
 
         void setCardsInHand(std::vector <Card*>);
+        std::vector <Card*> getCardsInHand()const;
         
     private:
         std::string name;
