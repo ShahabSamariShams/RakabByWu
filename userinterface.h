@@ -22,6 +22,7 @@ class UserInterface{
         static std::vector <Player> receivePlayerList(int);
         static void displayPlayerAvailableCards(Player&);
         static void displayPlayerPlayedCards (Player&, std::vector <std::pair <Card*, Player*> >&);
+        static std::string play(Player);
     private:
 };
 

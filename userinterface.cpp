@@ -161,3 +161,21 @@ void UserInterface::displayPlayerPlayedCards(Player& playerInTurn, std::vector <
 
     std::cout << "\n"; 
 }
+
+std::string UserInterface::play(Player playerInTurn){
+    std::string input;
+    std::cin >> input;
+    if(Validator::validateKnownWord(input)){
+        if(input == "help"){
+            std::string nextWord, mainWord;
+            std::getline(std::cin, nextWord);
+            for(int i = 0; i < nextWord.size(); i++){
+                if(nextWord[i] != ' '){
+                    mainWord = mainWord + nextWord[i];
+                }
+            }
+            instruction(input);
+        }
+    }
+        
+}
