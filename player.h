@@ -12,6 +12,7 @@ class Card;
 class Player{
     public:
         Player();
+
         void setName(std::string);
         std::string getName()const;
 
@@ -34,6 +35,8 @@ class Player{
         void setCardsInHand(std::vector <Card*>);
         std::vector <Card*> getCardsInHand()const;
         
+        Card* playACard(std::string);
+
     private:
         std::string name;
         float age;

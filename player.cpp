@@ -94,3 +94,28 @@ short Player::numberOfTakenCities(){
     return cityCount;
 }
 
+Card* Player::playACard(std::string toBePlayed){
+    try{
+        int soldierPower = stoi(toBePlayed);
+        std::vector <Card*>::iterator pointer = cardsInHand.begin();
+        for(int i = 0; i < cardsInHand.size(); i++, pointer++){
+            if(cardsInHand[i]->getType() == soldier && cardsInHand[i]->getPower() == soldierPower){
+                yellowArmy.push_back(cardsInHand[i]);
+                cardsInHand.erase(pointer);
+                return NULL;
+            }
+        }
+    }
+    catch(std::invalid_argument invalid){
+        std::vector <Card*>::iterator pointer = cardsInHand.begin();
+        Card* tempPointer = NULL;
+        for(int i = 0; i < cardsInHand.size(); i++, pointer++){
+            if(cardsInHand[i]->getTypeName() == toBePlayed && cardsInHand[i]->getType() != soldier){
+                tempPointer = cardsInHand[i];
+                cardsInHand.erase(pointer);
+                break;
+            }
+        }
+        return tempPointer;
+    }
+}
