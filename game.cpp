@@ -109,6 +109,13 @@ void Game::distributeCards(){
     }
 }
 
+void Game::addToPlayedPuroleCards(Card* cardToBeAdded, Player* currentPlayer){
+    if(cardToBeAdded != NULL){
+        std::pair <Card*, Player*> toBeAdded{cardToBeAdded, currentPlayer};
+        playedPurpleCards.push_back(toBeAdded);
+    }
+}
+
 int main(){
     Game theGame;
     return 0;
