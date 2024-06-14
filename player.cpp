@@ -94,6 +94,27 @@ short Player::numberOfTakenCities(){
     return cityCount;
 }
 
+bool Player::cardExistance(std::string toBeChecked){
+    try{
+        int soldierPower = stoi(toBeChecked);
+        for(int i = 0; i < cardsInHand.size(); i++){
+            if(cardsInHand[i]->getPower() == soldierPower && cardsInHand[i]->getType() == soldier){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    catch(std::invalid_argument invalid){
+        for(int i = 0; i < cardsInHand.size(); i++){
+            if(cardsInHand[i]->getTypeName() == toBeChecked){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 Card* Player::playACard(std::string toBePlayed){
     try{
         int soldierPower = stoi(toBePlayed);
