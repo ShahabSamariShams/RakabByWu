@@ -23,8 +23,13 @@ class Game{
         void distributeCards();
         void addToPlayedPurpleCards(Card*, Player*);
 
-        void war(int);
+        bool oneVicinity(std::vector <City*>);
+
+        void war(int&);
         bool endOfWar(std::vector <bool>);
+        Player* whoWonTheWar();
+        void warWinnerAward(Player*);
+        bool gameWinner(Player*);
 
         int findTheYoungest();
 

@@ -116,7 +116,7 @@ void Game::addToPlayedPurpleCards(Card* cardToBeAdded, Player* currentPlayer){
     }
 }
 
-void Game::war(int index){
+void Game::war(int& index){
     std::vector <bool> passed(playerList.size(), false);
     std::string playerInput;
     for(int i = index; !endOfWar(passed); i++){
@@ -133,6 +133,7 @@ void Game::war(int index){
                     }
                     else if(playerInput == "pass"){
                         passed[i] = true;
+                        index = i;
                         break;
                     }
                     else{
@@ -140,6 +141,9 @@ void Game::war(int index){
                     }
                 }
             }
+        }
+        if(i == playerList.size()){
+            i == 0;
         }
     }
 }
