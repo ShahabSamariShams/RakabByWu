@@ -162,7 +162,29 @@ bool Game::endOfWar(std::vector <bool> passed){
     return true;
 }
 
+int Game::findTheYoungest(){
+    std::vector <int> indexOfTheYoungest;
+    int leastAge = playerList[0].getAge();
+    for(int i = 0; i < playerList.size(); i++){
+        if(playerList[i].getAge() < leastAge){
+            leastAge = playerList[i].getAge();
+            indexOfTheYoungest.clear();
+            indexOfTheYoungest.push_back(i);
+        }
+        else if(playerList[i].getAge() == leastAge){
+            indexOfTheYoungest.push_back(i);
+        }
+    }
+    int index = rand() % indexOfTheYoungest.size();
+    return indexOfTheYoungest[index];
+}
+
+void Game::runGame(){
+
+}
+
 int main(){
+    //srand(time(0));
     Game theGame;
     return 0;
 }

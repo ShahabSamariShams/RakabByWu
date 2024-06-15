@@ -26,6 +26,10 @@ class Game{
         void war(int);
         bool endOfWar(std::vector <bool>);
 
+        int findTheYoungest();
+
+        void runGame();
+
         private:
         std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
