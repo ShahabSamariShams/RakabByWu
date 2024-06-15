@@ -183,12 +183,95 @@ int Game::findTheYoungest(){
     return indexOfTheYoungest[index];
 }
 
-void Game::runGame(){
+Player* Game::whoWonTheWar(){
+    std::vector <Player*> highestPowers;
+    int highestPower = playerList[0].getArmyPower();
+    for(int i = 0; i < playerList.size(); i++){
+        if(playerList[i].getArmyPower() > highestPower){
+            highestPower = playerList[i].getArmyPower();
+            highestPowers.clear();
+            highestPowers.push_back(&playerList[i]);
+        }
+        else if(highestPower == playerList[i].getArmyPower()){
+            highestPowers.push_back(&playerList[i]);
+        }
+    }
 
+    if(highestPowers.size() == 1){
+        return highestPowers[0];
+    }
+    else{
+        return NULL;
+    }
+}
+
+void Game::warWinnerAward(Player* winner){
+    if(winner != NULL){
+        std::vector <Mark> tempMarks = winner->getMarks();
+        for(int i = 0; i < tempMarks.size(); i++){
+            if(tempMarks[i].whereIsIt() == NULL){
+                tempMarks[i].setMarkOn(blackMark.whereIsIt());
+                winner->setMarks(tempMarks);
+                break;
+            }
+        }
+    }
+}
+
+bool Game::oneVicinity(std::vector <City*> adjacency){
+    for(int i = 0; i < adjacency.size() - 1; i++){
+        for(int j = i; j < adjacency.size(); j++){
+            if(adjacency[i]->isAdjacent(adjacency[j]->getName())){
+                return true;
+            }
+        }
+    }
+}
+
+bool Game::gameWinner(Player* warWinner){
+    if(warWinner->numberOfTakenCities() == 5){
+        return true;
+    }
+
+    std::vector <Mark> marks = warWinner->getMarks();
+    std::vector <City*> adjacency; 
+    for(int i = 0; i < marks.size(); i++){
+        adjacency.resize(0);
+        if(marks[i].whereIsIt() != NULL){
+            for(int j = 0; j < marks.size(); j++){
+                if(marks[i].whereIsIt()->isAdjacent(marks[j].whereIsIt()->getName())){
+                    adjacency.push_back(marks[j].whereIsIt());
+                }
+            }
+            if(oneVicinity(adjacency)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void Game::runGame(){
+    int indexOfWarStarter = findTheYoungest();
+    while(true){
+        war(indexOfWarStarter);
+        Player* winner = whoWonTheWar();
+        warWinnerAward(winner);
+        if(winner != NULL){
+            for(int i = 0; i < playerList.size(); i++){
+                if(playerList[i].getName() == (*winner).getName()){
+                    indexOfWarStarter = i;
+                    break;
+                }
+            }
+        }
+        gameWinner(winner);
+    }
 }
 
 int main(){
     //srand(time(0));
     Game theGame;
+    theGame.runGame();
     return 0;
 }
