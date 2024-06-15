@@ -31,6 +31,7 @@ class Player{
 
         void setMarksColor(Color);
         std::vector <Mark> getMarks()const;
+        void setMarks(std::vector <Mark>);
         short numberOfTakenCities();
 
         void setCardsInHand(std::vector <Card*>);

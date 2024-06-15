@@ -146,6 +146,10 @@ std::vector <Mark> Player::getMarks()const{
     return marks;
 }
 
+void Player::setMarks(std::vector <Mark> marksToSet){
+    marks = marksToSet;
+}
+
 bool Player::emptyHand(){
     if(cardsInHand.size() == 0){
         return true;
