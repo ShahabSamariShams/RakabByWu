@@ -19,10 +19,19 @@ class UserInterface{
         static void ageError();
         static std::string receivePlayerColor(int, std::unordered_map<std::string, std::pair<Color, bool> >);
         static void colorError();
+
         static std::vector <Player> receivePlayerList(int);
+
         static void displayPlayerAvailableCards(Player&);
         static void displayPlayerPlayedCards (Player&, std::vector <std::pair <Card*, Player*> >&);
+        static void displayPlayersCities(std::vector <Player>);
+        static void drawLine();
+
         static std::string play(Player);
+        static void bringThePlayer(std::string);
+
+        static void instructions(std::string);
+        static void displayPlayersAndTheirPlayed(std::vector <Player>, std::vector <std::pair <Card*, Player*> >&);
     private:
 };
 

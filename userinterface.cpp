@@ -134,6 +134,7 @@ std::vector <Player> UserInterface::receivePlayerList(int numberOfPlayers){
 }
 
 void UserInterface::displayPlayerAvailableCards(Player& playerInTurn){
+    std::cout << "Available cards of " << playerInTurn.getName() << ": ";
     std::vector <Card*> playerTempCardList = playerInTurn.getCardsInHand();
     for(int i = 0; i < playerTempCardList.size(); i++){
         if(playerTempCardList[i]->getType() == soldier){
@@ -163,6 +164,8 @@ void UserInterface::displayPlayerPlayedCards(Player& playerInTurn, std::vector <
 }
 
 std::string UserInterface::play(Player playerInTurn){
+    displayPlayerAvailableCards(playerInTurn);
+    std::cout << "@" << playerInTurn.getName() << ": ";
     std::string input;
     std::cin >> input;
     if(Validator::validateKnownWord(input)){
@@ -174,8 +177,75 @@ std::string UserInterface::play(Player playerInTurn){
                     mainWord = mainWord + nextWord[i];
                 }
             }
-            instruction(input);
+            instructions(mainWord);
+            return input;
+        }
+        else{
+            return input;
         }
     }
+    else{
         
+    }
+}
+
+void UserInterface::instructions(std::string input){
+    if(input == "\0"){
+        std::cout << "This game is....";
+        system("pause");
+    }
+    else if(input == "spring"){
+        std::cout << "This card does...";
+        system("pause");
+    }
+    else if(input == "winter"){
+        std::cout << "This card does...";
+        system("pause");
+    }
+    else if(input == "heroine"){
+        std::cout << "This card does...";
+        system("pause");
+    }
+    else if(input == "drummer"){
+        std::cout << "This card does...";
+        system("pause");
+    }
+    else if(input == "scarecrow"){
+        std::cout << "This card does...";
+        system("pause");
+    }
+    else if(input == "pass"){
+        std::cout << "This card does...";
+        system("pause");
+    }
+}
+
+void UserInterface::displayPlayersAndTheirPlayed(std::vector <Player> playerList, std::vector <std::pair <Card*, Player*> >& playedPurpleCards){
+    for(int i = 0; i < playerList.size(); i++){
+        displayPlayerPlayedCards(playerList[i], playedPurpleCards);
+    }
+    drawLine();
+}
+
+void UserInterface::displayPlayersCities(std::vector <Player> playerList){
+    std::vector <Mark> tempMarkList;
+    for(int i = 0; i < playerList.size(); i++){
+        tempMarkList = playerList[i].getMarks();
+        std::cout << playerList[i].getName() << ": "; 
+        for(int i = 0; i < tempMarkList.size(); i++){
+            std::cout << tempMarkList[i].whereIsIt()->getName() << "\t";
+        }
+        std::cout << "\n";
+    }
+    drawLine();
+}
+
+void UserInterface::bringThePlayer(std::string playerInTurn){
+    system("cls");
+    std::cout << "It's " << playerInTurn << "'s turn. Give him the system.\n";
+    system("pause");
+}
+
+void UserInterface::drawLine(){
+    std::cout << "---------------------------------------\n"; 
 }
