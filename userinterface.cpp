@@ -3,28 +3,45 @@
 #include "userinterface.h"
 #include "validator.h"
 
+class InvalidInputType{};
+
 short UserInterface::receiveNumberOfPlayers(){
     short numberOfPlayers;
     while(true){
-        std::cout << "How many players are going to play this wonderful game?(Note that the number of players must be between 3 and 6.) ";
-        std::cin >> numberOfPlayers;
-        if(Validator::validateNumberOfPlayers(numberOfPlayers)){
+        std::cout << "How many players are going to play this wonderful game?(Note that the number of players must be between 3 and 6.) \n";
+        std::cout << "Enter the number: ";
+        try{
+            if(!(std::cin >> numberOfPlayers)){
+                throw InvalidInputType();
+            }
+            if(Validator::validateNumberOfPlayers(numberOfPlayers)){
+                system("cls");
+                break;
+            }
+            else{
+                numberOfPlayersError(numberOfPlayers);
+            }
+        }
+        catch(InvalidInputType&){
             system("cls");
-            break;
+            std::cout << "Your entry is not only inavliad, but also of a whole other type.\n";
+            system("pause");
+            system("cls");
+            std::cin.clear();
+            std::cin.ignore();
         }
-        else{
-            numberOfPlayersError(numberOfPlayers);
-        }
+            
     }
     return numberOfPlayers;
 }
 
 void UserInterface::numberOfPlayersError(short numberOfPlayers){
     if(numberOfPlayers < 3){
-        std::cout << "Go find some more friends and stop being a loner.";
+        system("cls");
+        std::cout << "Go find some more friends and stop being a loner.\n";
     }
     else if(numberOfPlayers > 6){
-        std::cout << "Your friends are just too much and the programmer of this game isn't going to allow it sience he is a poor loner.";
+        std::cout << "Your friends are just too much and the programmer of this game isn't going to allow it sience he is a poor loner.\n";
     }
     system("pause");
     system("cls");
