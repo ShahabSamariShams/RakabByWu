@@ -35,6 +35,7 @@ class Player{
 
         void setCardsInHand(std::vector <Card*>);
         std::vector <Card*> getCardsInHand()const;
+        bool emptyHand();
         
         bool cardExistance(std::string);
         Card* playACard(std::string);

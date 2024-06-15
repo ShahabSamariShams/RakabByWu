@@ -145,3 +145,12 @@ Card* Player::playACard(std::string toBePlayed){
 std::vector <Mark> Player::getMarks()const{
     return marks;
 }
+
+bool Player::emptyHand(){
+    if(cardsInHand.size() == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
