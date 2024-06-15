@@ -21,8 +21,12 @@ class Game{
         std::string getSeason()const;
         Player* playerInTurn()const; //Player in turn for their played purpleCard.
         void distributeCards();
-        void addToPlayedPuroleCards(Card*, Player*);
-    private:
+        void addToPlayedPurpleCards(Card*, Player*);
+
+        void war(int);
+        bool endOfWar(std::vector <bool>);
+
+        private:
         std::vector <Card*> deckOfCards;
         std::vector <Card*> burntCards;
         std::vector <std::pair<Card*, Player*> > playedPurpleCards;

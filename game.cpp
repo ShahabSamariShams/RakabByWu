@@ -109,11 +109,57 @@ void Game::distributeCards(){
     }
 }
 
-void Game::addToPlayedPuroleCards(Card* cardToBeAdded, Player* currentPlayer){
+void Game::addToPlayedPurpleCards(Card* cardToBeAdded, Player* currentPlayer){
     if(cardToBeAdded != NULL){
         std::pair <Card*, Player*> toBeAdded{cardToBeAdded, currentPlayer};
         playedPurpleCards.push_back(toBeAdded);
     }
+}
+
+void Game::war(int index){
+    std::vector <bool> passed(playerList.size(), false);
+    std::string playerInput;
+    for(int i = index; !endOfWar(passed); i++){
+        if(!passed[i]){
+            UserInterface::bringThePlayer(playerList[i].getName());
+            while(true){
+                UserInterface::displayPlayersAndTheirPlayed(playerList, playedPurpleCards);
+                UserInterface::displayPlayersCities(playerList);
+                playerInput = UserInterface::play(playerList[i]);
+                if(playerInput != "help" && playerInput != "empty"){
+                    if(playerInput != "pass" && playerList[i].cardExistance(playerInput)){
+                        addToPlayedPurpleCards(playerList[i].playACard(playerInput), &playerList[i]); 
+                        break;
+                    }
+                    else if(playerInput == "pass"){
+                        passed[i] = true;
+                        break;
+                    }
+                    else{
+                        /*cardNonExistenceError()*/
+                    }
+                }
+            }
+        }
+    }
+}
+
+bool Game::endOfWar(std::vector <bool> passed){
+    std::vector <int> indexOfNonPassers;
+    for(int i = 0; i < passed.size(); i++){
+        if(!passed[i]){
+            indexOfNonPassers.push_back(i);
+        }
+    }
+    if(indexOfNonPassers.size() == 0){
+        return true;
+    }
+    for(int i = 0; i < indexOfNonPassers.size(); i++){
+        if(!playerList[indexOfNonPassers[i]].emptyHand()){
+            return false;
+        }
+    }
+    return true;
 }
 
 int main(){
