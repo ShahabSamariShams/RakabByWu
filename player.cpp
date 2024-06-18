@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player(){
-    marks.reserve(5);
+    marks.resize(5);
 }
 
 void Player::setName(std::string inputName){
