@@ -3,6 +3,7 @@
 Scarecrow::Scarecrow(){
     setPriority(0);
     setPower(0);
+    setType(scarecrow);
 }
 
 void Scarecrow::ability(Game& currentGame){

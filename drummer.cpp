@@ -3,6 +3,7 @@
 Drummer::Drummer(){
     setPriority(3);
     setPower(0);
+    setType(drummer);
 }
 
 void Drummer::ability(Game& currentGame){

@@ -3,6 +3,7 @@
 Spring::Spring(){
     setPriority(4);
     setPower(0);
+    setType(spring);
 }
 
 void Spring::ability(Game& currentGame){

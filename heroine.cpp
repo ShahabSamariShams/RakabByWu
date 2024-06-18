@@ -3,6 +3,7 @@
 Heroine::Heroine(){
     setPriority(5);
     setPower(10);
+    setType(heroine);
 }
 
 void Heroine::ability(Game& currentGame){

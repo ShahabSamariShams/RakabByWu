@@ -3,6 +3,7 @@
 Winter::Winter(){
     setPriority(2);
     setPower(0);
+    setType(winter);
 }
 
 void Winter::ability(Game& currentGame){
