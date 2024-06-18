@@ -13,6 +13,7 @@ class Validator{
         static bool validatePlayerAge(float);
         static bool validatePlayerColor(std::unordered_map <std::string, std::pair <Color, bool>>, std::string);
         static bool validateKnownWord(std::string);
+        static bool validateCityName(std::string, Map&);
     private:
 };
 

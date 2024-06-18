@@ -59,3 +59,10 @@ bool Validator::validateKnownWord(std::string input){
     }
     
 }
+
+bool Validator::validateCityName(std::string cityName, Map& theMap){
+    if(theMap.toBeFoughtFor(cityName) == NULL){
+        return false;
+    }
+    return true;
+}
