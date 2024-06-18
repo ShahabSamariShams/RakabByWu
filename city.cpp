@@ -38,3 +38,7 @@ void City::addCity(std::string toBeAdded, bool position){
         otherCities[toBeAdded] = position;
     }
 }
+
+void City::emptyVicinitiess(){
+    otherCities.clear();
+}

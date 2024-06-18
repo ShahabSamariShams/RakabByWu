@@ -13,6 +13,7 @@ class City{
         bool getFightability()const;
         bool isAdjacent(std::string);
         void addCity(std::string, bool);
+        void emptyVicinitiess();
     private:
         std::string name;
         std::unordered_map <std::string, bool> otherCities;
