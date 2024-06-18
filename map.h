@@ -7,6 +7,8 @@ class Map{
     public:
         Map();
         void addCity(City);
+        City* toBeFoughtFor(std::string);
+        std::unordered_map <std::string, City> getTheMap();
     private:
         std::unordered_map <std::string, City> theMap;
 };
