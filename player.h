@@ -24,6 +24,7 @@ class Player{
         void setYellowArmy(std::vector <Card*>);
         int yellowArmySize();
         int getRawYellowPower();
+        void burnYellowArmy();
 
         int getArmyPower()const;
         void setArmyPower(int);
@@ -36,6 +37,7 @@ class Player{
 
         void setCardsInHand(std::vector <Card*>);
         std::vector <Card*> getCardsInHand()const;
+        void burnCardsInHand();
         bool emptyHand();
         
         bool cardExistance(std::string);
