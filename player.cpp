@@ -85,6 +85,10 @@ std::vector <Card*> Player::getCardsInHand()const{
     return cardsInHand;
 }
 
+void Player::burnCardsInHand(){
+    cardsInHand.clear();
+}
+
 short Player::numberOfTakenCities(){
     short cityCount = 0;
     for(int i = 0; i < marks.size(); i++){
@@ -157,4 +161,8 @@ bool Player::emptyHand(){
     else{
         return false;
     }
+}
+
+void Player::burnYellowArmy(){
+    yellowArmy.clear();
 }
