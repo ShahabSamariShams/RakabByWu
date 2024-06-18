@@ -20,6 +20,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //CALINE--------------------------------
     cityToAdd.setName("CALINE");
     {
@@ -38,6 +39,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //ENNA--------------------------------
     cityToAdd.setName("ENNA");
     {
@@ -56,6 +58,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //ATELA--------------------------------
     cityToAdd.setName("ATELA");
     {
@@ -74,6 +77,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //DIMASE--------------------------------
     cityToAdd.setName("DIMASE");
     {
@@ -92,6 +96,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //BORGE--------------------------------
     cityToAdd.setName("BORGE");
     {
@@ -110,6 +115,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //PLADACI--------------------------------
     cityToAdd.setName("PLADACI");
     {
@@ -128,6 +134,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //MORINA--------------------------------
     cityToAdd.setName("MORINA");
     {
@@ -146,6 +153,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //OLIVADI--------------------------------
     cityToAdd.setName("OLIVADI");
     {
@@ -164,6 +172,7 @@ Map::Map(){
         cityToAdd.addCity("LIA", true);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //LIA--------------------------------
     cityToAdd.setName("LIA");
     {
@@ -182,6 +191,7 @@ Map::Map(){
         cityToAdd.addCity("OLIVADI", true);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //ARMENTO--------------------------------
     cityToAdd.setName("ARMENTO");
     {
@@ -200,6 +210,7 @@ Map::Map(){
         cityToAdd.addCity("OLIVADI", true);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //TALMONE--------------------------------
     cityToAdd.setName("TALMONE");
     {
@@ -218,6 +229,7 @@ Map::Map(){
         cityToAdd.addCity("OLIVADI", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //ROLLO--------------------------------
     cityToAdd.setName("ROLLO");
     {
@@ -236,6 +248,7 @@ Map::Map(){
         cityToAdd.addCity("OLIVADI", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
     //ELINIA--------------------------------
     cityToAdd.setName("ELINIA");
     {
@@ -263,4 +276,20 @@ void Map::addCity(City toBeAdded){
     catch(std::out_of_range exception){
         theMap[toBeAdded.getName()] = toBeAdded;
     }
+}
+
+City* Map::toBeFoughtFor(std::string cityName){
+    try{
+        theMap.at(cityName);
+        if(theMap[cityName].getFightability())
+            return &theMap[cityName];
+        return NULL;
+    } 
+    catch(std::out_of_range exception){
+        return NULL;
+    }
+}
+
+std::unordered_map <std::string, City> Map::getTheMap(){
+    return theMap;
 }
