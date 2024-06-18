@@ -32,6 +32,15 @@ class UserInterface{
 
         static void instructions(std::string);
         static void displayPlayersAndTheirPlayed(std::vector <Player>, std::vector <std::pair <Card*, Player*> >&);
+
+        static void announceTheLocalWarWinner(Player*);
+
+        static void announceTheWinner(Player*);
+        static std::string callTheBlackMarkOwner(Player, Map&);
+        static void cityNameError();
+
+        static void displayBlackMarkCity(City*);
+
     private:
 };
 
