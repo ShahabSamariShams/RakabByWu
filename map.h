@@ -5,10 +5,14 @@
 
 class Map{
     public:
+    //Constructor:
         Map();
+    //Getter:
+        std::unordered_map <std::string, City> getTheMap();
+    //Useful Functions:
         void addCity(City);
         City* toBeFoughtFor(std::string);
-        std::unordered_map <std::string, City> getTheMap();
+        
     private:
         std::unordered_map <std::string, City> theMap;
 };

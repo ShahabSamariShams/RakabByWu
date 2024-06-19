@@ -8,10 +8,14 @@
 
 class Mark{
     public:
+    //Constructor:
         Mark();
-        City* whereIsIt()const;
+    //Setters:
         void setMarkOn(City*);
         void setColor(Color);
+    //Useful function:
+        City* whereIsIt()const;
+        
     private:
         City* cityAddress;
         Color color;
