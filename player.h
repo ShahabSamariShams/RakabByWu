@@ -11,33 +11,31 @@ class Card;
 
 class Player{
     public:
+    //Constructor:
         Player();
-
+    //Setters: set
         void setName(std::string);
-        std::string getName()const;
-
         void setAge(float);
-        float getAge()const;
-
-        int highestYellowCard();
-        std::vector <Card*> getYellowArmy()const;
         void setYellowArmy(std::vector <Card*>);
-        int yellowArmySize();
-        int getRawYellowPower();
-        void burnYellowArmy();
-
-        int getArmyPower()const;
         void setArmyPower(int);
-        void addToArmyPower(int);
-
-        void setMarksColor(Color);
-        std::vector <Mark> getMarks()const;
-        void setMarks(std::vector <Mark>);
-        short numberOfTakenCities();
-
         void setCardsInHand(std::vector <Card*>);
+        void setMarksColor(Color);
+        void setMarks(std::vector <Mark>);
+    //Getters:
+        std::string getName()const;
+        float getAge()const;
+        std::vector <Card*> getYellowArmy()const;
+        int getRawYellowPower();
+        int getArmyPower()const;
+        std::vector <Mark> getMarks()const;
         std::vector <Card*> getCardsInHand()const;
-        void burnCardsInHand();
+        int yellowArmySize();
+    //Other useful functions:
+        int highestYellowCard();
+        std::vector <Card*> burnYellowArmy();
+        short numberOfTakenCities();
+        void addToArmyPower(int);
+        std::vector <Card*> burnCardsInHand();
         bool emptyHand();
         
         bool cardExistance(std::string);
@@ -47,12 +45,12 @@ class Player{
         std::string name;
         float age;
 
+        std::vector <Card*> cardsInHand;
         std::vector <Card*> yellowArmy;
         int armyPower;
 
-        std::vector <Card*> cardsInHand;
-
         std::vector <Mark> marks;
+        
 };
 
 #endif
