@@ -6,14 +6,19 @@
 
 class City{
     public:
+    //Constructor:
         City();
+    //Setters:
         void setName(std::string);
-        std::string getName()const;
         void setFightability(bool);
+    //Getters:
+        std::string getName()const;
         bool getFightability()const;
+    //Useful functions:
         bool isAdjacent(std::string);
         void addCity(std::string, bool);
         void emptyVicinitiess();
+        
     private:
         std::string name;
         std::unordered_map <std::string, bool> otherCities;

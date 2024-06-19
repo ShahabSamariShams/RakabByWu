@@ -8,12 +8,12 @@ void City::setName(std::string inputName){
     name = inputName;
 }
 
-std::string City::getName()const{
-    return name;
-}
-
 void City::setFightability(bool position){
     fightable = position;
+}
+
+std::string City::getName()const{
+    return name;
 }
 
 bool City::getFightability()const{
