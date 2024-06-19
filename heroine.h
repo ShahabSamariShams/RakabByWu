@@ -5,7 +5,9 @@
 
 class Heroine: public PurpleCard{
     public:
+    //Constructor:
         Heroine();
+    //Overrided Functions:
         void ability(Game&)override;
         std::string getTypeName()const override;
     private:

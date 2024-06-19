@@ -21,16 +21,24 @@ enum CardType{
 
 class Card{
     public:
+    //Constructor:
         Card();
+    //Setters:
         void setType(CardType);
-        virtual std::string getTypeName()const = 0;
-        CardType getType()const;
         void setPower(unsigned short);
+        void setPriority(short);
+    //Getters:
+        CardType getType()const;
         unsigned short getPower()const;
+        short getPriority()const;
+    //Functions to be overrided:
         virtual void ability(Game&) = 0;
+        virtual std::string getTypeName()const = 0;
+        
     private:
         CardType type;
         unsigned short power;
+        short priority;
 };
 
 #endif

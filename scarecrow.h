@@ -5,9 +5,12 @@
 
 class Scarecrow: public PurpleCard{
     public:
+    //Constructor:
         Scarecrow();
+    //Overrided functions:
         void ability(Game&)override;
         std::string getTypeName()const override;
+        
     private:
 };
 

@@ -5,7 +5,9 @@
 
 class YellowCard: public Card{
     public:
+    //Constructor:
         YellowCard(unsigned short);
+    //Overrided Functions:
         void ability(Game&)override;
         std::string getTypeName()const override;
     private:

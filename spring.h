@@ -5,7 +5,9 @@
 
 class Spring: public PurpleCard{
     public:
+    //Constructor:
         Spring();
+    //Overrided functions:
         void ability(Game&)override;
         std::string getTypeName()const override;
     private:
