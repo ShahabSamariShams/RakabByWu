@@ -14,6 +14,8 @@ class Validator{
         static bool validatePlayerColor(std::unordered_map <std::string, std::pair <Color, bool>>, std::string);
         static bool validateKnownWord(std::string);
         static bool validateCityName(std::string, Map&);
+        static bool validateResurrection(std::string, std::vector <Card*>);
+        
     private:
 };
 

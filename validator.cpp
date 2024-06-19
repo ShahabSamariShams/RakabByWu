@@ -66,3 +66,18 @@ bool Validator::validateCityName(std::string cityName, Map& theMap){
     }
     return true;
 }
+
+bool Validator::validateResurrection(std::string toBeResurrected, std::vector <Card*> playedCards){
+    try{
+        int tempResurrected = std::stoi(toBeResurrected);
+        for(int i = 0; i < playedCards.size(); i++){
+            if(tempResurrected == playedCards[i]->getPower()){
+                return true;
+            }
+        }
+        return false;
+    }
+    catch(std::invalid_argument& invalid){
+        return false;
+    }
+}
