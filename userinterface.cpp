@@ -5,6 +5,8 @@
 
 class InvalidInputType{};
 
+//---------------------------------------------------
+
 short UserInterface::receiveNumberOfPlayers(){
     short numberOfPlayers;
     while(true){
@@ -35,18 +37,6 @@ short UserInterface::receiveNumberOfPlayers(){
     return numberOfPlayers;
 }
 
-void UserInterface::numberOfPlayersError(short numberOfPlayers){
-    if(numberOfPlayers < 3){
-        system("cls");
-        std::cout << "Go find some more friends and stop being a loner.\n";
-    }
-    else if(numberOfPlayers > 6){
-        std::cout << "Your friends are just too much and the programmer of this game isn't going to allow it sience he is a poor loner.\n";
-    }
-    system("pause");
-    system("cls");
-}
-
 std::string UserInterface::receivePlayerName(int index){
     system("cls");
     std::string playerName;
@@ -58,12 +48,6 @@ std::string UserInterface::receivePlayerName(int index){
         return playerName;
     }
     return newLine;
-}
-
-void UserInterface::nameError(){
-    std::cout << "The name already exists.\n";
-    system("pause");
-    system("cls");
 }
 
 float UserInterface::receivePlayerAge(int index){
@@ -83,12 +67,6 @@ float UserInterface::receivePlayerAge(int index){
     return playerAge;
 }
 
-void UserInterface::ageError(){
-    std::cout << "Dude! Enter a valid age!\n";
-    system("pause");
-    system("cls");
-}
-
 std::string UserInterface::receivePlayerColor(int index, std::unordered_map<std::string, std::pair <Color, bool>> colorList){
     std::string playerColor;
     std::string extra;
@@ -106,12 +84,6 @@ std::string UserInterface::receivePlayerColor(int index, std::unordered_map<std:
         return playerColor;
     }
     return extra;
-}
-
-void UserInterface::colorError(){
-    std::cout << "You have chosen a color that is not available in the list. try again.\n" ;
-    system("pause");
-    system("cls");
 }
 
 std::vector <Player> UserInterface::receivePlayerList(int numberOfPlayers){
@@ -169,39 +141,6 @@ std::vector <Player> UserInterface::receivePlayerList(int numberOfPlayers){
     return playerList;
 }
 
-void UserInterface::displayPlayerAvailableCards(Player& playerInTurn){
-    std::cout << "Available cards of " << playerInTurn.getName() << ": ";
-    std::vector <Card*> playerTempCardList = playerInTurn.getCardsInHand();
-    for(int i = 0; i < playerTempCardList.size(); i++){
-        if(playerTempCardList[i]->getType() == soldier){
-            std::cout << playerTempCardList[i]->getPower();
-        }
-        else{
-            std::cout << playerTempCardList[i]->getTypeName();
-        }
-        if(i != playerTempCardList.size() - 1){
-            std::cout << " | ";
-        }
-    }
-    std::cout << "\n";
-}
-
-void UserInterface::displayPlayerPlayedCards(Player& playerInTurn, std::vector <std::pair <Card*, Player*> >& playedPurpleCards){
-    std::cout << playerInTurn.getName() << ": ";
-    for(int i = 0; i < playedPurpleCards.size(); i++){
-        if(playedPurpleCards[i].second->getName() == playerInTurn.getName()){
-            std::cout << playedPurpleCards[i].first->getTypeName() << "\t";
-        }
-    }
-
-    std::vector <Card*> tempYellowArmy = playerInTurn.getYellowArmy();
-    for(int i = 0; i < tempYellowArmy.size(); i++){
-        std::cout << tempYellowArmy[i]->getPower() << "\t";
-    }
-
-    std::cout << "\n"; 
-}
-
 std::string UserInterface::play(Player playerInTurn){
     displayPlayerAvailableCards(playerInTurn);
     std::cout << "@" << playerInTurn.getName() << ": ";
@@ -228,33 +167,171 @@ std::string UserInterface::play(Player playerInTurn){
     }
 }
 
+std::string UserInterface::callTheBlackMarkOwner(Player owner, Map& theMap){
+    system("cls");
+    while(true){
+        for(auto i: theMap.getTheMap()){
+            if(i.second.getFightability())
+                std::cout << i.first << "    ";
+        }
+        std::cout <<"\n";
+        std::string cityName;
+        std::cout << owner.getName() << "! Choose the next city to fight for: ";
+        std::cin >> cityName;
+        if(Validator::validateCityName(cityName, theMap)){
+            system("cls");
+            return cityName;
+        }
+        else{
+            cityNameError();
+        }
+    }
+        
+}
+
+std::string UserInterface::receicveAnswer(std::string name){
+    std::string answer;
+    while(true){
+        system("cls");
+        std::cout << name << ", you have no more soldier cards. Do you want to burn your hand(yes/no)? ";
+        std::cin >> answer;
+        if(answer == "yes" || answer == "no"){
+            return answer;
+        }
+        else{
+            answerError();
+        }
+    }
+}
+
+//---------------------------------------------------
+
+void UserInterface::numberOfPlayersError(short numberOfPlayers){
+    if(numberOfPlayers < 3){
+        system("cls");
+        std::cout << "Go find some more friends and stop being a loner.\n";
+    }
+    else if(numberOfPlayers > 6){
+        std::cout << "Your friends are just too much and the programmer of this game isn't going to allow it sience he is a poor loner.\n";
+    }
+    system("pause");
+    system("cls");
+}
+
+void UserInterface::nameError(){
+    std::cout << "The name already exists.\n";
+    system("pause");
+    system("cls");
+}
+
+void UserInterface::ageError(){
+    std::cout << "Dude! Enter a valid age!\n";
+    system("pause");
+    system("cls");
+}
+
+void UserInterface::colorError(){
+    std::cout << "You have chosen a color that is not available in the list. try again.\n" ;
+    system("pause");
+    system("cls");
+}
+
+void UserInterface::cityNameError(){
+    system("cls");
+    std::cout << "Your chosen city is not in the list!\n";
+    system("pause");
+    system("cls");
+}
+
+void UserInterface::scarecrowError(){
+    system("cls");
+    std::cout << "No such card among your played ones.\n";
+    system("pause");
+    system("cls");
+}
+
+void UserInterface::answerError(){
+    system("cls");
+    std::cout << "Invalid choice.\n";
+    system("pause");
+    system("cls");
+}
+
+//---------------------------------------------------
+
+void UserInterface::displayPlayerAvailableCards(Player& playerInTurn){
+    std::cout << "Available cards of " << playerInTurn.getName() << ": ";
+    std::vector <Card*> playerTempCardList = playerInTurn.getCardsInHand();
+    for(int i = 0; i < playerTempCardList.size(); i++){
+        if(playerTempCardList[i]->getType() == soldier){
+            std::cout << playerTempCardList[i]->getPower();
+        }
+        else{
+            std::cout << playerTempCardList[i]->getTypeName();
+        }
+        if(i != playerTempCardList.size() - 1){
+            std::cout << " | ";
+        }
+    }
+    std::cout << "\n";
+}
+
+
+void UserInterface::displayPlayerPlayedCards(Player& playerInTurn, std::vector <std::pair <Card*, Player*> >& playedPurpleCards){
+    std::cout << playerInTurn.getName() << ": ";
+    for(int i = 0; i < playedPurpleCards.size(); i++){
+        if(playedPurpleCards[i].second->getName() == playerInTurn.getName()){
+            std::cout << playedPurpleCards[i].first->getTypeName() << "\t";
+        }
+    }
+
+    std::vector <Card*> tempYellowArmy = playerInTurn.getYellowArmy();
+    for(int i = 0; i < tempYellowArmy.size(); i++){
+        std::cout << tempYellowArmy[i]->getPower() << "\t";
+    }
+
+    std::cout << "\n"; 
+}
+
 void UserInterface::instructions(std::string input){
+    system("cls");
     if(input == "\0"){
-        std::cout << "This game is....";
+        std::cout << "You are playing a card game here. There are two types of cards available; soldiers and purple cards(cards with ability).\n"
+        << "Soldiers' possible powers are 1, 2, 3, 4, 5, 6 and 10. in order to play them, simply enter the number.\n"
+        << "There five types of purple cards; drummers, scarecrows, heroines, springs and winters.\n"
+        << "You can receive each card's instruction using keyword help + typename.\n"
+        << "To play them, just enter their typename and it's done.\n"
+        << "The goal here is to conquer either five cities in general, or 3 adjacent cities. You won't know adjacncies, cause I just didn't have the energy to show them to you.\n"
+        << "What?!! Be grateful lad!\n\n"
+        << "Some rules you would need to know:\n"
+        << "1-You can burn your whole hand after a war in case you are out of soldiers.\n"
+        << "2-You and your friends' hands will get recharged simultanously in case all of you except for one are out of cards.\n"
+        << "3-Choose a color eventhough you won't need it. Why? Heh. I don't know.\n"
+        << "\n    There are some other rules I guess. I can't rememeber. Figure it out yourself. GOOGLE your questions.\n HAVE fun.;)\n";
         system("pause");
     }
     else if(input == "spring"){
-        std::cout << "This card does...";
+        std::cout << "This card burns the poor winter and adds 3 to the power of most powerful card(s) played at the end of the war. Fascinating, aye?\n";
         system("pause");
     }
     else if(input == "winter"){
-        std::cout << "This card does...";
+        std::cout << "This card burns the poor spring and make all soldiers' powers a mere 1. Quite nasty.\n";
         system("pause");
     }
     else if(input == "heroine"){
-        std::cout << "This card does...";
+        std::cout << "This card has a power of level 10 and can noy be affected by any. The name suits her highness.\n";
         system("pause");
     }
     else if(input == "drummer"){
-        std::cout << "This card does...";
+        std::cout << "This card doubles your army power only once regardless how many of it you play. You can understand the effect of drums on metal songs now.\n";
         system("pause");
     }
     else if(input == "scarecrow"){
-        std::cout << "This card does...";
+        std::cout << "This card resurrects a played soldier card. Jonathan Crane has had an objection and been screaming in Arkham eversince the creation of the game.\n";
         system("pause");
     }
     else if(input == "pass"){
-        std::cout << "This card does...";
+        std::cout << "In case yoou don't want to play till the end of this war. We will count your power though. We care about you, even if ypu pass.\n";
         system("pause");
     }
 }
@@ -302,35 +379,6 @@ void UserInterface::announceTheWinner(Player* winner){
     system("pause");
 }
 
-std::string UserInterface::callTheBlackMarkOwner(Player owner, Map& theMap){
-    system("cls");
-    while(true){
-        for(auto i: theMap.getTheMap()){
-            if(i.second.getFightability())
-                std::cout << i.first << "    ";
-        }
-        std::cout <<"\n";
-        std::string cityName;
-        std::cout << owner.getName() << "! Choose the next city to fight for: ";
-        std::cin >> cityName;
-        if(Validator::validateCityName(cityName, theMap)){
-            system("cls");
-            return cityName;
-        }
-        else{
-            cityNameError();
-        }
-    }
-        
-}
-
-void UserInterface::cityNameError(){
-    system("cls");
-    std::cout << "Your chosen city is not in the list!\n";
-    system("pause");
-    system("cls");
-}
-
 void UserInterface::displayBlackMarkCity(City* weAreFightingForIt){
     std::cout << "Fighting over the conqueration of: " << weAreFightingForIt->getName() << "\n";
 }
@@ -340,4 +388,29 @@ void UserInterface::announceTheLocalWarWinner(Player* warWinner){
     std::cout << "The " << warWinner->getName() << " has won the war!!\n";
     system("pause");
     system("cls");
+}
+
+int UserInterface::scarecrowEntry(std::vector <Card*> playedCards){
+    std::string toBeResurrected;
+    while(true){
+        system("cls");
+        for(int i = 0; i < playedCards.size(); i++){
+            std::cout << playedCards[i]->getPower() << "    ";
+        }
+        std::cout << "\nEnter the power of the yellow card you want resurrected: ";
+        std::cin >> toBeResurrected;
+        if(Validator::validateResurrection(toBeResurrected, playedCards)){
+            return std::stoi(toBeResurrected);
+        }
+        else{
+            scarecrowError();
+        }
+    } 
+}
+
+void UserInterface::displaySeason(Card* season){
+    if(season == NULL){
+        return;
+    }
+    std::cout << "Current season: " << season->getTypeName() << '\n';
 }
