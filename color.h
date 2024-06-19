@@ -2,6 +2,8 @@
 
 #define COLOR_H
 
+//To restrict chooseable color. 
+
 enum Color{
     white,
     black,
