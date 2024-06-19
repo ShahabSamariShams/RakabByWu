@@ -37,7 +37,7 @@ class Player{
         void addToArmyPower(int);
         std::vector <Card*> burnCardsInHand();
         bool emptyHand();
-        
+        bool yellowCardInHand();
         bool cardExistance(std::string);
         Card* playACard(std::string);
 

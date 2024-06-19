@@ -4,12 +4,10 @@ Player::Player(){
     marks.resize(5);
 }
 
+//-------------------------------------------
+
 void Player::setName(std::string inputName){
     name = inputName;
-}
-
-std::string Player::getName()const{
-    return name;
 }
 
 void Player::setAge(float inputAge){
@@ -19,9 +17,67 @@ void Player::setAge(float inputAge){
     age = inputAge;
 }
 
+std::string Player::getName()const{
+    return name;
+}
+
+void Player::setYellowArmy(std::vector <Card*> inputArmy){
+    yellowArmy = inputArmy;
+}
+
+void Player::setMarks(std::vector <Mark> marksToSet){
+    marks = marksToSet;
+}
+
+void Player::setArmyPower(int inputPower){
+    armyPower = inputPower;
+}
+
+void Player::setMarksColor(Color inputColor){
+    for(int i = 0; i < marks.size(); i++){
+        marks[i].setColor(inputColor);
+    }
+}
+
+void Player::setCardsInHand(std::vector <Card*> givenHand){
+    cardsInHand = givenHand;
+}
+
+//-------------------------------------------
+
 float Player::getAge()const{
     return age;
 }
+
+int Player::getArmyPower()const{
+    return armyPower;
+}
+
+int Player::yellowArmySize(){
+    return yellowArmy.size();
+}
+
+int Player::getRawYellowPower(){
+    int sumOfPowers = 0;
+    for(int i = 0; i < yellowArmySize(); i++){
+        sumOfPowers += yellowArmy[i]->getPower();
+    }
+    return sumOfPowers;
+}
+
+std::vector <Card*> Player::getYellowArmy()const{
+    return yellowArmy;
+}
+
+std::vector <Card*> Player::getCardsInHand()const{
+    return cardsInHand;
+}
+
+std::vector <Mark> Player::getMarks()const{
+    return marks;
+}
+
+//-------------------------------------------
 
 int Player::highestYellowCard(){
     try{
@@ -39,54 +95,14 @@ int Player::highestYellowCard(){
     return highestPower;
 }
 
-std::vector <Card*> Player::getYellowArmy()const{
-    return yellowArmy;
-}
-
-void Player::setYellowArmy(std::vector <Card*> inputArmy){
-    yellowArmy = inputArmy;
-}
-
-int Player::getArmyPower()const{
-    return armyPower;
-}
-
-void Player::setArmyPower(int inputPower){
-    armyPower = inputPower;
-}
-
 void Player::addToArmyPower(int increment){
     armyPower += increment;
 }
 
-int Player::yellowArmySize(){
-    return yellowArmy.size();
-}
-
-int Player::getRawYellowPower(){
-    int sumOfPowers = 0;
-    for(int i = 0; i < yellowArmySize(); i++){
-        sumOfPowers += yellowArmy[i]->getPower();
-    }
-    return sumOfPowers;
-}
-
-void Player::setMarksColor(Color inputColor){
-    for(int i = 0; i < marks.size(); i++){
-        marks[i].setColor(inputColor);
-    }
-}
-
-void Player::setCardsInHand(std::vector <Card*> givenHand){
-    cardsInHand = givenHand;
-}
-
-std::vector <Card*> Player::getCardsInHand()const{
-    return cardsInHand;
-}
-
-void Player::burnCardsInHand(){
-    cardsInHand.clear();
+std::vector <Card*> Player::burnCardsInHand(){
+    std::vector <Card*> tempCards = getCardsInHand();
+     cardsInHand.clear();
+     return tempCards;
 }
 
 short Player::numberOfTakenCities(){
@@ -146,14 +162,6 @@ Card* Player::playACard(std::string toBePlayed){
     }
 }
 
-std::vector <Mark> Player::getMarks()const{
-    return marks;
-}
-
-void Player::setMarks(std::vector <Mark> marksToSet){
-    marks = marksToSet;
-}
-
 bool Player::emptyHand(){
     if(cardsInHand.size() == 0){
         return true;
@@ -163,6 +171,18 @@ bool Player::emptyHand(){
     }
 }
 
-void Player::burnYellowArmy(){
+std::vector <Card*> Player::burnYellowArmy(){
+    std::vector <Card*> tempArmy = getYellowArmy();
     yellowArmy.clear();
+    setArmyPower(0);
+    return tempArmy;
+}
+
+bool Player::yellowCardInHand(){
+    for(int i = 0; i < cardsInHand.size(); i++){
+        if(cardsInHand[i]->getType() == soldier){
+            return true;
+        }
+    }
+    return false;
 }
