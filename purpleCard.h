@@ -3,6 +3,8 @@
 #define PURPLECARD_H
 #include "card.h"
 
+class Game;
+
 class PurpleCard: public Card{
     public:
     //Setters:
