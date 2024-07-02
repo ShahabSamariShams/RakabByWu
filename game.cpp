@@ -218,12 +218,11 @@ void Game::resetingArmies(){
 void Game::calculateThePowers(){
     for(int i = 0; i < playerList.size(); i++){
         playerList[i].setArmyPower(playerList[i].getRawYellowPower());
-    }
-    std::vector <std::pair <Card*, Player*>>::iterator pointer; 
+    } 
     while(playedPurpleCards.size() > 0){
         playedPurpleCards.back().first->ability(*this);
-        pointer = playedPurpleCards.end() - 1;
-        playedPurpleCards.erase(pointer);
+        deckOfCards.push_back(playedPurpleCards.back().first);
+        playedPurpleCards.pop_back();
     }
 }
 
