@@ -8,6 +8,7 @@
 #include "scarecrow.h"
 #include "heroine.h"
 
+#include "purpleCard.h"
 #include "yellowCard.h"
 
 #include "userinterface.h"
@@ -18,7 +19,7 @@ void merge(std::vector <std::pair <Card*, Player*>>& playedPurpleCards, int star
     int leftPointer = start, rightPointer = middle + 1;
     std::vector <std::pair <Card*, Player*>> tempSorted;
     while(leftPointer <= middle && rightPointer <= end){
-        if(playedPurpleCards[leftPointer].first->getPriority() < playedPurpleCards[rightPointer].first->getPriority()){
+        if(static_cast<PurpleCard*>(playedPurpleCards[leftPointer].first)->getPriority() < static_cast<PurpleCard*>(playedPurpleCards[rightPointer].first)->getPriority()){
             tempSorted.push_back(playedPurpleCards[leftPointer]);
             leftPointer++;
         }
@@ -215,15 +216,17 @@ void Game::resetingArmies(){
     season = NULL;
 }
 
-void Game::calculateThePowers(){
+std::vector <Card*> Game::calculateThePowers(){
+    std::vector <Card*> toBeReturned;
     for(int i = 0; i < playerList.size(); i++){
         playerList[i].setArmyPower(playerList[i].getRawYellowPower());
-    } 
+    }
     while(playedPurpleCards.size() > 0){
-        playedPurpleCards.back().first->ability(*this);
-        deckOfCards.push_back(playedPurpleCards.back().first);
+        static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
+        toBeReturned.push_back(playedPurpleCards.back().first);
         playedPurpleCards.pop_back();
     }
+    return toBeReturned;
 }
 
 //------------------------------------------------------------------
@@ -275,7 +278,7 @@ void Game::war(int& index){
                     if(playerInput != "pass" && playerList[i].cardExistance(playerInput)){
                         addToPlayedPurpleCards(playerList[i].playACard(playerInput), &playerList[i]);
                         if(playerInput == "scarecrow"){
-                            playedPurpleCards.back().first->ability(*this);
+                            static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
                             deckOfCards.push_back(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
                         }

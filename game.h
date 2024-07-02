@@ -30,7 +30,7 @@ class Game{
         bool timeToDistribute();
         void addToPlayedPurpleCards(Card*, Player*);
         void resetingArmies();
-        void calculateThePowers();
+        std::vector <Card*> calculateThePowers();
     //Black mark related:
         int findTheYoungest();
         void setTheBlackMark(int);
