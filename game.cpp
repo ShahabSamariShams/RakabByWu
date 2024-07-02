@@ -131,7 +131,9 @@ std::vector <Player> Game::getPlayerList()const{
 }
 
 std::string Game::getSeason()const{
-    return season->getTypeName();
+    if(season != NULL)
+        return season->getTypeName();
+    return "empty";
 }
 
 //------------------------------------------------------------------
