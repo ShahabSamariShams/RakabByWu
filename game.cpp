@@ -212,6 +212,7 @@ void Game::resetingArmies(){
     for(int i = 0; i < playerList.size(); i++){
         burnCards(playerList[i].burnYellowArmy());
     }
+    season = NULL;
 }
 
 void Game::calculateThePowers(){
