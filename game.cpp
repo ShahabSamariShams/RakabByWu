@@ -18,7 +18,7 @@ void merge(std::vector <std::pair <Card*, Player*>>& playedPurpleCards, int star
     int leftPointer = start, rightPointer = middle + 1;
     std::vector <std::pair <Card*, Player*>> tempSorted;
     while(leftPointer <= middle && rightPointer <= end){
-        if(playedPurpleCards[leftPointer].first->getPriority() > playedPurpleCards[rightPointer].first->getPriority()){
+        if(playedPurpleCards[leftPointer].first->getPriority() < playedPurpleCards[rightPointer].first->getPriority()){
             tempSorted.push_back(playedPurpleCards[leftPointer]);
             leftPointer++;
         }
