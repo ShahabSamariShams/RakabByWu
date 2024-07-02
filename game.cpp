@@ -205,11 +205,8 @@ void Game::addToPlayedPurpleCards(Card* cardToBeAdded, Player* currentPlayer){
     }
 }
 
-void Game::resetingArmies(){
-    while(playedPurpleCards.size() > 0){
-        deckOfCards.push_back(playedPurpleCards.back().first);
-        playedPurpleCards.pop_back();
-    }
+void Game::resetingArmies(std::vector <Card*> purpleCards){
+    burnCards(purpleCards);
     for(int i = 0; i < playerList.size(); i++){
         burnCards(playerList[i].burnYellowArmy());
     }
@@ -417,10 +414,9 @@ void Game::runGame(){
         }
         mergeSort(playedPurpleCards, 0, playedPurpleCards.size() - 1);
         std::reverse(playedPurpleCards.begin(), playedPurpleCards.end());
-        calculateThePowers();
-
+        std::vector <Card*> purpleCards = calculateThePowers();
         Player* winner = whoWonTheWar();
-        resetingArmies();
+        resetingArmies(purpleCards);
         if(winner != NULL){
             warWinnerAward(winner);
             UserInterface::announceTheLocalWarWinner(winner);
