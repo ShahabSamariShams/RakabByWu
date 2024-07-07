@@ -198,9 +198,9 @@ std::string UserInterface::callThePeaceMarkOwner(Player owner, Map& theMap){
         }
         std::cout <<"\n";
         std::string cityName;
-        std::cout << owner.getName() << "! Settle the peace mark on a city: ";
+        std::cout << owner.getName() << "! Settle the peace mark on a city(enter a zero-0 to put it outside the map.): ";
         std::cin >> cityName;
-        if(Validator::validateCityName(cityName, theMap)){
+        if(Validator::validateCityName(cityName, theMap) || cityName == "0"){
             system("cls");
             return cityName;
         }
