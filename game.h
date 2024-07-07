@@ -37,7 +37,7 @@ class Game{
     //Player related:
         Player* playerInTurn()const; //Player in turn for their played purpleCard.
     //War related:
-        void war(int&);
+        void war(int&, int&);
         bool endOfWar(std::vector <bool>);
         Player* whoWonTheWar();
         void warWinnerAward(Player*);

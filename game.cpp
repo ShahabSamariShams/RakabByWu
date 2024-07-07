@@ -269,10 +269,10 @@ Player* Game::playerInTurn()const{
 
 //------------------------------------------------------------------
 
-void Game::war(int& index){
+void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner){
     std::vector <bool> passed(playerList.size(), false);
     std::string playerInput;
-    for(int i = index; !endOfWar(passed); i++){
+    for(int i = indexOfWarStarter; !endOfWar(passed); i++){
         if(!passed[i]){
             UserInterface::bringThePlayer(playerList[i].getName());
             while(true){
@@ -289,6 +289,9 @@ void Game::war(int& index){
                             static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
                             deckOfCards.push_back(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
+                            if(playerInput == "bishop"){
+                                indexOfPeaceMarkOwner = i;
+                            }
                         }
                         else if(playerInput == "winter" || playerInput == "spring"){
                             setSeason(playedPurpleCards.back().first);
@@ -298,7 +301,7 @@ void Game::war(int& index){
                     }
                     else if(playerInput == "pass"){
                         passed[i] = true;
-                        index = i;
+                        indexOfWarStarter = i;
                         break;
                     }
                     else{
@@ -409,14 +412,14 @@ bool Game::gameWinner(Player* warWinner){
 
 void Game::runGame(){
     int indexOfWarStarter = findTheYoungest();
-    short indexOfPeaceMarkHolder = -1;
+    int indexOfPeaceMarkHolder = -1;
     while(true){
         setTheBlackMark(indexOfWarStarter);
         burnHandIfPossible();
         if(timeToDistribute()){
             distributeCards();
         }
-        war(indexOfWarStarter);
+        war(indexOfWarStarter, indexOfPeaceMarkHolder);
 
         if(season != NULL){
             std::pair <Card*, Player*> toBeAdded;
