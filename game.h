@@ -34,6 +34,8 @@ class Game{
     //Black mark related:
         int findTheYoungest();
         void setTheBlackMark(int);
+    //Piece mark related:
+        void setThePeaceMark(int);
     //Player related:
         Player* playerInTurn()const; //Player in turn for their played purpleCard.
     //War related:

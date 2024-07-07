@@ -244,6 +244,16 @@ void Game::setTheBlackMark(int indexOfWarStarter){
     blackMark.setMarkOn(theMap.toBeFoughtFor(cityName));
 }
 
+void Game::setThePeaceMark(int indexOfPieceMarkHolder){
+    if(indexOfPieceMarkHolder != -1){
+        if(peaceMark.whereIsIt() != NULL){
+            peaceMark.whereIsIt()->setFightability(true);
+        }
+        peaceMark.setMarkOn(theMap.toBeFoughtFor(UserInterface::callThePeaceMarkOwner(playerList[indexOfPieceMarkHolder], theMap)));
+        peaceMark.whereIsIt()->setFightability(false);
+    }
+}
+
 int Game::findTheYoungest(){
     std::vector <int> indexOfTheYoungest;
     int leastAge = playerList[0].getAge();
@@ -412,8 +422,9 @@ bool Game::gameWinner(Player* warWinner){
 
 void Game::runGame(){
     int indexOfWarStarter = findTheYoungest();
-    int indexOfPeaceMarkHolder = -1;
+    int indexOfPeaceMarkHolder;
     while(true){
+        indexOfPeaceMarkHolder = -1;
         setTheBlackMark(indexOfWarStarter);
         burnHandIfPossible();
         if(timeToDistribute()){
@@ -447,5 +458,6 @@ void Game::runGame(){
             }
             blackMark.whereIsIt()->setFightability(false);
         }
+        setThePeaceMark(indexOfPeaceMarkHolder);
     }
 }
