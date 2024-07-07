@@ -7,7 +7,7 @@ Spy::Spy(){
 }
 
 void Spy::ability(Game& currentGame){
-    currentGame.playerInTurn()->addToArmyPower(1);
+    currentGame.playerInTurn()->addToArmyPower(getPower());
 }
 
 std::string Spy::getTypeName()const{
