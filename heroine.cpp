@@ -7,8 +7,7 @@ Heroine::Heroine(){
 }
 
 void Heroine::ability(Game& currentGame){
-    Player* tempPlayerAddress = currentGame.playerInTurn();
-    tempPlayerAddress->addToArmyPower(getPower());
+    currentGame.playerInTurn()->addToArmyPower(getPower());
 }
 
 std::string Heroine::getTypeName()const{
