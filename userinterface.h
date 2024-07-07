@@ -21,6 +21,7 @@ class UserInterface{
         static int scarecrowEntry(std::vector <Card*>);
         static std::string play(Player);
         static std::string callTheBlackMarkOwner(Player, Map&);
+        static std::string callThePeaceMarkOwner(Player, Map&);
 
     //Errors:
         static void numberOfPlayersError(short);

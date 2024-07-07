@@ -189,6 +189,28 @@ std::string UserInterface::callTheBlackMarkOwner(Player owner, Map& theMap){
         
 }
 
+std::string UserInterface::callThePeaceMarkOwner(Player owner, Map& theMap){
+    system("cls");
+    while(true){
+        for(auto i: theMap.getTheMap()){
+            if(i.second.getFightability())
+                std::cout << i.first << "    ";
+        }
+        std::cout <<"\n";
+        std::string cityName;
+        std::cout << owner.getName() << "! Settle the peace mark on a city: ";
+        std::cin >> cityName;
+        if(Validator::validateCityName(cityName, theMap)){
+            system("cls");
+            return cityName;
+        }
+        else{
+            cityNameError();
+        }
+    }
+        
+}
+
 std::string UserInterface::receicveAnswer(std::string name){
     std::string answer;
     while(true){
