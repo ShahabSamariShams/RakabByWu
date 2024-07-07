@@ -23,6 +23,8 @@ void Bishop::ability(Game& currentGame){
         tempPlayerList[i].setYellowArmy(tempYellowArmy);
     }
 
+    currentGame.setPlayerList(tempPlayerList);
+
     currentGame.burnCards(highestYellowCards);
 }
 
