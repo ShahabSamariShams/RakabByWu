@@ -57,9 +57,14 @@ void mergeSort(std::vector <std::pair <Card*, Player*>>& playedPurpleCards, int 
 //------------------------------------------------------------------
 
 Game::Game(){
-    //Inputs from the user.
+    //Inputs from the users.
     short numberOfPlayers = UserInterface::receiveNumberOfPlayers();
     setPlayerList(UserInterface::receivePlayerList(numberOfPlayers));
+
+    //Marks
+    blackMark.setMarkOn(NULL);
+    peaceMark.setMarkOn(NULL);
+
     //Making cards manually using dynamic allocation.
     Card* pointerToCard;
     for(int i = 0; i < 16; i++){
@@ -404,6 +409,7 @@ bool Game::gameWinner(Player* warWinner){
 
 void Game::runGame(){
     int indexOfWarStarter = findTheYoungest();
+    short indexOfPeaceMarkHolder = -1;
     while(true){
         setTheBlackMark(indexOfWarStarter);
         burnHandIfPossible();

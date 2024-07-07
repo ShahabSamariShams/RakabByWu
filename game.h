@@ -55,6 +55,7 @@ class Game{
         Card* season;
 
         Mark blackMark;
+        Mark peaceMark;
         Map theMap;
 
 };
