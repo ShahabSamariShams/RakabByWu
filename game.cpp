@@ -86,7 +86,7 @@ Game::Game(){
         pointerToCard = new Bishop;
         deckOfCards.push_back(pointerToCard);
     }
-    
+
     for(int i = 0; i < 10; i++){
         pointerToCard = new YellowCard(1);
         deckOfCards.push_back(pointerToCard);
@@ -280,7 +280,7 @@ void Game::war(int& index){
                 if(playerInput != "help" && playerInput != "empty"){
                     if(playerInput != "pass" && playerList[i].cardExistance(playerInput)){
                         addToPlayedPurpleCards(playerList[i].playACard(playerInput), &playerList[i]);
-                        if(playerInput == "scarecrow"){
+                        if(playerInput == "scarecrow" || playerInput == "bishop"){
                             static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
                             deckOfCards.push_back(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
