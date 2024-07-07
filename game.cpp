@@ -2,6 +2,7 @@
 
 #include "game.h"
 
+#include "bishop.h"
 #include "spring.h"
 #include "winter.h"
 #include "drummer.h"
@@ -81,6 +82,11 @@ Game::Game(){
         pointerToCard = new Heroine;
         deckOfCards.push_back(pointerToCard);
     }
+    for(int i = 0; i < 6; i++){
+        pointerToCard = new Bishop;
+        deckOfCards.push_back(pointerToCard);
+    }
+    
     for(int i = 0; i < 10; i++){
         pointerToCard = new YellowCard(1);
         deckOfCards.push_back(pointerToCard);
