@@ -8,6 +8,7 @@
 #include "drummer.h"
 #include "scarecrow.h"
 #include "heroine.h"
+#include "spy.h"
 
 #include "purpleCard.h"
 #include "yellowCard.h"
@@ -66,6 +67,7 @@ Game::Game(){
     peaceMark.setMarkOn(NULL);
 
     //Making cards manually using dynamic allocation.
+    //Purple cards:
     Card* pointerToCard;
     for(int i = 0; i < 16; i++){
         pointerToCard = new Scarecrow;
@@ -91,7 +93,12 @@ Game::Game(){
         pointerToCard = new Bishop;
         deckOfCards.push_back(pointerToCard);
     }
+    for(int i = 0; i < 12; i++){
+        pointerToCard = new Spy;
+        deckOfCards.push_back(pointerToCard);
+    }
 
+    //Yellow cards:
     for(int i = 0; i < 10; i++){
         pointerToCard = new YellowCard(1);
         deckOfCards.push_back(pointerToCard);
