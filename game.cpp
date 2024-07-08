@@ -284,6 +284,7 @@ Player* Game::playerInTurn()const{
 
 void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner){
     std::vector <bool> passed(playerList.size(), false);
+    std::vector <int> spyCount(playerList.size(), 0);
     std::string playerInput;
     for(int i = indexOfWarStarter; !endOfWar(passed); i++){
         if(!passed[i]){
@@ -326,6 +327,19 @@ void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner){
         if(i == playerList.size() - 1){
             i = -1;
         }
+    }
+    int highestSpyIndex = 0, count = 0;
+    for(int i = 0; i < spyCount.size(); i++){
+        if(spyCount[highestSpyIndex] < spyCount[i]){
+            count = 1;
+            highestSpyIndex = i;
+        }
+        else if(spyCount[highestSpyIndex] == spyCount[i]){
+            count++;
+        }
+    }
+    if(count == 1){
+        indexOfWarStarter = highestSpyIndex;
     }
 }
 
