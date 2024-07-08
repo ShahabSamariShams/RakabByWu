@@ -49,9 +49,9 @@ bool Validator::validateKnownWord(std::string input){
         }
     }
     catch(std::invalid_argument invalid){
-        std::string validWords[] = {"spring", "winter", "drummer", "heroine", "scarecrow", "bishop", "help", "pass"};
-        for(int i = 0; i < 7; i++){
-            if(input == validWords[i]){
+        std::string validWords[] = {"spring", "spy", "winter", "drummer", "heroine", "scarecrow", "bishop", "help", "pass"};
+        for(std::string word: validWords){
+            if(word == input){
                 return true;
             }
         }
