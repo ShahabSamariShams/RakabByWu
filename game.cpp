@@ -289,7 +289,7 @@ Player* Game::playerInTurn()const{
 
 //------------------------------------------------------------------
 
-void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner){
+void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner, bool& ownershipDeterminedBySpy){
     std::vector <bool> passed(playerList.size(), false);
     std::vector <int> spyCount(playerList.size(), 0);
     std::string playerInput;
@@ -350,6 +350,7 @@ void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner){
     }
     if(count == 1){
         indexOfWarStarter = highestSpyIndex;
+        ownershipDeterminedBySpy = true;
     }
 }
 
@@ -450,14 +451,16 @@ bool Game::gameWinner(Player* warWinner){
 void Game::runGame(){
     int indexOfWarStarter = findTheYoungest();
     int indexOfPeaceMarkHolder;
+    bool ownershipDeterminedBySpy;
     while(true){
+        ownershipDeterminedBySpy = false;
         indexOfPeaceMarkHolder = -1;
         setTheBlackMark(indexOfWarStarter);
         burnHandIfPossible();
         if(timeToDistribute()){
             distributeCards();
         }
-        war(indexOfWarStarter, indexOfPeaceMarkHolder);
+        war(indexOfWarStarter, indexOfPeaceMarkHolder, ownershipDeterminedBySpy);
 
         if(season != NULL){
             std::pair <Card*, Player*> toBeAdded;
@@ -477,7 +480,7 @@ void Game::runGame(){
                 UserInterface::announceTheWinner(winner);
                 return;
             }
-            for(int i = 0; i < playerList.size(); i++){
+            for(int i = 0; i < playerList.size() && !ownershipDeterminedBySpy; i++){
                 if(playerList[i].getName() == winner->getName()){
                     indexOfWarStarter = i;
                     break;
