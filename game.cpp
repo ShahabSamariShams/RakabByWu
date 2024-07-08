@@ -318,6 +318,9 @@ void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner){
                             setSeason(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
                         }
+                        else if(playerInput == "spy"){
+                            spyCount[i]++;
+                        }
                         break;
                     }
                     else if(playerInput == "pass"){
