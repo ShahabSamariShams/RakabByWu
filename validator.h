@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include "player.h"
+#include "map.h"
 
 class Validator{
     public:

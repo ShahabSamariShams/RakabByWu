@@ -2,6 +2,7 @@
 
 #define PURPLECARD_H
 #include "card.h"
+#include "game.h"
 
 class Game;
 

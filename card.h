@@ -3,8 +3,6 @@
 #define CARD_H
 #include <string>
 
-#include "game.h"
-
 enum CardType{
     soldier,
     scarecrow, //Immediate effect.

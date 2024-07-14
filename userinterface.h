@@ -8,6 +8,7 @@
 #include "player.h"
 #include "mark.h"
 #include "color.h"
+#include "map.h"
 
 class UserInterface{
     public:
