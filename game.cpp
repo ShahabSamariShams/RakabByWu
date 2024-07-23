@@ -324,13 +324,10 @@ void Game::war(){
                 if(playerInput != "help" && playerInput != "empty"){
                     if(playerInput != "pass" && playerList[i].cardExistance(playerInput)){
                         addToPlayedPurpleCards(playerList[i].playACard(playerInput), &playerList[i]);
-                        if(playerInput == "scarecrow" || playerInput == "bishop"){
+                        if(playerInput == "scarecrow"){
                             static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
                             deckOfCards.push_back(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
-                            if(playerInput == "bishop"){
-                                midGameData.indexOfPeaceMarkOwner = i;
-                            }
                         }
                         else if(playerInput == "winter" || playerInput == "spring"){
                             setSeason(playedPurpleCards.back().first);
@@ -491,7 +488,7 @@ void Game::runGame(){
                 UserInterface::announceTheWinner(winner);
                 return;
             }
-            for(int i = 0; i < playerList.size() && !ownershipDeterminedBySpy; i++){
+            for(int i = 0; i < playerList.size(); i++){
                 if(playerList[i].getName() == winner->getName()){
                     midGameData.indexOfWarStarter = i;
                     break;
