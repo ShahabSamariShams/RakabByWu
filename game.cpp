@@ -250,8 +250,8 @@ std::vector <Card*> Game::calculateThePowers(){
 
 //------------------------------------------------------------------
 
-void Game::setTheBlackMark(int indexOfWarStarter){
-    std::string cityName = UserInterface::callTheBlackMarkOwner(playerList[indexOfWarStarter], theMap);
+void Game::setTheBlackMark(){
+    std::string cityName = UserInterface::callTheBlackMarkOwner(playerList[midGameData.indexOfWarStarter], theMap);
     blackMark.setMarkOn(theMap.toBeFoughtFor(cityName));
 }
 
@@ -453,13 +453,9 @@ bool Game::gameWinner(Player* warWinner){
 
 
 void Game::runGame(){
-    int indexOfWarStarter = findTheYoungest();
-    int indexOfPeaceMarkHolder;
-    bool ownershipDeterminedBySpy;
+    midGameData.indexOfWarStarter = findTheYoungest();
     while(true){
-        ownershipDeterminedBySpy = false;
-        indexOfPeaceMarkHolder = -1;
-        setTheBlackMark(indexOfWarStarter);
+        setTheBlackMark();
         burnHandIfPossible();
         if(timeToDistribute()){
             distributeCards();

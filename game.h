@@ -34,7 +34,7 @@ class Game{
         std::vector <Card*> calculateThePowers();
     //Black mark related:
         int findTheYoungest();
-        void setTheBlackMark(int);
+        void setTheBlackMark();
     //Piece mark related:
         void setThePeaceMark(int);
     //Player related:
