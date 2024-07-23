@@ -10,6 +10,8 @@ struct MidGameData{
     //Vectors that overlap with player list:
         std::vector <int> spyCount;
         std::vector <bool> passed;
+    //Functions:
+        void reset();
 };
 
 #endif
