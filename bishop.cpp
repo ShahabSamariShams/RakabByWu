@@ -7,6 +7,8 @@ Bishop::Bishop(){
 }
 
 void Bishop::ability(Game& currentGame){
+    currentGame.setIndexOfPeaceMarkOwner(currentGame.playerInTurnIndex(currentGame.playerInTurn()->getName()));
+
     int highestPower = currentGame.highestYellowCardPlayed();
     std::vector <Player> tempPlayerList = currentGame.getPlayerList();
     std::vector <Card*> highestYellowCards;
