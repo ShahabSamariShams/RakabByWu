@@ -8,6 +8,7 @@
 #include "player.h"
 #include "mark.h"
 #include "map.h"
+#include "midGameData.h"
 
 class Card;
 class Player;
@@ -60,6 +61,7 @@ class Game{
         Mark peaceMark;
         Map theMap;
 
+        MidGameData midGameData;
 };
 
 #endif
