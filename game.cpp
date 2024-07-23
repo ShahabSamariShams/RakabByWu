@@ -255,12 +255,12 @@ void Game::setTheBlackMark(){
     blackMark.setMarkOn(theMap.toBeFoughtFor(cityName));
 }
 
-void Game::setThePeaceMark(int indexOfPieceMarkHolder){
-    if(indexOfPieceMarkHolder != -1){
+void Game::setThePeaceMark(){
+    if(midGameData.indexOfPeaceMarkOwner != -1){
         if(peaceMark.whereIsIt() != NULL){
             peaceMark.whereIsIt()->setFightability(true);
         }
-        std::string cityName = UserInterface::callThePeaceMarkOwner(playerList[indexOfPieceMarkHolder], theMap);
+        std::string cityName = UserInterface::callThePeaceMarkOwner(playerList[midGameData.indexOfPeaceMarkOwner], theMap);
         if(cityName != "0"){
             peaceMark.setMarkOn(theMap.toBeFoughtFor(cityName));
             peaceMark.whereIsIt()->setFightability(false);
@@ -485,6 +485,6 @@ void Game::runGame(){
             }
             blackMark.whereIsIt()->setFightability(false);
         }
-        setThePeaceMark(indexOfPeaceMarkHolder);
+        setThePeaceMark();
     }
 }
