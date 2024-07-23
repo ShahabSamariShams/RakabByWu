@@ -159,6 +159,10 @@ std::string Game::getSeason()const{
     return "empty";
 }
 
+int Game::playerInTurnIndex()const{
+    return midGameData.indexOfPlayerInTurn;
+}
+
 //------------------------------------------------------------------
 
 int Game::highestYellowCardPlayed(){

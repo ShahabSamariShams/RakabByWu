@@ -23,6 +23,7 @@ class Game{
     //Getters:
         std::vector <Player> getPlayerList()const;
         std::string getSeason()const;
+        int playerInTurnIndex()const;
     //Cards related:
         int highestYellowCardPlayed();
         void burnHandIfPossible();
