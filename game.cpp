@@ -262,6 +262,31 @@ std::vector <Card*> Game::calculateThePowers(){
 
 //------------------------------------------------------------------
 
+void Game::ownerOfBlackMark(){
+    int highestSpyIndex = 0, count = 0;
+    for(int i = 0; i < midGameData.spyCount.size(); i++){
+        if(midGameData.spyCount[highestSpyIndex] < midGameData.spyCount[i]){
+            count = 1;
+            highestSpyIndex = i;
+        }
+        else if(midGameData.spyCount[highestSpyIndex] == midGameData.spyCount[i]){
+            count++;
+        }
+    }
+    if(count == 1){
+        midGameData.indexOfWarStarter = highestSpyIndex;
+        return;
+    }
+    if(midGameData.winner != NULL){
+        for(int i = 0; i < playerList.size(); i++){
+            if(playerList[i].getName() == midGameData.winner->getName()){
+                midGameData.indexOfWarStarter = i;
+                break;
+            }
+        }
+    } 
+}
+
 void Game::setTheBlackMark(){
     std::string cityName = UserInterface::callTheBlackMarkOwner(playerList[midGameData.indexOfWarStarter], theMap);
     blackMark.setMarkOn(theMap.toBeFoughtFor(cityName));
@@ -349,19 +374,6 @@ void Game::war(){
         if(i == playerList.size() - 1){
             i = -1;
         }
-    }
-    int highestSpyIndex = 0, count = 0;
-    for(int i = 0; i < midGameData.spyCount.size(); i++){
-        if(midGameData.spyCount[highestSpyIndex] < midGameData.spyCount[i]){
-            count = 1;
-            highestSpyIndex = i;
-        }
-        else if(midGameData.spyCount[highestSpyIndex] == midGameData.spyCount[i]){
-            count++;
-        }
-    }
-    if(count == 1){
-        midGameData.indexOfWarStarter = highestSpyIndex;
     }
 }
 
@@ -479,23 +491,18 @@ void Game::runGame(){
         mergeSort(playedPurpleCards, 0, playedPurpleCards.size() - 1);
         std::reverse(playedPurpleCards.begin(), playedPurpleCards.end());
         std::vector <Card*> purpleCards = calculateThePowers();
-        Player* winner = whoWonTheWar();
+        midGameData.winner = whoWonTheWar();
         resetingArmies(purpleCards);
-        if(winner != NULL){
-            warWinnerAward(winner);
-            UserInterface::announceTheLocalWarWinner(winner);
-            if(gameWinner(winner)){
-                UserInterface::announceTheWinner(winner);
+        if(midGameData.winner != NULL){
+            warWinnerAward(midGameData.winner);
+            UserInterface::announceTheLocalWarWinner(midGameData.winner);
+            if(gameWinner(midGameData.winner)){
+                UserInterface::announceTheWinner(midGameData.winner);
                 return;
-            }
-            for(int i = 0; i < playerList.size(); i++){
-                if(playerList[i].getName() == winner->getName()){
-                    midGameData.indexOfWarStarter = i;
-                    break;
-                }
             }
             blackMark.whereIsIt()->setFightability(false);
         }
         setThePeaceMark();
+        ownerOfBlackMark();
     }
 }
