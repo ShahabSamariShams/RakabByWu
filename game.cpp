@@ -147,6 +147,10 @@ void Game::setPlayerList(std::vector <Player> inputList){
     playerList = inputList;
 }
 
+void Game::setIndexOfPeaceMarkOwner(int index){
+    midGameData.indexOfPeaceMarkOwner = index;
+}
+
 //------------------------------------------------------------------
 
 std::vector <Player> Game::getPlayerList()const{
