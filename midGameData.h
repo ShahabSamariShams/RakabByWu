@@ -12,6 +12,7 @@ struct MidGameData{
         std::vector <bool> passed;
     //Functions:
         void reset();
+        void resizeList(int);
 };
 
 #endif

@@ -5,3 +5,9 @@ void MidGameData::reset(){
     std::fill(passed.begin(), passed.end(), false);
     std::fill(spyCount.begin(), spyCount.end(), 0);
 }
+
+void MidGameData::resizeList(int size){
+    passed.resize(size);
+    spyCount.resize(size);
+    MidGameData::reset();
+}
