@@ -127,8 +127,12 @@ Game::Game(){
         pointerToCard = new YellowCard(10);
         deckOfCards.push_back(pointerToCard);
     }
-    //--------------------------------------
+
+    //Season:
     season = NULL;
+
+    //Mid-game data:
+    midGameData.resizeList(playerList.size());
 }
 
 //------------------------------------------------------------------
