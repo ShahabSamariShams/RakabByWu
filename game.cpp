@@ -159,8 +159,12 @@ std::string Game::getSeason()const{
     return "empty";
 }
 
-int Game::playerInTurnIndex()const{
-    return midGameData.indexOfPlayerInTurn;
+int Game::playerInTurnIndex(std::string playerName)const{
+    for(int i = 0; i < playerList.size(); i++){
+        if(playerList[i].getName() == playerName){
+            return i;
+        }
+    }
 }
 
 //------------------------------------------------------------------
@@ -327,9 +331,6 @@ void Game::war(){
                         else if(playerInput == "winter" || playerInput == "spring"){
                             setSeason(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
-                        }
-                        else if(playerInput == "spy"){
-                            midGameData.spyCount[i]++;
                         }
                         break;
                     }
