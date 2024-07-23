@@ -7,6 +7,7 @@ Spy::Spy(){
 }
 
 void Spy::ability(Game& currentGame){
+    currentGame.spyCountIncrementation(currentGame.playerInTurnIndex(currentGame.playerInTurn()->getName()));
     currentGame.playerInTurn()->addToArmyPower(getPower());
 }
 
