@@ -293,12 +293,10 @@ Player* Game::playerInTurn()const{
 
 //------------------------------------------------------------------
 
-void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner, bool& ownershipDeterminedBySpy){
-    std::vector <bool> passed(playerList.size(), false);
-    std::vector <int> spyCount(playerList.size(), 0);
+void Game::war(){
     std::string playerInput;
-    for(int i = indexOfWarStarter; !endOfWar(passed); i++){
-        if(!passed[i]){
+    for(int i = midGameData.indexOfWarStarter; !endOfWar(midGameData.passed); i++){
+        if(!midGameData.passed[i]){
             UserInterface::bringThePlayer(playerList[i].getName());
             while(true){
                 system("cls");
@@ -315,7 +313,7 @@ void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner, bool& ownersh
                             deckOfCards.push_back(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
                             if(playerInput == "bishop"){
-                                indexOfPeaceMarkOwner = i;
+                                midGameData.indexOfPeaceMarkOwner = i;
                             }
                         }
                         else if(playerInput == "winter" || playerInput == "spring"){
@@ -323,13 +321,13 @@ void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner, bool& ownersh
                             playedPurpleCards.pop_back();
                         }
                         else if(playerInput == "spy"){
-                            spyCount[i]++;
+                            midGameData.spyCount[i]++;
                         }
                         break;
                     }
                     else if(playerInput == "pass"){
-                        passed[i] = true;
-                        indexOfWarStarter = i;
+                        midGameData.passed[i] = true;
+                        midGameData.indexOfWarStarter = i;
                         break;
                     }
                     else{
@@ -343,18 +341,17 @@ void Game::war(int& indexOfWarStarter, int& indexOfPeaceMarkOwner, bool& ownersh
         }
     }
     int highestSpyIndex = 0, count = 0;
-    for(int i = 0; i < spyCount.size(); i++){
-        if(spyCount[highestSpyIndex] < spyCount[i]){
+    for(int i = 0; i < midGameData.spyCount.size(); i++){
+        if(midGameData.spyCount[highestSpyIndex] < midGameData.spyCount[i]){
             count = 1;
             highestSpyIndex = i;
         }
-        else if(spyCount[highestSpyIndex] == spyCount[i]){
+        else if(midGameData.spyCount[highestSpyIndex] == midGameData.spyCount[i]){
             count++;
         }
     }
     if(count == 1){
-        indexOfWarStarter = highestSpyIndex;
-        ownershipDeterminedBySpy = true;
+        midGameData.indexOfWarStarter = highestSpyIndex;
     }
 }
 
@@ -460,7 +457,7 @@ void Game::runGame(){
         if(timeToDistribute()){
             distributeCards();
         }
-        war(indexOfWarStarter, indexOfPeaceMarkHolder, ownershipDeterminedBySpy);
+        war();
 
         if(season != NULL){
             std::pair <Card*, Player*> toBeAdded;
@@ -482,7 +479,7 @@ void Game::runGame(){
             }
             for(int i = 0; i < playerList.size() && !ownershipDeterminedBySpy; i++){
                 if(playerList[i].getName() == winner->getName()){
-                    indexOfWarStarter = i;
+                    midGameData.indexOfWarStarter = i;
                     break;
                 }
             }
