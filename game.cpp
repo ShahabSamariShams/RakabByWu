@@ -255,6 +255,10 @@ void Game::setTheBlackMark(){
     blackMark.setMarkOn(theMap.toBeFoughtFor(cityName));
 }
 
+void Game::spyCountIncrementation(int index){
+    midGameData.spyCount[index]++;
+}
+
 void Game::setThePeaceMark(){
     if(midGameData.indexOfPeaceMarkOwner != -1){
         if(peaceMark.whereIsIt() != NULL){
@@ -452,6 +456,7 @@ bool Game::gameWinner(Player* warWinner){
 void Game::runGame(){
     midGameData.indexOfWarStarter = findTheYoungest();
     while(true){
+        midGameData.reset();
         setTheBlackMark();
         burnHandIfPossible();
         if(timeToDistribute()){

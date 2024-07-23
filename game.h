@@ -35,7 +35,8 @@ class Game{
     //Black mark related:
         int findTheYoungest();
         void setTheBlackMark();
-    //Piece mark related:
+        void spyCountIncrementation(int);
+    //Peace mark related:
         void setThePeaceMark();
     //Player related:
         Player* playerInTurn()const; //Player in turn for their played purpleCard.
