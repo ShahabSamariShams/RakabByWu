@@ -260,6 +260,10 @@ std::vector <Card*> Game::calculateThePowers(){
     return toBeReturned;
 }
 
+void Game::turncoatPlayed(){
+    midGameData.isTurncoatPlayed = true;
+}
+
 //------------------------------------------------------------------
 
 void Game::ownerOfBlackMark(){

@@ -34,6 +34,7 @@ class Game{
         void addToPlayedPurpleCards(Card*, Player*);
         void resetingArmies(std::vector <Card*>);
         std::vector <Card*> calculateThePowers();
+        void turncoatPlayed();
     //Black mark related:
         int findTheYoungest();
         void ownerOfBlackMark();
