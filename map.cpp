@@ -18,6 +18,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -37,6 +38,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -56,6 +58,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -75,6 +78,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", true);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -94,6 +98,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", true);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -113,6 +118,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -132,6 +138,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", false);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -151,6 +158,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", true);
         cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -170,6 +178,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", true);
         cityToAdd.addCity("LIA", true);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -189,6 +198,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("ARMENTO", true);
         cityToAdd.addCity("OLIVADI", true);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -208,6 +218,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", false);
         cityToAdd.addCity("LIA", true);
         cityToAdd.addCity("OLIVADI", true);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -227,6 +238,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", true);
         cityToAdd.addCity("LIA", false);
         cityToAdd.addCity("OLIVADI", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -246,6 +258,7 @@ Map::Map(){
         cityToAdd.addCity("ELINIA", true);
         cityToAdd.addCity("LIA", false);
         cityToAdd.addCity("OLIVADI", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
@@ -265,8 +278,28 @@ Map::Map(){
         cityToAdd.addCity("ROLLO", true);
         cityToAdd.addCity("LIA", false);
         cityToAdd.addCity("OLIVADI", false);
+        cityToAdd.addCity("MamadAbad", false);
     }
     addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
+    //MamadAbad--------------------------------
+    cityToAdd.setName("MamadAbad");
+    {
+        cityToAdd.addCity("BELLA", false);
+        cityToAdd.addCity("CALINE", false);
+        cityToAdd.addCity("ENNA", false);
+        cityToAdd.addCity("BORGE", false);
+        cityToAdd.addCity("DIMASE", true);
+        cityToAdd.addCity("ATELA", true);
+        cityToAdd.addCity("PLADACI", false);
+        cityToAdd.addCity("MORINA", false);
+        cityToAdd.addCity("TALMONE", false);
+        cityToAdd.addCity("ARMENTO", false);
+        cityToAdd.addCity("ROLLO", false);
+        cityToAdd.addCity("LIA", false);
+        cityToAdd.addCity("OLIVADI", false);
+        cityToAdd.addCity("ELINIA", false);
+    }
 }
 
 void Map::addCity(City toBeAdded){
