@@ -9,6 +9,7 @@
 #include "scarecrow.h"
 #include "heroine.h"
 #include "spy.h"
+#include "turncoat.h"
 
 #include "purpleCard.h"
 #include "yellowCard.h"
@@ -95,6 +96,10 @@ Game::Game(){
     }
     for(int i = 0; i < 12; i++){
         pointerToCard = new Spy;
+        deckOfCards.push_back(pointerToCard);
+    }
+    for(int i = 0; i < 3; i++){
+        pointerToCard = new Turncoat;
         deckOfCards.push_back(pointerToCard);
     }
 
