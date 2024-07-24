@@ -349,7 +349,7 @@ void Game::war(){
                 if(playerInput != "help" && playerInput != "empty"){
                     if(playerInput != "pass" && playerList[i].cardExistance(playerInput)){
                         addToPlayedPurpleCards(playerList[i].playACard(playerInput), &playerList[i]);
-                        if(playerInput == "scarecrow"){
+                        if(static_cast<PurpleCard*>(playedPurpleCards.back().first)->getPriority() == 0){
                             static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
                             deckOfCards.push_back(playedPurpleCards.back().first);
                             playedPurpleCards.pop_back();
