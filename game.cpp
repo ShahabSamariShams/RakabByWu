@@ -340,7 +340,7 @@ Player* Game::playerInTurn()const{
 
 void Game::war(){
     std::string playerInput;
-    for(int i = midGameData.indexOfWarStarter; !endOfWar(midGameData.passed); i++){
+    for(int i = midGameData.indexOfWarStarter; !endOfWar(); i++){
         if(!midGameData.passed[i]){
             UserInterface::bringThePlayer(playerList[i].getName());
             while(true){
@@ -383,10 +383,13 @@ void Game::war(){
 
 
 
-bool Game::endOfWar(std::vector <bool> passed){
+bool Game::endOfWar(){
+    if(midGameData.isTurncoatPlayed){
+        return true;
+    }
     std::vector <int> indexOfNonPassers;
-    for(int i = 0; i < passed.size(); i++){
-        if(!passed[i]){
+    for(int i = 0; i < midGameData.passed.size(); i++){
+        if(!midGameData.passed[i]){
             indexOfNonPassers.push_back(i);
         }
     }
