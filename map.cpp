@@ -300,6 +300,8 @@ Map::Map(){
         cityToAdd.addCity("OLIVADI", false);
         cityToAdd.addCity("ELINIA", false);
     }
+    addCity(cityToAdd);
+    cityToAdd.emptyVicinitiess();
 }
 
 void Map::addCity(City toBeAdded){
