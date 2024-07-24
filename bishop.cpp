@@ -1,7 +1,7 @@
 #include "bishop.h"
 
 Bishop::Bishop(){
-    setPriority(1);
+    setPriority(0);
     setPower(0);
     setType(bishop);
 }
