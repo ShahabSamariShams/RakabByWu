@@ -413,7 +413,7 @@ bool Game::endOfWar(){
 
 Player* Game::whoWonTheWar(){
     std::vector <Player*> highestPowers;
-    int highestPower = playerList[0].getArmyPower();
+    float highestPower = playerList[0].getArmyPower();
     for(int i = 0; i < playerList.size(); i++){
         if(playerList[i].getArmyPower() > highestPower){
             highestPower = playerList[i].getArmyPower();
