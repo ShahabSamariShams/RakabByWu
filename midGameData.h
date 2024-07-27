@@ -10,6 +10,9 @@ struct MidGameData{
         int indexOfWarStarter;
         int indexOfPeaceMarkOwner;
         int indexOfPlayerInTurn;
+    //Fortune Numbers:
+        int luckyNumber;
+        int ominousNumber;
     //Pointers:
         Player* winner;
     //Booleans:
