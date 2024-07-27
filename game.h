@@ -21,6 +21,7 @@ class Game{
         void setSeason(Card*);
         void setPlayerList(std::vector <Player>);
         void setIndexOfPeaceMarkOwner(int);
+        void setFortuneNumbers();
     //Getters:
         std::vector <Player> getPlayerList()const;
         std::string getSeason()const;

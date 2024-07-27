@@ -156,6 +156,11 @@ void Game::setIndexOfPeaceMarkOwner(int index){
     midGameData.indexOfPeaceMarkOwner = index;
 }
 
+void Game::setFortuneNumbers(){
+    midGameData.luckyNumber = UserInterface::receiveTheLuckyNumber(playerList[midGameData.indexOfWarStarter].getName());
+    midGameData.ominousNumber = UserInterface::receiveTheOminousNumber(playerList[midGameData.indexOfWarStarter].getName(), midGameData.luckyNumber);
+}
+
 //------------------------------------------------------------------
 
 std::vector <Player> Game::getPlayerList()const{
@@ -261,6 +266,14 @@ std::vector <Card*> Game::calculateThePowers(){
         static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
         toBeReturned.push_back(playedPurpleCards.back().first);
         playedPurpleCards.pop_back();
+    }
+    for(int i = 0; i < playerList.size(); i++){
+        if(static_cast<int>(playerList[i].getArmyPower()) % midGameData.luckyNumber == 0){
+            playerList[i].setArmyPower(playerList[i].getArmyPower() * 2);
+        }
+        else if(static_cast<int>(playerList[i].getArmyPower()) % midGameData.ominousNumber == 0){
+            playerList[i].setArmyPower(0);
+        }
     }
     return toBeReturned;
 }
@@ -492,6 +505,7 @@ void Game::runGame(){
         if(timeToDistribute()){
             distributeCards();
         }
+        setFortuneNumbers();
         war();
 
         if(season != NULL){
