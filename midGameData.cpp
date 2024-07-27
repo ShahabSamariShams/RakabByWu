@@ -2,8 +2,11 @@
 
 void MidGameData::reset(){
     indexOfPeaceMarkOwner = -1;
+
     winner = NULL;
+
     isTurncoatPlayed = false;
+
     std::fill(passed.begin(), passed.end(), false);
     std::fill(spyCount.begin(), spyCount.end(), 0);
 }
