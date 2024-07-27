@@ -21,16 +21,16 @@ class Card{
         Card();
     //Setters:
         void setType(CardType);
-        void setPower(unsigned short);
+        void setPower(float);
     //Getters:
         CardType getType()const;
-        unsigned short getPower()const;
+        float getPower()const;
     //Functions to be overrided:
         virtual std::string getTypeName()const = 0;
         
     private:
         CardType type;
-        unsigned short power;
+        float power;
 };
 
 #endif

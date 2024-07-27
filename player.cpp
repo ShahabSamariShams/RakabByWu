@@ -29,7 +29,7 @@ void Player::setMarks(std::vector <Mark> marksToSet){
     marks = marksToSet;
 }
 
-void Player::setArmyPower(int inputPower){
+void Player::setArmyPower(float inputPower){
     armyPower = inputPower;
 }
 
@@ -49,7 +49,7 @@ float Player::getAge()const{
     return age;
 }
 
-int Player::getArmyPower()const{
+float Player::getArmyPower()const{
     return armyPower;
 }
 
@@ -95,7 +95,7 @@ int Player::highestYellowCard(){
     return highestPower;
 }
 
-void Player::addToArmyPower(int increment){
+void Player::addToArmyPower(float increment){
     armyPower += increment;
 }
 

@@ -17,7 +17,7 @@ class Player{
         void setName(std::string);
         void setAge(float);
         void setYellowArmy(std::vector <Card*>);
-        void setArmyPower(int);
+        void setArmyPower(float);
         void setCardsInHand(std::vector <Card*>);
         void setMarksColor(Color);
         void setMarks(std::vector <Mark>);
@@ -26,7 +26,7 @@ class Player{
         float getAge()const;
         std::vector <Card*> getYellowArmy()const;
         int getRawYellowPower();
-        int getArmyPower()const;
+        float getArmyPower()const;
         std::vector <Mark> getMarks()const;
         std::vector <Card*> getCardsInHand()const;
         int yellowArmySize();
@@ -34,7 +34,7 @@ class Player{
         int highestYellowCard();
         std::vector <Card*> burnYellowArmy();
         short numberOfTakenCities();
-        void addToArmyPower(int);
+        void addToArmyPower(float);
         std::vector <Card*> burnCardsInHand();
         bool emptyHand();
         bool yellowCardInHand();
@@ -47,7 +47,7 @@ class Player{
 
         std::vector <Card*> cardsInHand;
         std::vector <Card*> yellowArmy;
-        int armyPower;
+        float armyPower;
 
         std::vector <Mark> marks;
         
