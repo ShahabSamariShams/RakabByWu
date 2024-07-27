@@ -7,9 +7,15 @@ Winter::Winter(){
 }
 
 void Winter::ability(Game& currentGame){
-    std::vector <Player> tempPlayerList = currentGame.getPlayerList();;
+    std::vector <Player> tempPlayerList = currentGame.getPlayerList();
+    std::vector <Card*> tempYellowArmy;
     for(int i = 0; i < tempPlayerList.size(); i++){
-        tempPlayerList[i].setArmyPower(tempPlayerList[i].yellowArmySize());
+        tempYellowArmy = tempPlayerList[i].getYellowArmy();
+        int powerSum = 0;
+        for(int i = 0; i < tempYellowArmy.size(); i++){
+            powerSum += tempYellowArmy[i]->getPower() / 2;
+        }
+        tempPlayerList[i].setArmyPower(powerSum);
     }
     currentGame.setPlayerList(tempPlayerList);
 }
