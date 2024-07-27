@@ -81,3 +81,17 @@ bool Validator::validateResurrection(std::string toBeResurrected, std::vector <C
         return false;
     }
 }
+
+bool Validator::validateLuckyNumber(int number){
+    if(number >= 10 && number <= 99){
+        return true;
+    }
+    return false;
+}
+
+bool Validator::validateOminousNumber(int number, int luckyNumber){
+    if(number >= 10 && number <= 99 && number != luckyNumber){
+        return true;
+    }
+    return false;
+}

@@ -16,6 +16,8 @@ class Validator{
         static bool validateKnownWord(std::string);
         static bool validateCityName(std::string, Map&);
         static bool validateResurrection(std::string, std::vector <Card*>);
+        static bool validateLuckyNumber(int);
+        static bool validateOminousNumber(int, int);
         
     private:
 };
