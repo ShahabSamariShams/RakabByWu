@@ -23,6 +23,8 @@ class UserInterface{
         static std::string play(Player);
         static std::string callTheBlackMarkOwner(Player, Map&);
         static std::string callThePeaceMarkOwner(Player, Map&);
+        static int receiveTheLuckyNumber(std::string);
+        static int receiveTheOminousNumber(std::string, int);
 
     //Errors:
         static void numberOfPlayersError(short);
@@ -32,6 +34,8 @@ class UserInterface{
         static void scarecrowError();
         static void answerError();
         static void cityNameError();
+        static void luckyNumberError();
+        static void ominousNumberError();
         
     //Displayers:
         static void displayPlayerAvailableCards(Player&);

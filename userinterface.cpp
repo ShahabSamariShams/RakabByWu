@@ -226,6 +226,52 @@ std::string UserInterface::receicveAnswer(std::string name){
     }
 }
 
+int UserInterface::receiveTheLuckyNumber(std::string warStarter){
+    int number;
+    while(true){
+        system("cls");
+        std::cout << warStarter << "! Enter the lucky number: ";
+        try{
+            if(!(std::cin >> number)){
+                throw InvalidInputType();
+            }
+
+            if(Validator::validateLuckyNumber(number)){
+                return number;
+            }
+            luckyNumberError();
+        }
+        catch(InvalidInputType& exception){
+            luckyNumberError();
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
+}
+
+int UserInterface::receiveTheOminousNumber(std::string warStarter, int luckyNumber){
+    int number;
+    while(true){
+        system("cls");
+        std::cout << warStarter << "! Enter the ominous number(some number except " << luckyNumber << ".):";
+        try{
+            if(!(std::cin >> number)){
+                throw InvalidInputType();
+            }
+
+            if(Validator::validateOminousNumber(number, luckyNumber)){
+                return number;
+            }
+            ominousNumberError();
+        }
+        catch(InvalidInputType& exception){
+            ominousNumberError();
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
+}
+
 //---------------------------------------------------
 
 void UserInterface::numberOfPlayersError(short numberOfPlayers){
@@ -263,6 +309,18 @@ void UserInterface::cityNameError(){
     std::cout << "Your chosen city is not in the list!\n";
     system("pause");
     system("cls");
+}
+
+void UserInterface::luckyNumberError(){
+    system("cls");
+    std::cout << "Your entry is invalid." << std::endl;
+    system("pause");
+}
+
+void UserInterface::ominousNumberError(){
+    system("cls");
+    std::cout << "Your entry is invalid." << std::endl;
+    system("pause");
 }
 
 void UserInterface::scarecrowError(){
