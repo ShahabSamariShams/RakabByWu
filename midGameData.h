@@ -17,6 +17,7 @@ struct MidGameData{
         Player* winner;
     //Booleans:
         bool isTurncoatPlayed;
+        bool isPegasusPlayed;
     //Vectors that overlap with player list:
         std::vector <int> spyCount;
         std::vector <bool> passed;

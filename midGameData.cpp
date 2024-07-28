@@ -6,6 +6,7 @@ void MidGameData::reset(){
     winner = NULL;
 
     isTurncoatPlayed = false;
+    isPegasusPlayed = false;
 
     std::fill(passed.begin(), passed.end(), false);
     std::fill(spyCount.begin(), spyCount.end(), 0);
