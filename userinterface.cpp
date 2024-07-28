@@ -361,13 +361,12 @@ void UserInterface::displayPlayerPlayedCards(Player& playerInTurn, std::vector <
     std::cout << playerInTurn.getName() << ": ";
     for(int i = 0; i < playedPurpleCards.size(); i++){
         if(playedPurpleCards[i].second->getName() == playerInTurn.getName()){
-            std::cout << playedPurpleCards[i].first->getTypeName() << "\t";
+            std::cout << playedPurpleCards[i].first->getTypeName() << "    ";
         }
     }
-
     std::vector <Card*> tempYellowArmy = playerInTurn.getYellowArmy();
     for(int i = 0; i < tempYellowArmy.size(); i++){
-        std::cout << tempYellowArmy[i]->getPower() << "\t";
+        std::cout << tempYellowArmy[i]->getPower() << "    ";
     }
 
     std::cout << "\n"; 
