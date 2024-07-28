@@ -10,6 +10,7 @@
 #include "heroine.h"
 #include "spy.h"
 #include "turncoat.h"
+#include "pegasus.h"
 
 #include "purpleCard.h"
 #include "yellowCard.h"
@@ -100,6 +101,10 @@ Game::Game(){
     }
     for(int i = 0; i < 3; i++){
         pointerToCard = new Turncoat;
+        deckOfCards.push_back(pointerToCard);
+    }
+    for(int i = 0; i < 2; i++){
+        pointerToCard = new Pegasus;
         deckOfCards.push_back(pointerToCard);
     }
 
@@ -282,9 +287,18 @@ void Game::turncoatPlayed(){
     midGameData.isTurncoatPlayed = true;
 }
 
+void Game::pegasusPlayed(){
+    midGameData.winner = playerInTurn();
+    midGameData.indexOfWarStarter = playerInTurnIndex(playerInTurn()->getName());
+    midGameData.isPegasusPlayed = true;
+}
+
 //------------------------------------------------------------------
 
 void Game::ownerOfBlackMark(){
+    if(midGameData.isPegasusPlayed){
+        return;
+    }
     int highestSpyIndex = 0, count = 0;
     for(int i = 0; i < midGameData.spyCount.size(); i++){
         if(midGameData.spyCount[highestSpyIndex] < midGameData.spyCount[i]){
@@ -402,7 +416,7 @@ void Game::war(){
 
 
 bool Game::endOfWar(){
-    if(midGameData.isTurncoatPlayed){
+    if(midGameData.isTurncoatPlayed || midGameData.isPegasusPlayed){
         return true;
     }
     std::vector <int> indexOfNonPassers;
@@ -425,6 +439,9 @@ bool Game::endOfWar(){
 
 
 Player* Game::whoWonTheWar(){
+    if(midGameData.isPegasusPlayed){
+        return midGameData.winner;
+    }
     std::vector <Player*> highestPowers;
     float highestPower = playerList[0].getArmyPower();
     for(int i = 0; i < playerList.size(); i++){
