@@ -8,6 +8,7 @@ enum CardType{
     scarecrow, //Immediate effect.
     turncoat,  //Immediate effect.
     pegasus,   //Immidiate effect.
+    harpseal,  //Immediate effect.
     bishop,    //First.
     winter,    //Second.
     drummer,   //Third.
