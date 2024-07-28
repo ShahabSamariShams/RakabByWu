@@ -26,6 +26,7 @@ class Game{
         std::vector <Player> getPlayerList()const;
         std::string getSeason()const;
         int playerInTurnIndex(std::string)const;
+        std::vector <Card*> getPlayedPurpleCards();
     //Cards related:
         int highestYellowCardPlayed();
         void burnHandIfPossible();
@@ -34,6 +35,7 @@ class Game{
         bool timeToDistribute();
         void addToPlayedPurpleCards(Card*, Player*);
         void resetingArmies(std::vector <Card*>);
+        void prepareForCalculation();
         std::vector <Card*> calculateThePowers();
         void turncoatPlayed();
         void pegasusPlayed();

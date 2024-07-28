@@ -11,6 +11,7 @@
 #include "spy.h"
 #include "turncoat.h"
 #include "pegasus.h"
+#include "harpSeal.h"
 
 #include "purpleCard.h"
 #include "yellowCard.h"
@@ -107,6 +108,10 @@ Game::Game(){
         pointerToCard = new Pegasus;
         deckOfCards.push_back(pointerToCard);
     }
+    for(int i = 0; i < 20; i++){
+        pointerToCard = new HarpSeal;
+        deckOfCards.push_back(pointerToCard);
+    }
 
     //Yellow cards:
     for(int i = 0; i < 10; i++){
@@ -186,6 +191,18 @@ int Game::playerInTurnIndex(std::string playerName)const{
     }
 }
 
+std::vector <Card*> Game::getPlayedPurpleCards(){
+    std::vector <Card*> purpleCards;
+    for(int i = 0; i < playedPurpleCards.size(); i++){
+        if(playedPurpleCards[i].first->getType() != harpseal)
+            purpleCards.push_back(playedPurpleCards[i].first);
+    }
+    if(season != NULL){
+        purpleCards.push_back(season);
+    }
+    return purpleCards;
+}
+
 //------------------------------------------------------------------
 
 int Game::highestYellowCardPlayed(){
@@ -212,7 +229,9 @@ void Game::burnHandIfPossible(){
 
 void Game::burnCards(std::vector <Card*> cardsToBurn){
     for(int i = 0; i < cardsToBurn.size(); i++){
-        deckOfCards.push_back(cardsToBurn[i]);
+        if(cardsToBurn[i]->getType() != harpseal){
+            deckOfCards.push_back(cardsToBurn[i]);
+        }
     }
 }
 
@@ -256,10 +275,27 @@ void Game::addToPlayedPurpleCards(Card* cardToBeAdded, Player* currentPlayer){
 
 void Game::resetingArmies(std::vector <Card*> purpleCards){
     burnCards(purpleCards);
+    for(int i = 0; i < playedPurpleCards.size(); i++){
+        if(playedPurpleCards[i].first->getType() != harpseal){
+            playedPurpleCards.erase(playedPurpleCards.begin() + i);
+            i--;
+        }
+    }
     for(int i = 0; i < playerList.size(); i++){
         burnCards(playerList[i].burnYellowArmy());
     }
     season = NULL;
+}
+
+void Game::prepareForCalculation(){
+    if(season != NULL){
+        std::pair <Card*, Player*> toBeAdded;
+        toBeAdded.first = season;
+        toBeAdded.second = NULL;
+        playedPurpleCards.push_back(toBeAdded);
+    }
+    mergeSort(playedPurpleCards, 0, playedPurpleCards.size() - 1);
+    std::reverse(playedPurpleCards.begin(), playedPurpleCards.end());
 }
 
 std::vector <Card*> Game::calculateThePowers(){
@@ -516,6 +552,7 @@ bool Game::gameWinner(Player* warWinner){
 void Game::runGame(){
     midGameData.indexOfWarStarter = findTheYoungest();
     while(true){
+        std::cout << deckOfCards.size() << std::endl; system("pause");
         midGameData.reset();
         setTheBlackMark();
         burnHandIfPossible();
@@ -525,14 +562,7 @@ void Game::runGame(){
         setFortuneNumbers();
         war();
 
-        if(season != NULL){
-            std::pair <Card*, Player*> toBeAdded;
-            toBeAdded.first = season;
-            toBeAdded.second = NULL;
-            playedPurpleCards.push_back(toBeAdded);
-        }
-        mergeSort(playedPurpleCards, 0, playedPurpleCards.size() - 1);
-        std::reverse(playedPurpleCards.begin(), playedPurpleCards.end());
+        prepareForCalculation();
         std::vector <Card*> purpleCards = calculateThePowers();
         midGameData.winner = whoWonTheWar();
         resetingArmies(purpleCards);
