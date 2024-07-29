@@ -571,7 +571,6 @@ bool Game::gameWinner(){
 void Game::runGame(){
     midGameData.indexOfWarStarter = findTheYoungest();
     while(true){
-        std::cout << deckOfCards.size() << std::endl; system("pause");
         midGameData.reset();
         setTheBlackMark();
         burnHandIfPossible();
