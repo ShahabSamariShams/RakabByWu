@@ -10,8 +10,8 @@ enum CardType{
     jungleSpirit,       //Immediate effect.
     mountainBreaker,    //Immediate effect.
     hercules,           //Immediate effect.
-    pegasus,   //Immidiate effect.
-    harpseal,  //Immediate effect.
+    pegasus,            //Immidiate effect.
+    harpseal,           //Immediate effect.
     bishop,             //First.
     winter,             //Second.
     drummer,            //Third.

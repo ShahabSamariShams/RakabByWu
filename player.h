@@ -33,7 +33,6 @@ class Player{
     //Card related:
         int highestYellowCard();
         std::vector <Card*> burnYellowArmy();
-        short numberOfTakenCities();
         void addToArmyPower(float);
         std::vector <Card*> burnCardsInHand();
         bool emptyHand();
