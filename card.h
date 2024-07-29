@@ -5,14 +5,17 @@
 
 enum CardType{
     soldier,
-    scarecrow, //Immediate effect.
-    turncoat,  //Immediate effect.
-    bishop,    //First.
-    winter,    //Second.
-    drummer,   //Third.
-    spring,    //Fourth.
-    spy,       //Fifth.
-    heroine    //Fifth.
+    scarecrow,          //Immediate effect.
+    turncoat,           //Immediate effect.
+    jungleSpirit,       //Immediate effect.
+    mountainBreaker,    //Immediate effect.
+    hercules,           //Immediate effect.
+    bishop,             //First.
+    winter,             //Second.
+    drummer,            //Third.
+    spring,             //Fourth.
+    spy,                //Fifth.
+    heroine             //Fifth.
 };
 
 class Card{
