@@ -187,12 +187,22 @@ bool Player::yellowCardInHand(){
     return false;
 }
 
-void Player::aCityWon(std::string wonCity){
+void Player::aCityWon(std::string wonCity, int wonTimes){
     try{
         wonCities.at(wonCity);
-        wonCities[wonCity]++;
+        wonCities[wonCity] += wonTimes;
     }
     catch(std::out_of_range& doesntExist){
-        wonCities[wonCity] = 1;
+        wonCities[wonCity] = wonTimes;
+    }
+}
+
+int Player::howManyTimesACityTaken(std::string cityName){
+    try{
+        wonCities.at(cityName);
+        return wonCities[cityName];
+    }
+    catch(std::out_of_range& doesntExist){
+        return 0;
     }
 }

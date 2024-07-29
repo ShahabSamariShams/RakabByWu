@@ -13,7 +13,7 @@ class Player{
     public:
     //Constructor:
         Player();
-    //Setters: set
+    //Setters:
         void setName(std::string);
         void setAge(float);
         void setYellowArmy(std::vector <Card*>);
@@ -42,7 +42,8 @@ class Player{
         Card* playACard(std::string);
     //City related:
         short numberOfTakenCities();
-        void aCityWon(std::string);
+        void aCityWon(std::string, int);
+        int howManyTimesACityTaken(std::string);
 
     private:
         std::string name;
