@@ -186,3 +186,13 @@ bool Player::yellowCardInHand(){
     }
     return false;
 }
+
+void Player::aCityWon(std::string wonCity){
+    try{
+        wonCities.at(wonCity);
+        wonCities[wonCity]++;
+    }
+    catch(std::out_of_range& doesntExist){
+        wonCities[wonCity] = 1;
+    }
+}

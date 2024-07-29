@@ -30,16 +30,19 @@ class Player{
         std::vector <Mark> getMarks()const;
         std::vector <Card*> getCardsInHand()const;
         int yellowArmySize();
-    //Other useful functions:
+    //Card related:
         int highestYellowCard();
         std::vector <Card*> burnYellowArmy();
         short numberOfTakenCities();
-        void addToArmyPower(float);
+        void addToArmyPower(int);
         std::vector <Card*> burnCardsInHand();
         bool emptyHand();
         bool yellowCardInHand();
         bool cardExistance(std::string);
         Card* playACard(std::string);
+    //City related:
+        short numberOfTakenCities();
+        void aCityWon(std::string);
 
     private:
         std::string name;
@@ -50,7 +53,7 @@ class Player{
         float armyPower;
 
         std::vector <Mark> marks;
-        
+        std::unordered_map <std::string, int> wonCities;
 };
 
 #endif
