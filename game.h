@@ -40,6 +40,7 @@ class Game{
         void ownerOfBlackMark();
         void setTheBlackMark();
         void spyCountIncrementation(int);
+        std::string currentWarPlace()const;
     //Peace mark related:
         void setThePeaceMark();
     //Player related:
