@@ -48,11 +48,11 @@ class Game{
         void war();
         bool endOfWar();
         Player* whoWonTheWar();
-        void warWinnerAward(Player*);
+        void warWinnerAward();
     //Helping functions:
         bool oneVicinity(std::vector <City*>);
     //Whole game related:
-        bool gameWinner(Player*);
+        bool gameWinner();
         void runGame();
 
     private:
