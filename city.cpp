@@ -12,6 +12,12 @@ void City::setFightability(bool position){
     fightable = position;
 }
 
+void City::setGuards(bool jungle, bool mountain, bool castle){
+    this->jungle = jungle;
+    this->mountain = mountain;
+    this->castle = castle;
+}
+
 std::string City::getName()const{
     return name;
 }
