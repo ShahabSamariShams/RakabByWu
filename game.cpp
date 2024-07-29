@@ -368,6 +368,10 @@ void Game::spyCountIncrementation(int index){
     midGameData.spyCount[index]++;
 }
 
+std::string Game::currentWarPlace()const{
+    return blackMark.whereIsIt()->getName();
+}
+
 void Game::setThePeaceMark(){
     if(midGameData.indexOfPeaceMarkOwner != -1){
         if(peaceMark.whereIsIt() != NULL){
