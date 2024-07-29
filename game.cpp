@@ -408,19 +408,19 @@ Player* Game::playerInTurn()const{
 
 void Game::war(){
     std::string playerInput;
-    for(int i = midGameData.indexOfWarStarter; !endOfWar(); i++){
-        if(!midGameData.passed[i]){
-            UserInterface::bringThePlayer(playerList[i].getName());
+    for(midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter; !endOfWar(); midGameData.indexOfPlayerInTurn++){
+        if(!midGameData.passed[midGameData.indexOfPlayerInTurn]){
+            UserInterface::bringThePlayer(playerList[midGameData.indexOfPlayerInTurn].getName());
             while(true){
                 system("cls");
                 UserInterface::displayPlayersAndTheirPlayed(playerList, playedPurpleCards);
                 UserInterface::displayPlayersCities(playerList);
                 UserInterface::displayBlackMarkCity(blackMark.whereIsIt());
                 UserInterface::displaySeason(season);
-                playerInput = UserInterface::play(playerList[i]);
+                playerInput = UserInterface::play(playerList[midGameData.indexOfPlayerInTurn]);
                 if(playerInput != "help" && playerInput != "empty"){
-                    if(playerInput != "pass" && playerList[i].cardExistance(playerInput)){
-                        addToPlayedPurpleCards(playerList[i].playACard(playerInput), &playerList[i]);
+                    if(playerInput != "pass" && playerList[midGameData.indexOfPlayerInTurn].cardExistance(playerInput)){
+                        addToPlayedPurpleCards(playerList[midGameData.indexOfPlayerInTurn].playACard(playerInput), &playerList[midGameData.indexOfPlayerInTurn]);
                         if(playedPurpleCards.size() != 0 && static_cast<PurpleCard*>(playedPurpleCards.back().first)->getPriority() == 0){
                             static_cast<PurpleCard*>(playedPurpleCards.back().first)->ability(*this);
                             deckOfCards.push_back(playedPurpleCards.back().first);
@@ -433,8 +433,8 @@ void Game::war(){
                         break;
                     }
                     else if(playerInput == "pass"){
-                        midGameData.passed[i] = true;
-                        midGameData.indexOfWarStarter = i;
+                        midGameData.passed[midGameData.indexOfPlayerInTurn] = true;
+                        midGameData.indexOfWarStarter = midGameData.indexOfPlayerInTurn;
                         break;
                     }
                     else{
@@ -443,8 +443,8 @@ void Game::war(){
                 }
             }
         }
-        if(i == playerList.size() - 1){
-            i = -1;
+        if(midGameData.indexOfPlayerInTurn == playerList.size() - 1){
+            midGameData.indexOfPlayerInTurn = -1;
         }
     }
 }
