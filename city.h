@@ -11,6 +11,7 @@ class City{
     //Setters:
         void setName(std::string);
         void setFightability(bool);
+        void setGuards(bool, bool, bool);
     //Getters:
         std::string getName()const;
         bool getFightability()const;
