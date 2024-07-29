@@ -392,6 +392,9 @@ bool Game::endOfWar(){
     if(midGameData.isTurncoatPlayed){
         return true;
     }
+    if(blackMark.whereIsIt()->timesToConquer() <= playerList[midGameData.indexOfPlayerInTurn].howManyTimesACityTaken(blackMark.whereIsIt()->getName())){
+        return true;
+    }
     std::vector <int> indexOfNonPassers;
     for(int i = 0; i < midGameData.passed.size(); i++){
         if(!midGameData.passed[i]){
