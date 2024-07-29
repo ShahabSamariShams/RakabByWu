@@ -42,3 +42,14 @@ void City::addCity(std::string toBeAdded, bool position){
 void City::emptyVicinitiess(){
     otherCities.clear();
 }
+
+int City::timesToConquer(){
+    int sum = 1;
+    if(castle)
+        sum += 4;
+    if(mountain)
+        sum += 3;
+    if(jungle)
+        sum += 2;
+    return sum;
+}

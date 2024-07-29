@@ -18,11 +18,16 @@ class City{
         bool isAdjacent(std::string);
         void addCity(std::string, bool);
         void emptyVicinitiess();
+        int timesToConquer();
         
     private:
         std::string name;
         std::unordered_map <std::string, bool> otherCities;
         bool fightable;
+
+        bool jungle;
+        bool mountain;
+        bool castle;
 };
 
 #endif
