@@ -408,7 +408,7 @@ Player* Game::playerInTurn()const{
 
 void Game::war(){
     std::string playerInput;
-    for(midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter; !endOfWar(); midGameData.indexOfPlayerInTurn++){
+    for(midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter; ; midGameData.indexOfPlayerInTurn++){
         if(!midGameData.passed[midGameData.indexOfPlayerInTurn]){
             UserInterface::bringThePlayer(playerList[midGameData.indexOfPlayerInTurn].getName());
             while(true){
@@ -442,6 +442,9 @@ void Game::war(){
                     }
                 }
             }
+        }
+        if(endOfWar()){
+            break;
         }
         if(midGameData.indexOfPlayerInTurn == playerList.size() - 1){
             midGameData.indexOfPlayerInTurn = -1;
@@ -481,6 +484,10 @@ Player* Game::whoWonTheWar(){
     if(midGameData.isPegasusPlayed){
         return midGameData.winner;
     }
+    if(blackMark.whereIsIt()->timesToConquer() <= playerList[midGameData.indexOfPlayerInTurn].howManyTimesACityTaken(blackMark.whereIsIt()->getName())){
+        return &playerList[midGameData.indexOfPlayerInTurn];
+    }
+
     std::vector <Player*> highestPowers;
     float highestPower = playerList[0].getArmyPower();
     for(int i = 0; i < playerList.size(); i++){
@@ -502,13 +509,18 @@ Player* Game::whoWonTheWar(){
     }
 }
 
-void Game::warWinnerAward(Player* winner){
-    std::vector <Mark> tempMarks = winner->getMarks();
-    for(int i = 0; i < tempMarks.size(); i++){
-        if(tempMarks[i].whereIsIt() == NULL){
-            tempMarks[i].setMarkOn(blackMark.whereIsIt());
-            winner->setMarks(tempMarks);
-            break;
+void Game::warWinnerAward(){
+    midGameData.winner->aCityWon(blackMark.whereIsIt()->getName(), 1);
+
+
+    if(midGameData.winner->howManyTimesACityTaken(blackMark.whereIsIt()->getName()) >= blackMark.whereIsIt()->timesToConquer()){
+        std::vector <Mark> tempMarks = midGameData.winner->getMarks();
+        for(int i = 0; i < tempMarks.size(); i++){
+            if(tempMarks[i].whereIsIt() == NULL){
+                tempMarks[i].setMarkOn(blackMark.whereIsIt());
+                midGameData.winner->setMarks(tempMarks);
+                break;
+            }
         }
     }
 }
@@ -528,16 +540,16 @@ bool Game::oneVicinity(std::vector <City*> adjacency){
 
 //------------------------------------------------------------------
 
-bool Game::gameWinner(Player* warWinner){
-    if(warWinner->numberOfTakenCities() == 5){
+bool Game::gameWinner(){
+    if(midGameData.winner->numberOfTakenCities() == 5){
         return true;
     }
-    if(warWinner->numberOfTakenCities() >= 3){
-        std::vector <Mark> marks = warWinner->getMarks();
+    if(midGameData.winner->numberOfTakenCities() >= 3){
+        std::vector <Mark> marks = midGameData.winner->getMarks();
         std::vector <City*> adjacency; 
-        for(int i = 0; i < warWinner->numberOfTakenCities(); i++){
+        for(int i = 0; i < midGameData.winner->numberOfTakenCities(); i++){
             adjacency.clear();
-            for(int j = 0; j < warWinner->numberOfTakenCities(); j++){
+            for(int j = 0; j < midGameData.winner->numberOfTakenCities(); j++){
                 if(marks[i].whereIsIt()->isAdjacent(marks[j].whereIsIt()->getName())){ 
                     adjacency.push_back(marks[j].whereIsIt());
                 }
@@ -570,9 +582,9 @@ void Game::runGame(){
         midGameData.winner = whoWonTheWar();
         resetingArmies(purpleCards);
         if(midGameData.winner != NULL){
-            warWinnerAward(midGameData.winner);
+            warWinnerAward();
             UserInterface::announceTheLocalWarWinner(midGameData.winner);
-            if(gameWinner(midGameData.winner)){
+            if(gameWinner()){
                 UserInterface::announceTheWinner(midGameData.winner);
                 return;
             }
