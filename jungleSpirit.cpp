@@ -12,5 +12,5 @@ void JungleSpirit::ability(Game& currentGame){
 }
 
 std::string JungleSpirit::getTypeName()const{
-    return "jungle spirit";
+    return "junglespirit";
 }
