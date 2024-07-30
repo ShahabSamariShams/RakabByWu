@@ -10,6 +10,9 @@
 #include "heroine.h"
 #include "spy.h"
 #include "turncoat.h"
+#include "jungleSpirit.h"
+#include "mountainBreaker.h"
+#include "hercules.h"
 
 #include "purpleCard.h"
 #include "yellowCard.h"
@@ -100,6 +103,18 @@ Game::Game(){
     }
     for(int i = 0; i < 3; i++){
         pointerToCard = new Turncoat;
+        deckOfCards.push_back(pointerToCard);
+    }
+    for(int i = 0; i < 3; i++){
+        pointerToCard = new JungleSpirit;
+        deckOfCards.push_back(pointerToCard);
+    }
+    for(int i = 0; i < 3; i++){
+        pointerToCard = new MountainBreaker;
+        deckOfCards.push_back(pointerToCard);
+    }
+    for(int i = 0; i < 3; i++){
+        pointerToCard = new Hercules;
         deckOfCards.push_back(pointerToCard);
     }
 
@@ -461,6 +476,7 @@ void Game::warWinnerAward(){
             if(tempMarks[i].whereIsIt() == NULL){
                 tempMarks[i].setMarkOn(blackMark.whereIsIt());
                 midGameData.winner->setMarks(tempMarks);
+                blackMark.whereIsIt()->setFightability(false);
                 break;
             }
         }
@@ -535,7 +551,6 @@ void Game::runGame(){
                 UserInterface::announceTheWinner(midGameData.winner);
                 return;
             }
-            blackMark.whereIsIt()->setFightability(false);
         }
         setThePeaceMark();
         ownerOfBlackMark();
