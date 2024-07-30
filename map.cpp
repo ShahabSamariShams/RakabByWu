@@ -314,6 +314,7 @@ Map::Map(){
         cityToAdd.addCity("OLIVADI", false);
         cityToAdd.addCity("ELINIA", false);
     }
+    cityToAdd.setGuards(false, false, false);
     addCity(cityToAdd);
     cityToAdd.emptyVicinitiess();
 }
