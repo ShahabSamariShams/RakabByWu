@@ -7,7 +7,8 @@ Hercules::Hercules(){
 }
 
 void Hercules::ability(Game& currentGame){
-    currentGame.playerInTurn()->aCityWon(currentGame.currentWarPlace(), 4);
+    if(currentGame.currentWarPlace().haveCastle())
+        currentGame.playerInTurn()->aCityWon(currentGame.currentWarPlaceName(), 4);
 }
 
 std::string Hercules::getTypeName()const{

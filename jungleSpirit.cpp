@@ -7,7 +7,8 @@ JungleSpirit::JungleSpirit(){
 }
 
 void JungleSpirit::ability(Game& currentGame){
-    currentGame.playerInTurn()->aCityWon(currentGame.currentWarPlace(), 2);
+    if(currentGame.currentWarPlace().haveJungle())
+        currentGame.playerInTurn()->aCityWon(currentGame.currentWarPlaceName(), 2);
 }
 
 std::string JungleSpirit::getTypeName()const{
