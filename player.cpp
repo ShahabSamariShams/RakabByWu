@@ -190,17 +190,62 @@ bool Player::yellowCardInHand(){
 void Player::aCityWon(std::string wonCity, int wonTimes){
     try{
         wonCities.at(wonCity);
-        wonCities[wonCity] += wonTimes;
+        switch(wonTimes){
+            case 1:
+                wonCities[wonCity].first += wonTimes;
+                break;
+            case 2:
+                if(!wonCities[wonCity].second.jungle){
+                    wonCities[wonCity].first += wonTimes;
+                    wonCities[wonCity].second.jungle = true;
+                }
+                break;
+            case 3:
+                if(!wonCities[wonCity].second.mountain){
+                    wonCities[wonCity].first += wonTimes;
+                    wonCities[wonCity].second.mountain = true;
+                }
+                break;
+            case 4:
+                if(!wonCities[wonCity].second.castle){
+                    wonCities[wonCity].first += wonTimes;
+                    wonCities[wonCity].second.castle = true;
+                }
+                break;
+        }
     }
     catch(std::out_of_range& doesntExist){
-        wonCities[wonCity] = wonTimes;
+        wonCities[wonCity].first = wonTimes;
+        switch(wonTimes){
+            case 1:
+                wonCities[wonCity].first = wonTimes;
+                break;
+            case 2:
+                if(!wonCities[wonCity].second.jungle){
+                    wonCities[wonCity].first = wonTimes;
+                    wonCities[wonCity].second.jungle = true;
+                }
+                break;
+            case 3:
+                if(!wonCities[wonCity].second.mountain){
+                    wonCities[wonCity].first = wonTimes;
+                    wonCities[wonCity].second.mountain = true;
+                }
+                break;
+            case 4:
+                if(!wonCities[wonCity].second.castle){
+                    wonCities[wonCity].first = wonTimes;
+                    wonCities[wonCity].second.castle = true;
+                }
+                break;
+        }
     }
 }
 
 int Player::howManyTimesACityTaken(std::string cityName){
     try{
         wonCities.at(cityName);
-        return wonCities[cityName];
+        return wonCities[cityName].first;
     }
     catch(std::out_of_range& doesntExist){
         return 0;
