@@ -6,6 +6,7 @@
 
 #include "card.h"
 #include "mark.h"
+#include "cityGuards.h"
 
 class Card;
 
@@ -53,7 +54,7 @@ class Player{
         int armyPower;
 
         std::vector <Mark> marks;
-        std::unordered_map <std::string, int> wonCities;
+        std::unordered_map <std::string, std::pair <int, CityGuards>> wonCities;
 };
 
 #endif
