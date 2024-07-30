@@ -305,8 +305,12 @@ void Game::spyCountIncrementation(int index){
     midGameData.spyCount[index]++;
 }
 
-std::string Game::currentWarPlace()const{
+std::string Game::currentWarPlaceName()const{
     return blackMark.whereIsIt()->getName();
+}
+
+City Game::currentWarPlace()const{
+    return *(blackMark.whereIsIt());
 }
 
 void Game::setThePeaceMark(){
