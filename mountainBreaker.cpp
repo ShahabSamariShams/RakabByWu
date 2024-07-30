@@ -12,5 +12,5 @@ void MountainBreaker::ability(Game& currentGame){
 }
 
 std::string MountainBreaker::getTypeName()const{
-    return "mountain breaker";
+    return "mountainbreaker";
 }

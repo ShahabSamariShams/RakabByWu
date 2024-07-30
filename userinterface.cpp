@@ -169,10 +169,14 @@ std::string UserInterface::play(Player playerInTurn){
 
 std::string UserInterface::callTheBlackMarkOwner(Player owner, Map& theMap){
     system("cls");
+    int count = 1;
     while(true){
         for(auto i: theMap.getTheMap()){
             if(i.second.getFightability())
-                std::cout << i.first << "    ";
+                std::cout << i.first << " " << owner.howManyTimesACityTaken(i.first) << "/" << i.second.timesToConquer() << "     ";
+            if(count % 5 == 0 )
+                std::cout << std::endl;
+            count++;
         }
         std::cout <<"\n";
         std::string cityName;
@@ -186,7 +190,6 @@ std::string UserInterface::callTheBlackMarkOwner(Player owner, Map& theMap){
             cityNameError();
         }
     }
-        
 }
 
 std::string UserInterface::callThePeaceMarkOwner(Player owner, Map& theMap){
