@@ -13,9 +13,9 @@ void City::setFightability(bool position){
 }
 
 void City::setGuards(bool jungle, bool mountain, bool castle){
-    this->jungle = jungle;
-    this->mountain = mountain;
-    this->castle = castle;
+    this->guards.jungle = jungle;
+    this->guards.mountain = mountain;
+    this->guards.castle = castle;
 }
 
 std::string City::getName()const{
@@ -24,6 +24,18 @@ std::string City::getName()const{
 
 bool City::getFightability()const{
     return fightable;
+}
+
+bool City::haveJungle()const{
+    return guards.jungle;
+}
+
+bool City::haveMountain()const{
+    return guards.mountain;
+}
+
+bool City::haveCastle()const{
+    return guards.castle;
 }
 
 bool City::isAdjacent(std::string toBeChecked){
@@ -51,11 +63,11 @@ void City::emptyVicinitiess(){
 
 int City::timesToConquer(){
     int sum = 1;
-    if(castle)
+    if(guards.castle)
         sum += 4;
-    if(mountain)
+    if(guards.mountain)
         sum += 3;
-    if(jungle)
+    if(guards.jungle)
         sum += 2;
     return sum;
 }
