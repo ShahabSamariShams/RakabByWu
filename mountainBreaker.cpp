@@ -7,7 +7,8 @@ MountainBreaker::MountainBreaker(){
 }
 
 void MountainBreaker::ability(Game& currentGame){
-    currentGame.playerInTurn()->aCityWon(currentGame.currentWarPlace(), 3);
+    if(currentGame.currentWarPlace().haveMountain())
+        currentGame.playerInTurn()->aCityWon(currentGame.currentWarPlaceName(), 3);
 }
 
 std::string MountainBreaker::getTypeName()const{
