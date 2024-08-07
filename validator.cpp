@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "validator.h"
 
 bool Validator::validateNumberOfPlayers(short inputNumber){

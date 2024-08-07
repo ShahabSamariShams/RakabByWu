@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "player.h"
 
 Player::Player(){

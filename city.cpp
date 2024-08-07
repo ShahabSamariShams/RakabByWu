@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "city.h"
 
 City::City(){
