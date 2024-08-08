@@ -7,8 +7,11 @@
 
 class Condottiere{
     public:
+    //Constructor:
+        Condottiere();
+    //Run the game:
+        void runGame();
     private:
-        std::vector <Game> gameList;
 };
 
 #endif
