@@ -18,6 +18,9 @@ class Validator{
         static bool validateResurrection(std::string, std::vector <Card*>);
         static bool validateLuckyNumber(int);
         static bool validateOminousNumber(int, int);
+        static bool validateMenuChoice(std::string);
+        static bool validateNewGameChoice(std::string);
+        static bool validateLoadGameChoice(bool);
         
     private:
 };

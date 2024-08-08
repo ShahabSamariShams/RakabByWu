@@ -13,6 +13,9 @@
 class UserInterface{
     public:
     //Receivers:
+        static int menu();
+        static std::string newGameMenu();
+        static std::string loadGameMenu();
         static short receiveNumberOfPlayers();
         static std::string receivePlayerName(int);
         static float receivePlayerAge(int);
@@ -27,6 +30,9 @@ class UserInterface{
         static int receiveTheOminousNumber(std::string, int);
 
     //Errors:
+        static void menuError();
+        static void chooseGameError();
+        static void loadGameError();
         static void numberOfPlayersError(short);
         static void nameError();
         static void ageError();

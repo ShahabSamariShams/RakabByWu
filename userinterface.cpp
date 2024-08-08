@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "userinterface.h"
 #include "validator.h"
@@ -6,6 +7,74 @@
 class InvalidInputType{};
 
 //---------------------------------------------------
+
+int UserInterface::menu(){
+    std::string choice;
+    while(true){
+        system("cls");
+        std::cout << "1-Start a new game.\n";
+        std::cout << "2-Load a game.\n";
+        std::cout << "3-Exit.\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+        if(Validator::validateMenuChoice(choice)){
+            return std::stoi(choice);
+        }
+        menuError();
+    }
+}
+
+std::string UserInterface::newGameMenu(){
+    std::string choice;
+    while(true){
+        system("cls");
+        for(int i = 0; i < 5; i++){
+            std::ifstream firstWordReader("GameFiles\\Game " + std::to_string(i + 1) + ".txt");
+            std::string firstWord;
+            firstWordReader >> firstWord;
+            std::cout << "Game " << std::to_string(i + 1) << (firstWord == "empty" ? ". (empty)": ". (contains a game.)") << std::endl;
+        }
+        std::cout << "Enter your choice(enter 0 to exit.): ";
+        std::cin >> choice;
+        if(Validator::validateNewGameChoice(choice)){
+            return choice;
+        }
+        chooseGameError();
+    }
+}
+
+std::string UserInterface::loadGameMenu(){
+    std::string choice;
+    std::unordered_map <int, bool> availableGames;
+    availableGames[0] = true;
+    bool gameExistannce = false;
+    while(true){
+        system("cls");
+        for(int i = 0; i < 5; i++){
+            std::ifstream firstWordReader("GameFiles\\Game " + std::to_string(i + 1) + ".txt");
+            std::string firstWord;
+            firstWordReader >> firstWord;
+            if(firstWord != "empty"){
+                std::cout << "Game " << std::to_string(i + 1) << "." << std::endl;
+                availableGames[i + 1] = true;
+                gameExistannce = true;
+            }
+            else{
+                availableGames[i + 1] = false;
+            }
+        }
+        if(!gameExistannce){
+            loadGameError();
+            return "0";
+        }
+        std::cout << "Enter your choice(enter 0 to exit.): ";
+        std::cin >> choice;
+        if(Validator::validateLoadGameChoice(availableGames[std::stoi(choice)])){
+            return choice;
+        }
+        chooseGameError();
+    }
+}
 
 short UserInterface::receiveNumberOfPlayers(){
     short numberOfPlayers;
@@ -276,6 +345,24 @@ int UserInterface::receiveTheOminousNumber(std::string warStarter, int luckyNumb
 }
 
 //---------------------------------------------------
+
+void UserInterface::menuError(){
+    system("cls");
+    std::cout << "Invalid menu entry.\n";
+    system("pause");
+}
+
+void UserInterface::chooseGameError(){
+    system("cls");
+    std::cout << "Invalid file choice.\n";
+    system("pause");
+}
+
+void UserInterface::loadGameError(){
+    system("cls");
+    std::cout << "No available game for loading.\n";
+    system("pause");
+}
 
 void UserInterface::numberOfPlayersError(short numberOfPlayers){
     if(numberOfPlayers < 3){

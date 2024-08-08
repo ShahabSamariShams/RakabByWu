@@ -51,7 +51,7 @@ bool Validator::validateKnownWord(std::string input){
         }
     }
     catch(std::invalid_argument invalid){
-        std::string validWords[] = {"harpseal", "turncoat", "pegasus", "spring", "spy", "winter", "drummer", "heroine", "scarecrow", "bishop", "help", "pass"};
+        std::string validWords[] = {"harpseal", "turncoat", "pegasus", "mountainbreaker", "junglespirit", "hercules", "spring", "spy", "winter", "drummer", "heroine", "scarecrow", "bishop", "help", "pass"};
         for(std::string word: validWords){
             if(word == input){
                 return true;
@@ -96,4 +96,34 @@ bool Validator::validateOminousNumber(int number, int luckyNumber){
         return true;
     }
     return false;
+}
+
+bool Validator::validateMenuChoice(std::string choice){
+    try{
+        int entry = std::stoi(choice);
+        if(entry >= 1 && entry <= 3){
+            return true;
+        }
+        return false;
+    }
+    catch(std::invalid_argument& exception){
+        return false;
+    }
+}
+
+bool Validator::validateNewGameChoice(std::string choice){
+    try{
+        int entry = std::stoi(choice);
+        if(entry >= 0 && entry <= 5){
+            return true;
+        }
+        return false;
+    }
+    catch(std::invalid_argument& exception){
+        return false;
+    }
+}
+
+bool Validator::validateLoadGameChoice(bool availability){
+    return availability;
 }
