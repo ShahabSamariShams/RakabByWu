@@ -16,7 +16,7 @@ class Player;
 class Game{
     public:
     //Constructor and Destructor:
-        Game();
+        Game(/*std::string*/);
     //Setters:
         void setSeason(Card*);
         void setPlayerList(std::vector <Player>);

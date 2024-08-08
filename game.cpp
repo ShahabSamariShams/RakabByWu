@@ -61,7 +61,7 @@ void mergeSort(std::vector <std::pair <Card*, Player*>>& playedPurpleCards, int 
 
 //------------------------------------------------------------------
 
-Game::Game(){
+Game::Game(/*std::string fileName*/){
     //Inputs from the users.
     short numberOfPlayers = UserInterface::receiveNumberOfPlayers();
     setPlayerList(UserInterface::receivePlayerList(numberOfPlayers));
@@ -109,7 +109,7 @@ Game::Game(){
         pointerToCard = new JungleSpirit;
         deckOfCards.push_back(pointerToCard);
     }
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 12; i++){
         pointerToCard = new MountainBreaker;
         deckOfCards.push_back(pointerToCard);
     }
