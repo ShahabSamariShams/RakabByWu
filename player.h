@@ -21,7 +21,9 @@ class Player{
         void setArmyPower(int);
         void setCardsInHand(std::vector <Card*>);
         void setMarksColor(Color);
+        void setMarksColor(int);
         void setMarks(std::vector <Mark>);
+        void setWonCities(std::unordered_map <std::string, std::pair <int, CityGuards>>);
     //Getters:
         std::string getName()const;
         float getAge()const;
@@ -31,6 +33,8 @@ class Player{
         std::vector <Mark> getMarks()const;
         std::vector <Card*> getCardsInHand()const;
         int yellowArmySize();
+        std::unordered_map <std::string, std::pair <int, CityGuards>> getWonCities()const;
+        Color getColor()const;
     //Card related:
         int highestYellowCard();
         std::vector <Card*> burnYellowArmy();

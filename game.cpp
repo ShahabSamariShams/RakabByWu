@@ -61,98 +61,103 @@ void mergeSort(std::vector <std::pair <Card*, Player*>>& playedPurpleCards, int 
 
 //------------------------------------------------------------------
 
-Game::Game(/*std::string fileName*/){
-    //Inputs from the users.
-    short numberOfPlayers = UserInterface::receiveNumberOfPlayers();
-    setPlayerList(UserInterface::receivePlayerList(numberOfPlayers));
+Game::Game(std::string fileName, FileLoader loadMode): fileName(fileName){
+    if(loadMode == NewGame){
+        //Inputs from the users.
+        short numberOfPlayers = UserInterface::receiveNumberOfPlayers();
+        setPlayerList(UserInterface::receivePlayerList(numberOfPlayers));
 
-    //Marks
-    blackMark.setMarkOn(NULL);
-    peaceMark.setMarkOn(NULL);
+        //Marks
+        blackMark.setMarkOn(NULL);
+        peaceMark.setMarkOn(NULL);
 
-    //Making cards manually using dynamic allocation.
-    //Purple cards:
-    Card* pointerToCard;
-    for(int i = 0; i < 16; i++){
-        pointerToCard = new Scarecrow;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 6; i++){
-        pointerToCard = new Drummer;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 3; i++){
-        pointerToCard = new Spring;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 3; i++){
-        pointerToCard = new Winter;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 3; i++){
-        pointerToCard = new Heroine;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 6; i++){
-        pointerToCard = new Bishop;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 12; i++){
-        pointerToCard = new Spy;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 3; i++){
-        pointerToCard = new Turncoat;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 3; i++){
-        pointerToCard = new JungleSpirit;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 12; i++){
-        pointerToCard = new MountainBreaker;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 3; i++){
-        pointerToCard = new Hercules;
-        deckOfCards.push_back(pointerToCard);
-    }
+        //Making cards manually using dynamic allocation.
+        //Purple cards:
+        Card* pointerToCard;
+        for(int i = 0; i < 16; i++){
+            pointerToCard = new Scarecrow;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 6; i++){
+            pointerToCard = new Drummer;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 3; i++){
+            pointerToCard = new Spring;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 3; i++){
+            pointerToCard = new Winter;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 3; i++){
+            pointerToCard = new Heroine;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 6; i++){
+            pointerToCard = new Bishop;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 12; i++){
+            pointerToCard = new Spy;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 3; i++){
+            pointerToCard = new Turncoat;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 3; i++){
+            pointerToCard = new JungleSpirit;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 12; i++){
+            pointerToCard = new MountainBreaker;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 3; i++){
+            pointerToCard = new Hercules;
+            deckOfCards.push_back(pointerToCard);
+        }
 
-    //Yellow cards:
-    for(int i = 0; i < 10; i++){
-        pointerToCard = new YellowCard(1);
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 8; i++){
-        pointerToCard = new YellowCard(2);
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 8; i++){
-        pointerToCard = new YellowCard(3);
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 8; i++){
-        pointerToCard = new YellowCard(4);
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 8; i++){
-        pointerToCard = new YellowCard(5);
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 8; i++){
-        pointerToCard = new YellowCard(6);
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 8; i++){
-        pointerToCard = new YellowCard(10);
-        deckOfCards.push_back(pointerToCard);
-    }
+        //Yellow cards:
+        for(int i = 0; i < 10; i++){
+            pointerToCard = new YellowCard(1);
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 8; i++){
+            pointerToCard = new YellowCard(2);
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 8; i++){
+            pointerToCard = new YellowCard(3);
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 8; i++){
+            pointerToCard = new YellowCard(4);
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 8; i++){
+            pointerToCard = new YellowCard(5);
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 8; i++){
+            pointerToCard = new YellowCard(6);
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 8; i++){
+            pointerToCard = new YellowCard(10);
+            deckOfCards.push_back(pointerToCard);
+        }
 
-    //Season:
-    season = NULL;
+        //Season:
+        season = NULL;
 
-    //Mid-game data:
-    midGameData.resizeList(playerList.size());
+        //Mid-game data:
+        midGameData.resizeList(playerList.size());
+    }
+    else if(loadMode == LoadGame){
+        CondottiereFileOperation::readTheGame(fileName, *this);
+    }
 }
 
 //------------------------------------------------------------------
@@ -332,6 +337,7 @@ void Game::setThePeaceMark(){
     if(midGameData.indexOfPeaceMarkOwner != -1){
         if(peaceMark.whereIsIt() != NULL){
             peaceMark.whereIsIt()->setFightability(true);
+            peaceMark.setMarkOn(NULL);
         }
         std::string cityName = UserInterface::callThePeaceMarkOwner(playerList[midGameData.indexOfPeaceMarkOwner], theMap);
         if(cityName != "0"){
@@ -369,6 +375,7 @@ Player* Game::playerInTurn()const{
 void Game::war(){
     std::string playerInput;
     for(midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter; ; midGameData.indexOfPlayerInTurn++){
+        CondottiereFileOperation::writeTheGame(fileName, *this);
         if(!midGameData.passed[midGameData.indexOfPlayerInTurn]){
             UserInterface::bringThePlayer(playerList[midGameData.indexOfPlayerInTurn].getName());
             while(true){

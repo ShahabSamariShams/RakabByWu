@@ -4,6 +4,7 @@
 
 Player::Player(){
     marks.resize(5);
+    armyPower = 0;
 }
 
 //-------------------------------------------
@@ -31,6 +32,14 @@ void Player::setMarks(std::vector <Mark> marksToSet){
     marks = marksToSet;
 }
 
+void Player::setWonCities(std::unordered_map <std::string, std::pair <int, CityGuards>> cityList){
+    wonCities = cityList;
+}
+
+Color Player::getColor()const{
+    return marks[0].getColor();
+}
+
 void Player::setArmyPower(int inputPower){
     armyPower = inputPower;
 }
@@ -38,6 +47,35 @@ void Player::setArmyPower(int inputPower){
 void Player::setMarksColor(Color inputColor){
     for(int i = 0; i < marks.size(); i++){
         marks[i].setColor(inputColor);
+    }
+}
+
+void Player::setMarksColor(int colorEnum){
+    switch(colorEnum){
+        case 0:
+            setMarksColor(white);
+            break;
+        case 1:
+            setMarksColor(black);
+            break;
+        case 2:
+            setMarksColor(red);
+            break;
+        case 3:
+            setMarksColor(blue);
+            break;
+        case 4:
+            setMarksColor(green);
+            break;
+        case 5:
+            setMarksColor(yellow);
+            break;
+        case 6:
+            setMarksColor(purple);
+            break;
+        case 7:
+            setMarksColor(lightBlue);
+            break;
     }
 }
 
@@ -57,6 +95,10 @@ int Player::getArmyPower()const{
 
 int Player::yellowArmySize(){
     return yellowArmy.size();
+}
+
+std::unordered_map <std::string, std::pair <int, CityGuards>> Player::getWonCities()const{
+    return wonCities;
 }
 
 int Player::getRawYellowPower(){

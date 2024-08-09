@@ -5,14 +5,14 @@
 //To restrict chooseable color. 
 
 enum Color{
-    white,
-    black,
-    red,
-    blue,
-    green,
-    yellow,
-    purple,
-    lightBlue
+    white = 0,
+    black = 1,
+    red = 2,
+    blue = 3,
+    green = 4,
+    yellow = 5,
+    purple = 6,
+    lightBlue = 7
 };
 
 #endif
