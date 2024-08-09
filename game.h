@@ -4,19 +4,23 @@
 #include <vector>
 #include <utility>
 
+#include "condottierefileoperation.h"
 #include "card.h"
 #include "player.h"
 #include "mark.h"
 #include "map.h"
 #include "midGameData.h"
+#include "fileloader.h"
 
 class Card;
 class Player;
 
 class Game{
+    //Friends:
+        friend class CondottiereFileOperation;
     public:
     //Constructor and Destructor:
-        Game(/*std::string*/);
+        Game(std::string, FileLoader);
     //Setters:
         void setSeason(Card*);
         void setPlayerList(std::vector <Player>);
@@ -73,6 +77,8 @@ class Game{
         Map theMap;
 
         MidGameData midGameData;
+
+        std::string fileName;
 };
 
 #endif

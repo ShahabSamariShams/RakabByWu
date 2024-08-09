@@ -10,6 +10,8 @@ class Mark{
     public:
     //Constructor:
         Mark();
+    //Getters:
+        Color getColor()const;
     //Setters:
         void setMarkOn(City*);
         void setColor(Color);

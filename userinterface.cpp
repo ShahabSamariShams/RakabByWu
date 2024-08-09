@@ -79,6 +79,7 @@ std::string UserInterface::loadGameMenu(){
 short UserInterface::receiveNumberOfPlayers(){
     short numberOfPlayers;
     while(true){
+        system("cls");
         std::cout << "How many players are going to play this wonderful game?(Note that the number of players must be between 3 and 6.) \n";
         std::cout << "Enter the number: ";
         try{

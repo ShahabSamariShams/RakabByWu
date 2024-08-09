@@ -4,6 +4,10 @@ Mark::Mark(){
     setMarkOn(NULL);
 }
 
+Color Mark::getColor()const{
+    return color;
+}
+
 City* Mark::whereIsIt()const{
     return cityAddress;
 }

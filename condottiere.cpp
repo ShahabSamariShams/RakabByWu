@@ -5,6 +5,7 @@
 
 #include "userinterface.h"
 #include "game.h"
+#include "fileloader.h"
 
 Condottiere::Condottiere(){
     std::filesystem::directory_entry fileChecker("GameFiles");
@@ -20,12 +21,15 @@ Condottiere::Condottiere(){
 void Condottiere::runGame(){
     while(true){
         std::string fileNumber;
+        FileLoader fileLoader;
         switch(UserInterface::menu()){
             case 1:
                 fileNumber = UserInterface::newGameMenu();
+                fileLoader = NewGame;
                 break;
             case 2:
                 fileNumber = UserInterface::loadGameMenu();
+                fileLoader = LoadGame;
                 break;
             case 3:
                 return;
@@ -33,7 +37,8 @@ void Condottiere::runGame(){
                 break;
         }
         if(fileNumber != "0"){
-            Game theGame;
+            std::string filePath = "GameFiles\\Game " + fileNumber + ".txt";
+            Game theGame(filePath, fileLoader);
             theGame.runGame();
         }
     }

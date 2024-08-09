@@ -2,7 +2,7 @@
 #include "game.h"
 
 int main(){
-    /*Game theGame;
+    /*Game theGame("GameFiles//Game 1.txt", NewGame);
     theGame.runGame();*/
     Condottiere theGame;
     theGame.runGame();
