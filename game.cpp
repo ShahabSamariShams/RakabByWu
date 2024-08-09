@@ -154,6 +154,7 @@ Game::Game(std::string fileName, FileLoader loadMode): fileName(fileName){
 
         //Mid-game data:
         midGameData.resizeList(playerList.size());
+        midGameData.indexOfWarStarter = findTheYoungest();
     }
     else if(loadMode == LoadGame){
         CondottiereFileOperation::readTheGame(fileName, *this);
@@ -541,7 +542,6 @@ bool Game::gameWinner(){
 
 
 void Game::runGame(){
-    midGameData.indexOfWarStarter = findTheYoungest();
     while(true){
         midGameData.reset();
         setTheBlackMark();
