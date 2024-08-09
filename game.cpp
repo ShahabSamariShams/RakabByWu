@@ -272,6 +272,17 @@ void Game::resetingArmies(std::vector <Card*> purpleCards){
     season = NULL;
 }
 
+void Game::prepareForCalculation(){
+    if(season != NULL){
+        std::pair <Card*, Player*> toBeAdded;
+        toBeAdded.first = season;
+        toBeAdded.second = NULL;
+        playedPurpleCards.push_back(toBeAdded);
+    }
+    mergeSort(playedPurpleCards, 0, playedPurpleCards.size() - 1);
+    std::reverse(playedPurpleCards.begin(), playedPurpleCards.end());
+}
+
 std::vector <Card*> Game::calculateThePowers(){
     std::vector <Card*> toBeReturned;
     for(int i = 0; i < playerList.size(); i++){
@@ -540,14 +551,7 @@ void Game::runGame(){
         }
         war();
 
-        if(season != NULL){
-            std::pair <Card*, Player*> toBeAdded;
-            toBeAdded.first = season;
-            toBeAdded.second = NULL;
-            playedPurpleCards.push_back(toBeAdded);
-        }
-        mergeSort(playedPurpleCards, 0, playedPurpleCards.size() - 1);
-        std::reverse(playedPurpleCards.begin(), playedPurpleCards.end());
+        prepareForCalculation();
         std::vector <Card*> purpleCards = calculateThePowers();
         midGameData.winner = whoWonTheWar();
         resetingArmies(purpleCards);

@@ -37,6 +37,7 @@ class Game{
         bool timeToDistribute();
         void addToPlayedPurpleCards(Card*, Player*);
         void resetingArmies(std::vector <Card*>);
+        void prepareForCalculation();
         std::vector <Card*> calculateThePowers();
         void turncoatPlayed();
     //Black mark related:
