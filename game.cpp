@@ -212,13 +212,24 @@ int Game::highestYellowCardPlayed(){
 }
 
 void Game::burnHandIfPossible(){
+    if(midGameData.currentStatus != "BurnHand"){
+        return;
+    }
     for(int i = 0; i < playerList.size(); i++){
+        midGameData.finalStatus = "BurnHand";
         if(!playerList[i].yellowCardInHand() && !playerList[i].emptyHand()){
-            if(UserInterface::receicveAnswer(playerList[i].getName()) == "yes"){
+            std::string answer = UserInterface::receicveAnswer(playerList[i].getName());
+            if(answer == "yes"){
                 burnCards(playerList[i].burnCardsInHand());
+            }
+            else if(answer == "exit"){
+                midGameData.currentStatus = "exit";
+                return;
             }
         }
     }
+    std::cout << "karim" << system("pause");
+    midGameData.currentStatus = "InWar";
 }
 
 void Game::burnCards(std::vector <Card*> cardsToBurn){
@@ -316,12 +327,14 @@ void Game::ownerOfBlackMark(){
     }
     if(count == 1){
         midGameData.indexOfWarStarter = highestSpyIndex;
+        midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter;
         return;
     }
     if(midGameData.winner != NULL){
         for(int i = 0; i < playerList.size(); i++){
             if(playerList[i].getName() == midGameData.winner->getName()){
                 midGameData.indexOfWarStarter = i;
+                midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter;
                 break;
             }
         }
@@ -329,8 +342,17 @@ void Game::ownerOfBlackMark(){
 }
 
 void Game::setTheBlackMark(){
+    if(midGameData.currentStatus != "SetBlackMark"){
+        return;
+    }
+    midGameData.finalStatus = midGameData.currentStatus;
     std::string cityName = UserInterface::callTheBlackMarkOwner(playerList[midGameData.indexOfWarStarter], theMap);
+    if(cityName == "exit"){
+        midGameData.currentStatus = "exit";
+        return;
+    }
     blackMark.setMarkOn(theMap.toBeFoughtFor(cityName));
+    midGameData.currentStatus = "BurnHand";
 }
 
 void Game::spyCountIncrementation(int index){
@@ -346,17 +368,27 @@ City Game::currentWarPlace()const{
 }
 
 void Game::setThePeaceMark(){
+    if(midGameData.currentStatus != "SetPeaceMark"){
+        return;
+    }
+    midGameData.finalStatus = midGameData.currentStatus;
     if(midGameData.indexOfPeaceMarkOwner != -1){
         if(peaceMark.whereIsIt() != NULL){
             peaceMark.whereIsIt()->setFightability(true);
             peaceMark.setMarkOn(NULL);
         }
         std::string cityName = UserInterface::callThePeaceMarkOwner(playerList[midGameData.indexOfPeaceMarkOwner], theMap);
-        if(cityName != "0"){
+        if(cityName != "0" && cityName != "exit"){
             peaceMark.setMarkOn(theMap.toBeFoughtFor(cityName));
             peaceMark.whereIsIt()->setFightability(false);
+            midGameData.currentStatus = "SetBlackMark";
+        }
+        else if(cityName == "exit"){
+            midGameData.currentStatus = "exit";
+            return;
         }
     }
+    midGameData.currentStatus = "SetBlackMark";
 }
 
 int Game::findTheYoungest(){
@@ -385,9 +417,12 @@ Player* Game::playerInTurn()const{
 //------------------------------------------------------------------
 
 void Game::war(){
+    if(midGameData.currentStatus != "InWar"){
+        return;
+    }
+    midGameData.finalStatus = midGameData.currentStatus;
     std::string playerInput;
-    for(midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter; ; midGameData.indexOfPlayerInTurn++){
-        CondottiereFileOperation::writeTheGame(fileName, *this);
+    for(/*midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter*/; ; midGameData.indexOfPlayerInTurn++){
         if(!midGameData.passed[midGameData.indexOfPlayerInTurn]){
             UserInterface::bringThePlayer(playerList[midGameData.indexOfPlayerInTurn].getName());
             while(true){
@@ -397,7 +432,7 @@ void Game::war(){
                 UserInterface::displayBlackMarkCity(blackMark.whereIsIt());
                 UserInterface::displaySeason(season);
                 playerInput = UserInterface::play(playerList[midGameData.indexOfPlayerInTurn]);
-                if(playerInput != "help" && playerInput != "empty"){
+                if(playerInput != "help" && playerInput != "empty" && playerInput != "exit"){
                     if(playerInput != "pass" && playerList[midGameData.indexOfPlayerInTurn].cardExistance(playerInput)){
                         addToPlayedPurpleCards(playerList[midGameData.indexOfPlayerInTurn].playACard(playerInput), &playerList[midGameData.indexOfPlayerInTurn]);
                         if(playedPurpleCards.size() != 0 && static_cast<PurpleCard*>(playedPurpleCards.back().first)->getPriority() == 0){
@@ -420,9 +455,15 @@ void Game::war(){
                         /*cardNonExistenceError()*/
                     }
                 }
+                else if(playerInput == "exit"){
+                    midGameData.currentStatus = "exit";
+                    break;
+                }
             }
         }
         if(endOfWar()){
+            if(midGameData.currentStatus != "exit")
+                midGameData.currentStatus = "SetPeaceMark";
             break;
         }
         if(midGameData.indexOfPlayerInTurn == playerList.size() - 1){
@@ -434,6 +475,9 @@ void Game::war(){
 
 
 bool Game::endOfWar(){
+    if(midGameData.currentStatus == "exit"){
+        return true;
+    }
     if(midGameData.isTurncoatPlayed){
         return true;
     }
@@ -543,27 +587,45 @@ bool Game::gameWinner(){
 
 void Game::runGame(){
     while(true){
-        midGameData.reset();
-        setTheBlackMark();
-        burnHandIfPossible();
-        if(timeToDistribute()){
-            distributeCards();
+        if(midGameData.currentStatus == "SetBlackMark"){
+            midGameData.reset();
+            setTheBlackMark();
         }
-        war();
-
-        prepareForCalculation();
-        std::vector <Card*> purpleCards = calculateThePowers();
-        midGameData.winner = whoWonTheWar();
-        resetingArmies(purpleCards);
-        if(midGameData.winner != NULL){
-            warWinnerAward();
-            UserInterface::announceTheLocalWarWinner(midGameData.winner);
-            if(gameWinner()){
-                UserInterface::announceTheWinner(midGameData.winner);
-                return;
+        if(midGameData.currentStatus == "BurnHand"){
+            burnHandIfPossible();
+            if(timeToDistribute()){
+                distributeCards();
             }
         }
-        setThePeaceMark();
-        ownerOfBlackMark();
+        if(midGameData.currentStatus == "InWar"){
+            war();
+        }
+        if(midGameData.currentStatus != "exit"){
+            prepareForCalculation();
+            std::vector <Card*> purpleCards = calculateThePowers();
+            midGameData.winner = whoWonTheWar();
+            resetingArmies(purpleCards);
+            if(midGameData.winner != NULL){
+                warWinnerAward();
+                UserInterface::announceTheLocalWarWinner(midGameData.winner);
+                if(gameWinner()){
+                    UserInterface::announceTheWinner(midGameData.winner);
+                    std::ofstream finishGame(fileName);
+                    finishGame << "empty";
+                    return;
+                }
+            }
+        }
+        if(midGameData.currentStatus == "SetPeaceMark"){
+            std::cout << midGameData.currentStatus << std::endl;
+            setThePeaceMark();
+        }
+        if(midGameData.currentStatus != "exit"){
+            ownerOfBlackMark();
+        }
+        if(midGameData.currentStatus == "exit"){
+            break;
+        }
     }
+    CondottiereFileOperation::writeTheGame(fileName, *this);
 }
