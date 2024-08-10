@@ -16,6 +16,8 @@
 #include "jungleSpirit.h"
 #include "mountainBreaker.h"
 #include "hercules.h"
+#include "harpSeal.h"
+#include "pegasus.h"
 
 #include "game.h"
 #include "player.h"
@@ -104,11 +106,12 @@ void CondottiereFileOperation::writeTheGame(std::string fileName, Game currentGa
     MidGameData midGameData = currentGame.midGameData;
     write << midGameData.indexOfPeaceMarkOwner << " " << midGameData.indexOfPlayerInTurn << " " 
     << midGameData.indexOfWarStarter << "\n" << (midGameData.winner == NULL? "0": midGameData.winner->getName()) << "\n" << 
-    midGameData.isTurncoatPlayed << "\n";
+    midGameData.isTurncoatPlayed << " " << midGameData.isPegasusPlayed << "\n";
     for(int i = 0; i < playerList.size(); i++){
         write << midGameData.passed[i] << " " << midGameData.spyCount[i] << " ";
     }
     write << "\n";
+    write << currentGame.midGameData.luckyNumber << " " << currentGame.midGameData.ominousNumber << "\n";
     write << midGameData.currentStatus << " " << midGameData.finalStatus;
 
     write.close();
@@ -124,7 +127,8 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
 
     std::string name;
     float age;
-    int enumSaver, soldierPower, armyPower;
+    int enumSaver;
+    float soldierPower, armyPower;
 
     read >> numberOfPlayers;
     std::vector <Player> playerList(numberOfPlayers);
@@ -134,7 +138,7 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
         }while(name == "\0" || name == " ");
         playerList[i].setName(name);
         read >> age;         playerList[i].setAge(age);
-        read >> enumSaver;   playerList[i].setMarksColor(enumSaver);
+        read >> enumSaver;   playerList[i].setMarksColor(enumSaver); 
 
         read >> size;
         std::vector <Card*> cardsInHand(size);
@@ -241,7 +245,7 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
     else{
         currentGame.midGameData.winner = NULL;
     }
-    read >> currentGame.midGameData.isTurncoatPlayed;
+    read >> currentGame.midGameData.isTurncoatPlayed >> currentGame.midGameData.isPegasusPlayed;
     std::vector <bool> passed(numberOfPlayers);
     std::vector <int> spyCount(numberOfPlayers);
     bool temp;
@@ -251,6 +255,7 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
     }
     currentGame.midGameData.passed = passed;
     currentGame.midGameData.spyCount = spyCount;
+    read >> currentGame.midGameData.luckyNumber >> currentGame.midGameData.ominousNumber;
     read >> currentGame.midGameData.currentStatus >> currentGame.midGameData.finalStatus;
     currentGame.midGameData.currentStatus = currentGame.midGameData.finalStatus;
 
@@ -276,28 +281,34 @@ Card* CondottiereFileOperation::cardMaker(int enumType){
             pointer = new Hercules;
             break;
         case 6:
-            pointer = new Bishop;
+            pointer = new Pegasus;
             break;
         case 7:
-            pointer = new Winter;
+            pointer = new HarpSeal;
             break;
         case 8:
-            pointer = new Drummer;
+            pointer = new Bishop;
             break;
         case 9:
-            pointer = new Spring;
+            pointer = new Winter;
             break;
         case 10:
-            pointer = new Spy;
+            pointer = new Drummer;
             break;
         case 11:
+            pointer = new Spring;
+            break;
+        case 12:
+            pointer = new Spy;
+            break;
+        case 13:
             pointer = new Heroine;
             break;
     }
     return pointer;
 }
 
-Card* CondottiereFileOperation::cardMaker(int enumType, int soldierPower){
+Card* CondottiereFileOperation::cardMaker(int enumType, float soldierPower){
     Card* pointer = new YellowCard(soldierPower);
     return pointer;
 }

@@ -11,7 +11,7 @@ class CondottiereFileOperation{
         static void writeTheGame(std::string, Game);
         static void readTheGame(std::string, Game&);
         static Card* cardMaker(int);
-        static Card* cardMaker(int, int);
+        static Card* cardMaker(int, float);
     private:
 };
 

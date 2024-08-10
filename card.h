@@ -4,20 +4,20 @@
 #include <string>
 
 enum CardType{
-    soldier,
-    scarecrow,          //Immediate effect.
-    turncoat,           //Immediate effect.
-    jungleSpirit,       //Immediate effect.
-    mountainBreaker,    //Immediate effect.
-    hercules,           //Immediate effect.
-    pegasus,            //Immidiate effect.
-    harpseal,           //Immediate effect.
-    bishop,             //First.
-    winter,             //Second.
-    drummer,            //Third.
-    spring,             //Fourth.
-    spy,                //Fifth.
-    heroine             //Fifth.
+    soldier = 0,
+    scarecrow = 1,          //Immediate effect.
+    turncoat = 2,           //Immediate effect.
+    jungleSpirit = 3,       //Immediate effect.
+    mountainBreaker = 4,    //Immediate effect.
+    hercules = 5,           //Immediate effect.
+    pegasus = 6,            //Immidiate effect.
+    harpseal = 7,           //Immediate effect.
+    bishop = 8,             //First.
+    winter = 9,             //Second.
+    drummer = 10,            //Third.
+    spring = 11,             //Fourth.
+    spy = 12,                //Fifth.
+    heroine  = 13            //Fifth.
 };
 
 class Card{

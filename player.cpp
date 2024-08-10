@@ -40,14 +40,6 @@ Color Player::getColor()const{
     return marks[0].getColor();
 }
 
-void Player::setWonCities(std::unordered_map <std::string, std::pair <int, CityGuards>> cityList){
-    wonCities = cityList;
-}
-
-Color Player::getColor()const{
-    return marks[0].getColor();
-}
-
 void Player::setArmyPower(float inputPower){
     armyPower = inputPower;
 }

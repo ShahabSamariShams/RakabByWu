@@ -108,14 +108,14 @@ Game::Game(std::string fileName, FileLoader loadMode): fileName(fileName){
             pointerToCard = new Turncoat;
             deckOfCards.push_back(pointerToCard);
         }
-    for(int i = 0; i < 2; i++){
-        pointerToCard = new Pegasus;
-        deckOfCards.push_back(pointerToCard);
-    }
-    for(int i = 0; i < 20; i++){
-        pointerToCard = new HarpSeal;
-        deckOfCards.push_back(pointerToCard);
-    }
+        for(int i = 0; i < 2; i++){
+            pointerToCard = new Pegasus;
+            deckOfCards.push_back(pointerToCard);
+        }
+        for(int i = 0; i < 20; i++){
+            pointerToCard = new HarpSeal;
+            deckOfCards.push_back(pointerToCard);
+        }
         for(int i = 0; i < 3; i++){
             pointerToCard = new JungleSpirit;
             deckOfCards.push_back(pointerToCard);
@@ -165,6 +165,7 @@ Game::Game(std::string fileName, FileLoader loadMode): fileName(fileName){
         //Mid-game data:
         midGameData.resizeList(playerList.size());
         midGameData.indexOfWarStarter = findTheYoungest();
+        midGameData.indexOfPlayerInTurn = midGameData.indexOfWarStarter;
     }
     else if(loadMode == LoadGame){
         CondottiereFileOperation::readTheGame(fileName, *this);
@@ -255,7 +256,6 @@ void Game::burnHandIfPossible(){
             }
         }
     }
-    std::cout << "karim" << system("pause");
     midGameData.currentStatus = "InWar";
 }
 
@@ -344,7 +344,7 @@ std::vector <Card*> Game::calculateThePowers(){
         if(static_cast<int>(playerList[i].getArmyPower()) % midGameData.luckyNumber == 0){
             playerList[i].setArmyPower(playerList[i].getArmyPower() * 2);
         }
-        else if(static_cast<int>(playerList[i].getArmyPower()) % midGameData.ominousNumber == 0){
+        if(static_cast<int>(playerList[i].getArmyPower()) % midGameData.ominousNumber == 0){
             playerList[i].setArmyPower(0);
         }
     }
@@ -651,12 +651,12 @@ void Game::runGame(){
             if(timeToDistribute()){
                 distributeCards();
             }
-        setFortuneNumbers();
+            setFortuneNumbers();
         }
         if(midGameData.currentStatus == "InWar"){
             war();
         }
-        if(midGameData.currentStatus != "exit"){
+        if(midGameData.currentStatus != "exit" && midGameData.finalStatus == "InWar"){
             prepareForCalculation();
             std::vector <Card*> purpleCards = calculateThePowers();
             midGameData.winner = whoWonTheWar();
@@ -672,8 +672,8 @@ void Game::runGame(){
                 }
             }
         }
+        std::cout << "m";
         if(midGameData.currentStatus == "SetPeaceMark"){
-            std::cout << midGameData.currentStatus << std::endl;
             setThePeaceMark();
         }
         if(midGameData.currentStatus != "exit"){
