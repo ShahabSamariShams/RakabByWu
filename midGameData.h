@@ -2,6 +2,7 @@
 
 #define MIDGAMEDATA_H
 #include <vector>
+#include <string>
 
 #include "player.h"
 
@@ -18,6 +19,9 @@ struct MidGameData{
     //Booleans:
         bool isTurncoatPlayed;
         bool isPegasusPlayed;
+    //Game-Status:
+        std::string currentStatus;
+        std::string finalStatus;
     //Vectors that overlap with player list:
         std::vector <int> spyCount;
         std::vector <bool> passed;

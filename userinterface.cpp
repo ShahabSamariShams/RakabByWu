@@ -216,7 +216,7 @@ std::string UserInterface::play(Player playerInTurn){
     std::cout << "@" << playerInTurn.getName() << ": ";
     std::string input;
     std::cin >> input;
-    if(Validator::validateKnownWord(input)){
+    if(Validator::validateKnownWord(input) || input == "exit"){
         if(input == "help"){
             std::string nextWord, mainWord;
             std::getline(std::cin, nextWord);
@@ -234,6 +234,7 @@ std::string UserInterface::play(Player playerInTurn){
     }
     else{
         /*recommendationFunction(), returns empty if not found.*/
+        return "empty";
     }
 }
 
@@ -250,9 +251,9 @@ std::string UserInterface::callTheBlackMarkOwner(Player owner, Map& theMap){
         }
         std::cout <<"\n";
         std::string cityName;
-        std::cout << owner.getName() << "! Choose the next city to fight for: ";
+        std::cout << owner.getName() << "! Choose the next city to fight for(enter exit to exit the game.): ";
         std::cin >> cityName;
-        if(Validator::validateCityName(cityName, theMap)){
+        if(Validator::validateCityName(cityName, theMap) || cityName == "exit"){
             system("cls");
             return cityName;
         }
@@ -273,7 +274,7 @@ std::string UserInterface::callThePeaceMarkOwner(Player owner, Map& theMap){
         std::string cityName;
         std::cout << owner.getName() << "! Settle the peace mark on a city(enter a zero-0 to put it outside the map.): ";
         std::cin >> cityName;
-        if(Validator::validateCityName(cityName, theMap) || cityName == "0"){
+        if(Validator::validateCityName(cityName, theMap) || cityName == "0" || cityName == "exit"){
             system("cls");
             return cityName;
         }
@@ -290,7 +291,7 @@ std::string UserInterface::receicveAnswer(std::string name){
         system("cls");
         std::cout << name << ", you have no more soldier cards. Do you want to burn your hand(yes/no)? ";
         std::cin >> answer;
-        if(answer == "yes" || answer == "no"){
+        if(answer == "yes" || answer == "no" || answer == "exit"){
             return answer;
         }
         else{

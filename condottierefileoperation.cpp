@@ -52,11 +52,10 @@ void CondottiereFileOperation::writeTheGame(std::string fileName, Game currentGa
 
         write << playerList[i].numberOfTakenCities() << "\n";
         std::vector <Mark> marks = playerList[i].getMarks();
-        for(int i = 0; i < playerList[i].numberOfTakenCities(); i++){
-            write << marks[i].whereIsIt()->getName() << " ";
+        for(int j = 0; j < playerList[i].numberOfTakenCities(); j++){
+            write << marks[j].whereIsIt()->getName() << " ";
         }
         write << "\n";
-
         std::unordered_map <std::string, std::pair <int, CityGuards>> wonCities = playerList[i].getWonCities();
         write << wonCities.size() << "\n";
         for(auto i: wonCities){
@@ -64,7 +63,6 @@ void CondottiereFileOperation::writeTheGame(std::string fileName, Game currentGa
         }
         write << "\n";
     }
-
     //Deck of cards:
     std::vector <Card*> deckOfCards = currentGame.deckOfCards;
     write << deckOfCards.size() << "\n";
@@ -89,7 +87,12 @@ void CondottiereFileOperation::writeTheGame(std::string fileName, Game currentGa
     }
 
     //Black mark and peace mark:
-    write << currentGame.blackMark.whereIsIt()->getName() << "\n";
+    if(currentGame.blackMark.whereIsIt() == NULL){
+        write << "0\n";
+    }
+    else{
+        write << currentGame.blackMark.whereIsIt()->getName() << "\n";
+    }
     if(currentGame.peaceMark.whereIsIt() == NULL){
         write << "0\n";
     }
@@ -105,6 +108,8 @@ void CondottiereFileOperation::writeTheGame(std::string fileName, Game currentGa
     for(int i = 0; i < playerList.size(); i++){
         write << midGameData.passed[i] << " " << midGameData.spyCount[i] << " ";
     }
+    write << "\n";
+    write << midGameData.currentStatus << " " << midGameData.finalStatus;
 
     write.close();
 }
@@ -124,10 +129,9 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
     read >> numberOfPlayers;
     std::vector <Player> playerList(numberOfPlayers);
     for(int i = 0; i < numberOfPlayers; i++){
-        name = "\0";
         do{
             getline(read, name);
-        }while(name == "\0");
+        }while(name == "\0" || name == " ");
         playerList[i].setName(name);
         read >> age;         playerList[i].setAge(age);
         read >> enumSaver;   playerList[i].setMarksColor(enumSaver);
@@ -169,13 +173,12 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
         read >> size;
         for(int i = 0; i < size; i++){
             read >> name;
-            read >> wonCities[name].first >> wonCities[name].second.castle >> wonCities[name].second.mountain >> wonCities[name].second.jungle; 
-        } 
+            read >> wonCities[name].first >> wonCities[name].second.castle >> wonCities[name].second.mountain >> wonCities[name].second.jungle;
+        }
+        playerList[i].setWonCities(wonCities);
     }
     currentGame.playerList = playerList;
-    std::cout << "out of players" << std::endl;
-
-    std::cout << "1"; system("pause");
+    
     //Deck of cards:
     read >> size;
     std::vector <Card*> deckOfCards(size);
@@ -191,7 +194,6 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
     }
     currentGame.deckOfCards = deckOfCards;
 
-    std::cout << "1"; system("pause");
     //Played purple cards:
     read >> size;
     std::vector <std::pair <Card*, Player*>> playedPurpleCard(size);
@@ -200,12 +202,11 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
         name = "\0";
         do{
             getline(read, name);
-        }while(name == "\0");
+        }while(name == "\0" || name == " ");
         playedPurpleCard[i].second = &(currentGame.playerList[currentGame.playerInTurnIndex(name)]);
     }
     currentGame.playedPurpleCards = playedPurpleCard;
 
-    std::cout << "1"; system("pause");
     //Season:
     read >> enumSaver;
     if(enumSaver != 0){
@@ -215,7 +216,6 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
         currentGame.season = NULL;
     }
 
-    std::cout << "1"; system("pause");
     //Black mark and peace mark:
     read >> name;
     currentGame.blackMark.setMarkOn(currentGame.theMap.toBeFoughtFor(name));
@@ -227,26 +227,21 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
         currentGame.peaceMark.setMarkOn(NULL);
     }
 
-    std::cout << "1"; system("pause");
     //Mid-Game Data:
     read >> currentGame.midGameData.indexOfPeaceMarkOwner
     >> currentGame.midGameData.indexOfPlayerInTurn
     >> currentGame.midGameData.indexOfWarStarter;
-    std::cout << "2"; system("pause");
     name = "\0";
     do{
         getline(read, name);
-    }while(name == "\0");
-    std::cout << "2"; system("pause");
+    }while(name == "\0" || name == " ");
     if(name != "0"){
         currentGame.midGameData.winner = &currentGame.playerList[currentGame.playerInTurnIndex(name)];
     }
     else{
         currentGame.midGameData.winner = NULL;
     }
-    std::cout << "2"; system("pause");
     read >> currentGame.midGameData.isTurncoatPlayed;
-    std::cout << "2"; system("pause");
     std::vector <bool> passed(numberOfPlayers);
     std::vector <int> spyCount(numberOfPlayers);
     bool temp;
@@ -256,7 +251,8 @@ void CondottiereFileOperation::readTheGame(std::string fileName, Game& currentGa
     }
     currentGame.midGameData.passed = passed;
     currentGame.midGameData.spyCount = spyCount;
-    std::cout << "2"; system("pause");
+    read >> currentGame.midGameData.currentStatus >> currentGame.midGameData.finalStatus;
+    currentGame.midGameData.currentStatus = currentGame.midGameData.finalStatus;
 
     read.close();
 }

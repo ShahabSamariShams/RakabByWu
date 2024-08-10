@@ -1,6 +1,8 @@
 #include "midGameData.h"
 
 void MidGameData::reset(){
+    if(currentStatus != "SetBlackMark")
+        return;
     indexOfPeaceMarkOwner = -1;
 
     winner = NULL;
@@ -13,6 +15,8 @@ void MidGameData::reset(){
 }
 
 void MidGameData::resizeList(int size){
+    currentStatus = "SetBlackMark";
+    finalStatus = "SetBlackMark";
     passed.resize(size);
     spyCount.resize(size);
     MidGameData::reset();

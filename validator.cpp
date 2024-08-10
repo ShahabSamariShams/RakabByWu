@@ -17,6 +17,8 @@ bool Validator::validatePlayerName(std::vector <Player> playerList, std::string 
             return false;
         }
     }
+    if(nameToBeAdded == "\0")
+        return false;
     return true;
 }
 
